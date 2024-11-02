@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mighty No. 9</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Mighty No. 9</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>12m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-2/26/2017">2/26/2017</a> 18:12:43</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-6/6/2024">6/6/2024</a> 20:12:27</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-6/6/2024">6/6/2024</a> 20:20:28</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-6/21/2016">6/21/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-57">57</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-52">52</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Platform">Platform</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Shooter">Shooter</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Abstraction Games">Abstraction Games</a><br/><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Comcept">Comcept</a><br/><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Inti Creates">Inti Creates</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Deep Silver">Deep Silver</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Operative">Co-Operative</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Split Screen">Split Screen</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://twitter.com/MightyNo9" target="_blank">Twitter</a><br/><a href="http://www.mightyno9.com" target="_blank">Official</a><br/><a href="https://store.steampowered.com/app/314710" target="_blank">Steam</a><br/><a href="https://en.wikipedia.org/wiki/Mighty_No._9" target="_blank">Wikipedia</a><br/><a href="https://www.facebook.com/officialmightyno9" target="_blank">Facebook</a><br/><a href="https://reddit.com/wiki/Mighty_No._9_Wiki" target="_blank">Reddit</a><br/><a href="https://mightyno9.fandom.com/wiki/Mighty_No._9_Wiki" target="_blank">Wikia</a><br/><a href="https://www.twitch.tv/directory/game/Mighty%20No.%209" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314710/extras/callout_en.png?t=1608197459" /><br><br>Mighty No. 9 is a Japanese 2D Side-scrolling Action game that takes the best elements from 8 and 16-bit classics that you know and love and transforms them with modern tech, fresh mechanics, and fan input into something fresh and amazing!<br><br>You play as Beck, the 9th in a line of powerful robots, and the only one not infected by a mysterious computer virus that has caused mechanized creatures the world over to go berserk. Run, jump, blast, and transform your way through twelve stages using weapons and abilities stolen from your enemies to take down your fellow Mighty Number robots and confront the final evil that threatens the planet!<br><br>Every aspect of Mighty No. 9’s development—art, level design, music, programming, etc.—is being handled by veteran Japanese game creators with extensive experience in the genre, all the way up to and including the project’s leader, Keiji Inafune himself!<h2 class="bb_tag"><strong>9 Mighty good reasons to care</strong></h2><br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314710/extras/mighty_bullet_point_intensive_fontsize.png?t=1608197459" /> <strong>Classic 2D Action: Transformed!</strong> Face off against your 8 Mighty brethren and unlock new transformations as you defeat them, granting you completely different skills and abilities!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314710/extras/mighty_bullet_point_intensive_fontsize.png?t=1608197459" /> Play through <strong>12 Challenging Stages</strong> in a single player campaign that will put both your thumbs and action platforming abilities to the test!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314710/extras/mighty_bullet_point_intensive_fontsize.png?t=1608197459" /> <strong>Unlock the New Game+</strong> to add an additional <strong>two extra difficulty levels</strong> for those who want an even Mightier challenge.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314710/extras/mighty_bullet_point_intensive_fontsize.png?t=1608197459" /> The <strong>Single Player Challenge mode</strong> with dozens of mini missions will fully test your action platforming skills.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314710/extras/mighty_bullet_point_intensive_fontsize.png?t=1608197459" /> <strong>Boss Rush Mode</strong>: Play through each of the game‘s bosses, back to back, with a clock ticking to keep track of your best time, so you can share, compare, and show off your skills to your friends and frienemies alike!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314710/extras/mighty_bullet_point_intensive_fontsize.png?t=1608197459" /> Show the world how Mighty you are in the <strong>2 Player Online Race Battle</strong> where you compete online, racing through each stage together in a head to head battle - adding an all new twist on versus mode play that will give Mighty No. 9 life well beyond the single-player campaign!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314710/extras/mighty_bullet_point_intensive_fontsize.png?t=1608197459" /> <strong>2 Player Online Co-Op Challenge Mode</strong>: take on over a dozen missions online with a friend, playing as Beck and his partner, Call! Use Beck and Call’s different powers together in order to defeat these special challenges!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314710/extras/mighty_bullet_point_intensive_fontsize.png?t=1608197459" /> <strong>Leaderboards &amp; Rankings</strong>: Use Beck's Absorption Dash skill in tandem with his abilities &amp; transformations to chain together combos and perfect your run-throughs to earn those glorious high scores and elusive S-Ranks!<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314710/extras/mighty_bullet_point_intensive_fontsize.png?t=1608197459" /> <strong>Toggle between regular and 8-bit music</strong>: this game is a veritable who’s who of veteran game composers - Manami Matsumae, Takeshi Tateishi, Ippo Yamada, so we thought, why not tap into that retro vibe? As such, Mighty No. 9 features an optional chiptune version of the entire game soundtrack which you can toggle on and off!
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
