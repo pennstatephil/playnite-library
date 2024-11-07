@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Death? Preposterous! - A Non-violent RPG</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Death? Preposterous! - A Non-violent RPG</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:51:45</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:04:44</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-3/30/2019">3/30/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Jay Ray Hawk">Jay Ray Hawk</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Jay Ray Hawk">Jay Ray Hawk</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://jayrayhawk.itch.io/dp" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Death%3F%20Preposterous!" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h3>What Happens When We Die?</h3>
+<p>Is death really as it seems?<br>What if we had the wrong idea?<br>What if death wasn't death at all?</p>
+<p>When a visit to the island's mansion turns out to be much more than our protagonist bargains for, discover what happens in the aftermath, uncover a nefarious secret, and&nbsp;earn an audience with the prestigious lord of the estate.<br></p>
+<h3>Explore The Island</h3>
+<p>Explore the island to find curiosities. Experiment to discover their purpose. Search the island&nbsp;for a&nbsp;way&nbsp;into the mansion. Talk to people and get to know them (or don't, it's up to you.) Who you choose to interact with can change&nbsp;the&nbsp;way the game&nbsp;unfolds. There is more than one way&nbsp;to&nbsp;approach&nbsp;this story, and more than one tale to be told.<br></p>
+<h3>Discover Curious Creatures</h3>
+<p>During your journey you'll encounter a variety of strange and wonderful creatures to interact with. Some might be friendly, others might be afraid of you, and others still can be dangerous if handled the wrong way. But if you take the time to observe them, you might learn a thing or two, and get to know them better.<br></p>
+<h3>Characters:</h3>
+<h4 class="text-center"><img src="https://img.itch.zone/aW1nLzEyMzY0NDYucG5n/original/DXQXWP.png" loading="lazy"><br>Darling</h4>
+<p>Darling is the main protagonist of the story. After a lengthy preparation period, he arrives as a new resident to the island, ready to begin a meaningful chapter in his life together with his wife Madeline in their new seaside home. But things turn out a bit differently than either of them planned, and a note left by Madeline is the start of an unbelievable chain of events...</p>
+<h4 class="text-center"><img src="https://img.itch.zone/aW1nLzEyMzY0NTMucG5n/original/wfHnqQ.png" loading="lazy"><br>Berta</h4>
+<p>The proprietress of the local tavern, Berta's meals are popular with residents of the island and visitors alike. There's never a slow day at her tavern, and she does what she can for those in need. Though, she has been known to take on more than she can reasonably handle sometimes.</p>
+<h4 class="text-center"><img src="https://img.itch.zone/aW1nLzEyMzY0NjUucG5n/original/yTt8d1.png" loading="lazy"><br>Trudy</h4>
+<p>Trudy is the headmistress at the only schoolhouse on the island. It is her joy teaching children, and she makes the most of every day watching them learn and grow. But due to recent occurrences on the island, she and the children have lost their access to the school. To make matters worse, now she is being forced to tutor the son of the person who caused all this!<br></p>
+<h4 class="text-center"><img src="https://img.itch.zone/aW1nLzEyMzY0OTgucG5n/original/%2BZgpOr.png" loading="lazy"><br>Mindy</h4>
+<p>Mindy runs an herbalism practice on the island, as well as a storefront for a variety of flora. Effectively she's the island's naturopathic (and only) doctor. When dire circumstance begins befalling the residents of the island, Mindy discovers she has lost access to her supply of medicines.<br></p>
+<p>These and many more characters await you in <em>Death? Preposterous!</em><br></p>
+<h3>Features:</h3>
+<ul><li>Play as up to 10 different characters, or as few as 1.</li><li>Befriend key characters and learn more about their lives. Or don't. It's up to you.</li><li>Interact with creatures in refreshingly non-violent, puzzle-like encounters.</li><li>Earn a variety of ending sequences to the game that will differ depending on the way you played through it.</li><li>Save your progress anywhere in the game for a more flexible and enjoyable gameplay experience.</li><li>Play <em>Death? Preposterous!</em> using any of the following devices:<ul><li>You can play using just your mouse!</li><li>Or, using simple keyboard controls&nbsp;(4&nbsp;arrow&nbsp;keys to navigate, 2 other&nbsp;keys&nbsp;for&nbsp;action/cancel/menu functions)</li><li>Or using a game controller that supports X-input, such as a USB Xbox 360 controller, an Xbox One Wireless controller, or the Logitech brand F310 and F710 model gamepads, just to name a few possibilities.</li></ul></li></ul>
+<h3>System Requirements:</h3>
+<p>Please keep in mind that these are <em><strong>approximate</strong></em> minimum system requirements.<br></p>
+<table><tbody><tr><td>OS</td><td>Windows 7/8/8.1/10 (32bit/64bit)
+Linux Mint 18 or above, Debian 8 or above</td></tr><tr><td>CPU</td><td>Intel Core 2 Duo or equivalent</td></tr><tr><td>RAM</td><td>2GB or more (4GB or more recommended)</td></tr><tr><td>HDD</td><td>2GB or more of free disk space</td></tr><tr><td>Graphics Card</td><td>One with OpenGL support</td></tr><tr><td>Display</td><td>Resolution of 1024×768 or greater</td></tr></tbody></table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

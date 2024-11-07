@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Love Hues! [Full Game]</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Love Hues! [Full Game]</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:55:56</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:14:10</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/9/2020">4/9/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://oneirocritica-games.itch.io/love-hues-2020" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Love%20Hues!" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><strong>Love Hues! </strong>is a university-based visual novel packed with both character and world secrets. You'll be playing as&nbsp;Skyler (changeable name and pronouns) and navigate your first few months at Falls West University, where you'll meet 5 romanceable - or befriendable! -  characters who hide certain truths about themselves and the world around them. <strong>This is the full version of the game!</strong></p>
+<p>Love Hues! features 41 unique endings, 5 routes,  228,000+ words, and 32+ CGs.<br></p>
+<p class="text-center"><a href="https://twitter.com/love_hues_game" referrerpolicy="origin" rel="nofollow noopener">Twitter</a> -&nbsp; <a href="https://love-hues.github.io/index.html" referrerpolicy="origin" rel="nofollow noopener">Love Hues! Website</a> - <a href="https://lemmasoft.renai.us/forums/viewtopic.php?f=43&amp;t=45856&amp;sid=dd621c87170eacb76bd19e39de399afb" referrerpolicy="origin" rel="nofollow noopener">Lemmasoft</a>
+<strong>- </strong><a href="https://oneirocritica-games.itch.io/love-hues">2018 Demo</a><br></p>
+<h2><em><strong>Characters<br></strong></em></h2>
+<p><img src="https://img.itch.zone/aW1nLzMxNjU0NTIuZ2lm/original/zfZldF.gif" loading="lazy"><br></p>
+<p><strong>Every character's True ending  can be unlocked whether you play their platonic or romantic route.</strong><em><br></em></p>
+<p><strong>Toby: </strong>19 years old, they/them. Toby's full of energy and keen to kick off their studies in post-secondary - and to join Falls' soccer team! They're troubled by their past with a certain other Falls student... <br></p>
+<p><strong>James: </strong>20 years old, he/him. James is a flirty and cheerful student who is determined to become a doctor. He seems to be struggling with his academics and well-being lately. Loves archeology and is close with Devlin.<br></p>
+<p><strong>Nova: </strong>18 years old, she/her. Nova's your neighbor in the dorms, and she's often out researching Falls' strange past. She's dedicated to and protective of her friends, especially Ava. She may be more entwined in Falls'&nbsp;secrets than she tells most folx. <em></em><em>(Please note: Nova's route is only unlocked after 1+ ending(s) has been achieved!)</em><br></p>
+<p><strong>Devlin: </strong>20 years old, he/him. Devlin is the students' union volunteer coordinator but tends to seem impersonal. He's passionate about the union's&nbsp;success and works tirelessly despite rumors of its financial troubles.<br></p>
+<p><strong>Ava: </strong>18 years old, she/her. Ava rarely appears to be on campus and tends to be anxious and withdrawn. Knows more about Falls and the 'Curiosity' than most. <br><strong><em></em></strong><em>(Please note that Ava's route requires all True endings to be unlocked.)</em><em></em><br></p>
+<h2><em><strong>Choose wisely...&nbsp;
+<br></strong></em></h2>
+<h2><img src="https://img.itch.zone/aW1nLzMxNjU2MjkuZ2lm/original/gu6mb9.gif" loading="lazy"><em></em></h2>
+<p>Certain choices in routes will <strong>add new scenes to other routes you've already experienced or will unlock secret content</strong>. Learn as much as you can about Falls' true origins by exploring the game from every angle, and see if you can understand what everyone means when they whisper the&nbsp;<strong>Curiosity's </strong>name...
+</p>
+<h2><em><strong>Pick your appearance and pronouns!</strong></em><em><br></em><img src="https://img.itch.zone/aW1nLzMxNjU2MzAuZ2lm/original/Re4BMn.gif" loading="lazy"></h2>
+<p>Pick the main character appearance you like + your pronouns - you can romance or befriend anyone in the cast regardless of your choice! </p>
+<h2><em>Content Warnings</em></h2>
+<p>Love Hues! contains, but is not limited to,  the following content. It has no NSFW content.</p>
+<p class="text-center">Flashing images - Mild language - Character deaths/illness/injury - Suggestive themes -&nbsp; Alcohol mention - Discussions around mental health - Challenging relationships</p>
+<h2><em>Credits/QA/Sensitivity Readers</em>
+</h2>
+<p>A game by Oneirocritica Games, with a soundtrack primarily made by 'Moode Myoozik, who can be found <a href="http://twitter.com/moodemyoozik" referrerpolicy="origin" rel="nofollow noopener">here</a> and <a href="https://moodemyoozik.ca/" referrerpolicy="origin" rel="nofollow noopener">here</a>!</p>
+<p>Love Hues! also features music by Kevin MacLeod which was bought under his extended license. The&nbsp;<span></span><a href="https://creativecommons.org/licenses/by/4.0/" referrerpolicy="origin" rel="nofollow noopener">CC-BY (4.0) license</a>&nbsp;still applies otherwise.</p>
+<p> <a href="https://creativecommons.org/licenses/by/4.0/" referrerpolicy="origin" rel="nofollow noopener"></a>In order to comply to Creative Commons' terms, there's a page on the <a href="https://love-hues.github.io/Kevin-MacLeod-Tracks.html" referrerpolicy="origin" rel="nofollow noopener">Love Hues! website</a> that describes where to download the full version of Kevin MacLeod's music and the modifications I've applied to the songs for the game.&nbsp; Love Hues! also contains a copy of a Kevin-Macleod-Music-README file with the same information. Kevin Macleod does not endorse Oneirocritica Games or Love Hues!. <br></p>
+<p>Some QA/sensitivity reader staff requested to have their name in-game only; please check out the credits for their info! Here are a few of my QA testers/sensitivity readers:
+</p>
+<p class="text-center">Rishi Barnwal - Ellie Sims - Keshia Storm - Kat K&nbsp; -&nbsp;Isabel Marko - Angelo Encarnacion (QA,&nbsp; website setup, project support) <br></p>
+<h2><em>Finally...</em></h2>
+<p><strong>Specs: </strong>Love Hues! is a 32 bit program, and it'll take up about 580 MB of storage. Depending on your system setup, it can take up as little as 160 MB (16 GB RAM, Windows 10, 64 bit OS) of memory, or up to 640 MB of memory (4 GB RAM, Windows 8.1, 64 bit OS) while running.<br></p>
+<p> Most newer computers with 4+ GB RAM, sufficient storage and processors comparable to the Intel Pentium CPU B960  should be able to run it, but if it doesn't work, please reach out to lovehuesgame@gmail.com for basic troubleshooting first, and if we can't resolve it, please reach out to itch's support for a refund. <br></p>
+<p><strong>Linux:&nbsp; </strong>I identified a bug in the Linux build on the Raspberry Pi that prevented it from launching, and I've patched it.&nbsp;</p>
+<p><strong>This game is aimed at ages 16 and up</strong>. It also has a EULA (covers usage, liability, warranty, persistent data, etc.) that'll either require you to be over the legal age of majority or to have a guardian sign it.&nbsp; There's a copy of it <a href="https://love-hues.github.io/Game-Website-Licensing.html" referrerpolicy="origin" rel="nofollow noopener">on Love Hues!'s website</a> as well.<br></p>
+<p>If you need to reach me for questions, feedback or comments, I'm available at lovehuesgame@gmail.com!<br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

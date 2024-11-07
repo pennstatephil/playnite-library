@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Tales from the Road</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Tales from the Road</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:51:14</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:59:57</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-7/12/2019">7/12/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://iforgotmybrain.itch.io/tales-from-the-road" target="_blank">Itch</a><br/><a href="https://twitter.com/Iforgotmybrain" target="_blank">Twitter</a><br/><a href="https://www.twitch.tv/directory/game/Tales%20from%20the%20Road" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><strong><img src="https://img.itch.zone/aW1nLzM0NDQ1NzAucG5n/original/21n6WY.png" loading="lazy"><br></strong></p>
+<p class="text-center"><strong></strong><strong>Tales from the Road – Furry Interactive Fiction&nbsp;-&nbsp;Made&nbsp;in&nbsp;Twine</strong>   </p>
+<p>Tales from the Road is a slice of life interactive fiction game. The game features a story about a disgruntled freelance worker who has grown bored of their work. Seeking to do something different with their life, they come up with the idea to go on an excursion across the country.   </p>
+<p>The game is currently in development and still has some time to go until I would consider it "finished". Despite this, there’s still a decent amount of content currently available. With total playtime hovering around 1-3 hours given the content that's in-game right now.<br></p>
+<p class="text-center"><strong>So, what <em>is</em> in the game?</strong>   </p>
+<p>Currently, the game has 4 fully completed chapters. With the first 3 chapters mainly laying the groundwork for the eventual excursion across the country. They introduce and develop the core cast of characters, while also providing a bit of backstory for the player character.
+  </p>
+<p>Chapter 4, the latest chapter to be completed, marks the actual start of the road trip. In which, the main cast of characters head to the first road trip stop, Chicago. With Sasha being the <em>main focus</em> of this chapter&nbsp;<span>—</span> most of your time will be spent exploring Chicago alongside her.<br></p>
+<p>The next chapter, 5, is currently being worked on.<br></p>
+<p>I'm planning for a total of 8 chapters, although chapter 4 and the proceeding chapters will be substantially longer than the first 3.
+  </p>
+<p class="text-center"><strong>How is the game played?</strong>   </p>
+<p>The game is played in your standard Twine environment, which is to say it's mostly text-based. At the start, you’ll be asked to make your character which involves picking a name and race (Wolf, Lion, Fox, or Dragon). From there on you’ll be able to navigate the world, make choices, and go through dialogue by selecting certain inputs. See screenshots for examples.
+  </p>
+<p>Of the main cast of characters, 3 out of the 4 currently have artwork. This includes Sasha, Holly, and Valery. I do plan on getting art done for the 4th character, Jacob, at some point.<br></p>
+<p>Speaking of, all artwork was done by the fantastic Kasscabel. Check out her <a href="https://twitter.com/_kasscabel" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Twitter page here</a> or her <a href="https://www.fiverr.com/kasscabel" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Fiverr page here</a>.
+  </p>
+<p class="text-center"><strong>What kind of <em>content</em> is in the game?</strong>   </p>
+<p>This game is mostly&nbsp;safe for work. There is swearing and some things that could be considered suggestive. Nothing <em>crazy</em> though.
+  </p>
+<p class="text-center"><strong>Boring stuff</strong>   </p>
+<p>If you encounter any bugs, feel free to let me know in the comments section. Even if you didn't have any problems, I'd appreciate hearing any feedback you might have!&nbsp; Just post it on here via a rating (top right corner) or a comment. Helps let me know if I'm doing stuff right.
+  </p>
+<p>Tales from the Road will always be available for free on here. Donations are on for the standalone download if that's something you'd be interested in. Welcomed but not expected blah blah blah you know how it is.<br></p>
+<p class="text-center"><strong>Credits</strong>: <br></p>
+<p>Illustration and art:
+  </p>
+<p><a href="https://twitter.com/_kasscabel" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Kasscabel (Twitter)</a>&nbsp;<a href="https://www.fiverr.com/kasscabel" target="_blank" referrerpolicy="origin" rel="nofollow noopener">(Fiverr)</a>   </p>
+<p>Music:   </p>
+<p><a href="https://timecrawler82.bandcamp.com/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Timecrawler 82</a> (Street Dancing, Mt. Fuji) (<a href="https://creativecommons.org/licenses/by/4.0/" referrerpolicy="origin" rel="nofollow noopener">CC BY 4.0</a>),   </p>
+<p><a href="https://sixumbrellas.bandcamp.com/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Six Umbrellas</a> (Asset House) (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">CC BY-SA 4.0</a>),   </p>
+<p><a href="https://nihilore.bandcamp.com/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Nihilore</a> (The Author Never Dies) (<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">CC BY 3.0</a>),   </p>
+<p><a href="http://www.jessespillane.com/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Jesse Spillane</a> (Groove Tank, The Laundry Cycle, Untitled, Booth, Mod) (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">CC BY 4.0</a>),   </p>
+<p><a href="https://loyaltyfreakmusic.com/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Loyalty Freak Music</a> (Static Shoes, Once more with you).&nbsp;   </p>
+<p>Everything else: Me :)&nbsp;</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

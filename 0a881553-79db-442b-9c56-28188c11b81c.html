@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Wampus</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Wampus</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:55:37</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:10:10</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-2/1/2019">2/1/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-John Vanderhoef">John Vanderhoef</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://johnvanderhoef.itch.io/wampus" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Wampus" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>Wampus is an overhead arcade narrative adventure game developed as a homebrew&nbsp;for the Nintendo Entertainment System (NES).<br></p>
+<p>The wampus live on&nbsp;a planet invaded by colonialists, who farm and mine the land for its natural resources. These resource-stripping activities threaten the local flora and fauna, especially the Mountain Wampus, who get hunted for their treasure.</p>
+<p>As a young wampus, players set out to rid the planet of the settler invaders and restore harmony to the land. While a fun lark, Wampus explores themes of environmentalism, conservationism, stewardship of the land, and the destructive nature of colonialism.</p>
+<p>* * *</p>
+<p><strong>Wampus </strong>is the <strong>first</strong>&nbsp;game in the MULEniverse series, which narratively extends the work of Danielle Bunten Berry's MULE economic simulator game.</p>
+<p>The MULEniverse games include:</p>
+<p>1.&nbsp;Wampus</p>
+<p>2.&nbsp;<a href="https://johnvanderhoef.itch.io/wart-worm-wingding" target="_blank">Wart Worm Wingding</a></p>
+<p>3.&nbsp;<a href="https://johnvanderhoef.itch.io/bat-lizard-bonanza" target="_blank">Bat Lizard Bonanza</a></p>
+<p>4. <a href="https://johnvanderhoef.itch.io/leggite-luta-livre" target="_blank">Leggite Luta Livre</a></p>
+<p>5. <a href="https://johnvanderhoef.itch.io/nemulesis" target="_blank">neMULEsis</a></p>
+<p>***</p>
+<p>Controls</p>
+<p>Directional Pad -- move up, down, left, and right</p>
+<p>B -- Wampus Claw&nbsp;attack (once unlocked)</p>
+<p>A -- Wampus coin projectile (once unlocked)</p>
+<p>Hold B and press A -- Wampus Burrow (once unlocked)</p>
+<p>Hold A and press B -- Wampus Rock Bomb (once unlocked)</p>
+<p>***</p>
+<p>FOR BEST EXPERIENCE:&nbsp;I&nbsp;recommend getting an original NES&nbsp;controller and a USB adapter for it. You can find one <a href="https://www.retrousb.com/product_info.php?cPath=21&amp;products_id=158" rel="nofollow noopener" referrerpolicy="origin">here</a> or <a href="https://www.amazon.com/Tomee-NES-USB-Controller-Adapter-pc/dp/B00HM3QCN2/ref=sr_1_3?ie=UTF8&amp;qid=1549047471&amp;sr=8-3&amp;keywords=NES+controller+usb+adapter" rel="nofollow noopener" referrerpolicy="origin">here</a>.</p>
+<p>For really enterprising types, this game is fully playable on an actual NES. You can use either an <a href="https://www.amazon.com/s?k=everdrive+n8&amp;hvadid=234353538216&amp;hvdev=c&amp;hvlocphy=9031087&amp;hvnetw=g&amp;hvpos=1t1&amp;hvqmt=e&amp;hvrand=9017374272736160785&amp;hvtargid=aud-647846986281%3Akwd-303890194056&amp;tag=googhydr-20&amp;ref=pd_sl_glpmwc1bx_e" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Everdrive</a>, a <a href="https://www.retrousb.com/product_info.php?products_id=34" target="_blank" rel="nofollow noopener" referrerpolicy="origin">PowerPak</a>, or flash an empty cart, as long as each has mapper 30 support.</p>
+<p>*&nbsp;*&nbsp;*</p>
+<p>Wampus was made possible thanks to <a href="http://www.thenew8bitheroes.com/" rel="nofollow noopener" referrerpolicy="origin">NESMaker</a>, an engine developed to make NES development a reality for people who are not versed in assembly language.</p>
+<p>In order to play Wampus, you'll need an NES emulator. I recommend <a href="http://www.fceux.com/web/home.html" rel="nofollow noopener" referrerpolicy="origin">FCEUX</a>. Many emulators do not have mapper 30 support, which is the mapper NESMaker uses for its games.&nbsp;</p>
+<p>Once you have FCEUX downloaded, start it up and&nbsp;open the Wampus.nes ROM. The game should work fine.</p>
+<p><strong>FOR MAC USERS:</strong>&nbsp;Download&nbsp;<a href="https://openemu.org/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">OpenEMU</a> for Mac. When you open the program, right click on the Nintendo (NES) category on the left hand sidebar and select "Default Core."&nbsp;Then select FCEU.&nbsp;</p>
+<p>* * *</p>
+<p>Music</p>
+<p>Princess Quest by&nbsp;Ben Burnes (Abstraction)</p>
+<p>Pixel War 1 by&nbsp;Ben Burnes (Abstraction)</p>
+<p>Save the City by&nbsp;Ben Burnes (Abstraction)</p>
+<p>Out of Time&nbsp;by&nbsp;Ben Burnes (Abstraction)</p>
+<p>MULE Theme&nbsp;by Roy Glover, translated to NESMaker by&nbsp;Ben Burnes (Abstraction).</p>
+<p>To learn more about Ben Burnes's music, visit:&nbsp;<a href="http://www.abstractionmusic.com/" rel="nofollow noopener" referrerpolicy="origin">http://www.abstractionmusic.com/</a></p>
+<p>* * *</p>
+<p>Wampus is part of the MULEniverse.</p>
+<p>* * *</p>
+<p>More from this developer:&nbsp;<a href="https://johnvanderhoef.itch.io/" target="_blank">https://johnvanderhoef.itch.io</a><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

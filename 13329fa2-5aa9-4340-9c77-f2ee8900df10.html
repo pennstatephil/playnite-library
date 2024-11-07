@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Adventures of Elena Temple: Definitive Edition</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> The Adventures of Elena Temple: Definitive Edition</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:55:47</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:12:25</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-12/1/2017">12/1/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Platform">Platform</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Puzzle">Puzzle</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-GrimTalin">GrimTalin</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-GrimTalin">GrimTalin</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://grimtalin.itch.io/the-adventures-of-elena-temple" target="_blank">Itch</a><br/><a href="http://grimtalin.com/elenatemple_definitive" target="_blank">Official</a><br/><a href="https://twitter.com/GrimTalin" target="_blank">Twitter</a><br/><a href="http://store.steampowered.com/app/800190/The_Adventures_of_Elena_Temple/" target="_blank">Steam</a><br/><a href="https://www.youtube.com/playlist?list=PLVj2FVJep8CgAyvSNo8RB0HhW5s2AlxcN" target="_blank">YouTube</a><br/><a href="https://www.twitch.tv/directory/game/The%20Adventures%20of%20Elena%20Temple:%20Definitive%20Edition" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2>The Adventures of Elena Temple:<br>Definitive Edition</h2>
+<div><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe style=&quot;width: 500px; height: 281px&quot; src=&quot;//www.youtube.com/embed/DEBJxNFocoA&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/DEBJxNFocoA/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button></div>
+<p>Experience The Adventures of Elena Temple in a Definitive Edition, including more content, more features, more fun and more... black and white pixel art!<br><br>Available as a free update, the Definitive Edition includes:</p>
+<ul><li>2 new dungeons, totaling 47 new rooms - some very well hidden - with unique gameplay elements</li><li>40 in-game achievements - doesn't get any more old-school than that!</li><li>Unlockable game modifiers - Limited Lives, Campfires, Double Jumps, Infinite Ammo - combine them for unique gameplay experiences</li><li>On the fly switching between the virtual old machines</li><li>Various tweaks to the rooms in the original dungeon, now dubbed Chalice of the Gods - you got shivers, didn't you?</li><li>Overall improvements: new background in the selection screen, new pixel art splash image, dungeon selection screen, game modifiers screen etc.</li><li>Easter Eggs</li></ul>
+<h3>Warning!</h3>
+<p>The Definitive Edition will only be available for Windows users. All support for the Mac version of the game ended with version 1.2.0.</p>
+<h3>New to Elena Temple? Read on!</h3>
+<div><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe style=&quot;width: 500px; height: 281px&quot; src=&quot;//www.youtube.com/embed/gi5YJc7Ca_o&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;>&amp;lt;span id=&amp;quot;selection-marker-1&amp;quot; class=&amp;quot;redactor-selection-marker&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;</iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/gi5YJc7Ca_o/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button><br></div>
+<p>Ever miss being a child, playing games at your grandma's or in your old bedroom? Then look no further! The Adventures of Elena Temple is the classic you never knew existed. And the best part is that you can play it on virtual old machines that kind of sort of maybe existed. It's not like you can remember for sure anyway, right?</p>
+<p>The Adventures of Elena Temple is a monochromatic puzzle platformer made to look as if it were created in the 80s. Overcome obstacles, figure out how to advance, collect everything in sight, find all the secrets and remember your childhood while doing it. Progress through the game's three dungeons through non-linear exploration, then unlock the new game modifiers and re-experience the game in whole new ways.</p>
+<p><span></span></p>
+<h3 class="text-justify">Features:</h3>
+<ul class="text-justify"><li class="text-justify">3 dungeons with a total of 100+ rooms to overcome, each its own mini-level</li><li class="text-justify">Unique gameplay elements for each dungeon</li><li class="text-justify">Open exploration, choose which way to go, but don't worry, a helpful map is just one button press away</li><li class="text-justify">Challenging, old-school platforming</li><li class="text-justify">Put your puzzle solving skills to the test and figure out how to collect all the coins, gems, hearts and so on</li><li class="text-justify">40 achievements in-game achievements to earn</li><li class="text-justify">Unlockable game modifiers for completely new ways to experience the game</li><li class="text-justify"><strong></strong>Secrets and easter eggs to find for the more observant player</li><li><strong></strong>Play on a selection of 7 virtual old machines, from the Pomo D'or 4, to Maple and Some Toy and all the way to the NS-Bos PC</li></ul>
+<p><img src="https://img.itch.zone/aW1nLzI3NTIwMjYuZ2lm/original/StQEJo.gif" loading="lazy"></p>
+<h3 class="text-justify">Get it now!</h3>
+<p class="text-justify">You can play the Demo now, for free. And, if you like it, please consider purchasing the full game. You'll receive all Early Access builds, the release version of the game and all subsequent updates, including a Steam key. Please note that the Demo was made for version 1.0 of the game, so it doesn't include a lot of the cool features and improvements added afterwards.</p>
+<p class="text-justify"><em>I'm a solo indie developer, I loved making The Adventures of Elena Temple and I hope you enjoy it! Please leave me some feedback if you play it. Thank you for your support!</em><br></p>
+<p class="text-justify"><img src="https://img.itch.zone/aW1nLzkyOTgwOS5naWY=/original/LjN%2Fm8.gif" loading="lazy"></p>
+<h3 class="text-justify">Press</h3>
+<ul><li><a href="https://www.bonusstage.co.uk/2018/05/07/the-adventures-of-elena-temple-review/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Bonus Stage</a>: "Elena Temple stands next to games like La Mulana and Gunmetal Arcadia as shining examples of how to capture the games of the past in today's world."</li><li><a href="https://nintenfan.com/nintendo-switch/the-adventures-elena-temple-review-nintendo-switch.html" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Nintenfan</a>: "The genius design using simple mechanics that have been a part of gaming for decades is clearly felt throughout the game's different screens."</li><li><a href="http://www.ticgn.com/reviews/game/review-the-adventures-of-elena-temple-switch/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">The Inner Circle Games Network</a>: "The Adventures of Elena Temple shines through for the most part on account of the many things it does do right, and it’s well worthy of its [...] price point."</li><li><a href="https://theinsatiablegamer.com/the-adventures-of-elena-temple-review/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">The Insatiable Gamer</a>: "The old school style of The Adventures of Elena Temple shines through not only in its art styles, but in its gameplay as well."</li><li><a href="http://mag.mo5.com/actu/128847/the-adventures-of-elena-temple-se-joue-sur-7-fausses-machines-retro/" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Le Mag MO5.com</a>: "Beyond its very successful nostalgic dressing, The Adventures of Elena Temple is a certainly classic action / adventure retro game, but also a devilishly effective one."</li><li><a href="https://jayisgames.com/review/the-adventures-of-elena-temple.php" rel="nofollow noopener" referrerpolicy="origin">JayIsGames</a>: "If you like old platforming/exploring games, The Adventures of Elena Temple is definitely something you want in your collection of videogames."</li><li><a href="https://game-guide.fr/230071-the-adventures-of-elena-temple-un-peu-de-nostalgie/" rel="nofollow noopener" referrerpolicy="origin">Game Guide</a>: "A classic adventure game in a retro universe, what do I say, in 7 retro universes! The promise to get us into a game from another time is held."</li></ul>
+<h3 class="text-justify">Early Access builds</h3>
+<p><strong></strong><strong>v0.6.0</strong></p>
+<ul><li>11 new dungeon rooms,&nbsp; for a total of 49</li><li>3 new game mechanics: on/off spikes, spiked wheel and pressure platforms</li><li>same room respawns</li><li>bullets indicator shown when shooting and collecting bullets</li></ul>
+<p class="text-justify"><strong></strong><strong>v0.5.0</strong></p>
+<ul><li>11 new dungeon rooms, plus 3 secret rooms,&nbsp; for a total of 38</li><li>3 new game mechanics: bats, cactuses and crumbling platforms</li><li>3 secret scrolls, each with its unique map info</li><li>guardian statues with collecting requirements to allow access to the final dungeon areas</li></ul>
+<p><strong>v0.4.0</strong></p>
+<ul><li>12 new dungeon screens, for a total of 24</li><li>3 new game mechanics: scorpions, wall arrows and on/off platforms</li><li>progress auto-save and auto-load</li><li>game intro with logo and story text</li></ul>
+<p><strong>v0.3.5</strong></p>
+<ul><li>3 new screens to play, for a total of 11 (only the first 8 are in the demo)</li><li>tweaks for some of the previous dungeon screens</li><li>dynamic music with 5 songs (2 available in the demo)</li><li>updated pause menu, with volume options, info about controls and confirmation dialogs for restart and exit</li><li>game icon, intro logo and other app improvements</li></ul>
+<p><strong>v0.3.0</strong><br></p>
+<ul class="text-justify"><li class="text-justify">8 dungeon screens to play (the same as in the demo, more coming soon!)</li><li class="text-justify">all 7 old machines available for you to play on!</li></ul>
+<h3 class="text-justify">System requirements</h3>
+<p class="text-justify">The Adventures of Elena Temple should run on most Windows computers that aren't on display in a museum, but if you have one that doesn't run it, you have my deepest sympathy.&nbsp;</p>
+<p class="text-justify">Just to be safe, you should have at least the below specs. But to be 100% safe, download the demo first and check if it runs ok before making any purchase.</p>
+<ul class="text-justify"><li class="text-justify">OS: Windows 7+ / OS X 10.9+</li><li class="text-justify">Processr: 1.5 Ghz</li><li class="text-justify">Memory: 2 GB RAM</li><li class="text-justify">Storage: 200 MB disk space</li><li class="text-justify">Video card: 512 MB, DirectX 9.0c</li><li class="text-justify">Keyboard or gamepad</li></ul>
+<h3 class="text-justify">Heads up!</h3>
+<p class="text-justify">The Adventures of Elena Temple is just one game you can play on seven simulated machines. Aside from the different look, the game plays the same on all machines and has the exact same content! The purpose of these old machines is to remind you of the old days, so feel free to pick whichever you like best without any fear of missing out on game content.</p>
+<p>Please download and play the demo before making a purchase!&nbsp;</p>
+<p class="text-justify">I don't want to mislead anyone into spending money on the game. That's why I made this demo version, so you can try it and see for yourself if you like it and if it works properly on your machine. And only then buy the game, if you consider it's worth your money.</p>
+<p class="text-justify">Thank you for your support!</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

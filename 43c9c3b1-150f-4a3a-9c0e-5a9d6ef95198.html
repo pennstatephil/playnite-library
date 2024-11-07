@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Walden, a game</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Walden, a game</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:25</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:17:44</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-2/22/2017">2/22/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-USC Game Innovation Lab">USC Game Innovation Lab</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-USC Games">USC Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1011700" target="_blank">Steam</a><br/><a href="https://www.waldengame.com" target="_blank">Official</a><br/><a href="https://en.wikipedia.org/wiki/Walden,_a_game" target="_blank">Wikipedia</a><br/><a href="https://gameinnovationlab.itch.io/walden" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Walden" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="text-center"><em><strong></strong>“Summed up in a single word, it would be ‘beautiful.’”&nbsp;— David Wolinsky, Common Sense Media</em></p>
+<p class="text-center"><em>“An introspective ‘Oregon Trail’”&nbsp;— David G. Allan, CNN</em></p>
+<p class="text-center"><em>“A remarkable experiment in translation. As contemplative as its source material, it forces an anti-reflexive pace and coddles at its center an appreciation of calm and quiet.” &nbsp;— Jason Sheehan, NPR Reading the Game</em></p>
+<p>
+	<em><strong>Play as philosopher and naturalist Henry David Thoreau in his experiment in self-reliant living at Walden Pond. Live off the land, seek out the small wonders and beauties of the woods, and find balance between your need to survive and your desire to find inspiration.</strong></em>
+</p>
+<p>
+	<strong><em>Walden, a game</em></strong> is a six hour, exploratory narrative that begins in the summer of 1845 when Thoreau moved to the Pond and built his cabin there. You follow in his footsteps, surviving in the woods by finding food and fuel and maintaining your shelter and clothing.</p>
+<p>
+	At the same time as you strive to survive off the land, you are encouraged to explore the beauty of the woods and the pond, which hold a promise of a sublime life beyond your basic needs. And, you can interact with characters from Thoreau's life including mentor Ralph Waldo Emerson, sister Sophia Thoreau, editor Horace Greeley, activist A. Bronson Alcott, naturalist Louis Agassiz among others.
+</p>
+<p>The game follows the loose narrative of Thoreau's first year in the woods, with each season holding its own challenges for survival and possibilities for inspiration. It features the voices of Emile Hirsch (Into the Wild, Milk) as Henry David Thoreau, Jim Cummings (Darkwing Duck, Sonic the Hedgehog) as Ralph Waldo Emerson, Misty Lee (The Last of Us, BioShock Infinite), and Tony Amendola (Stargate SG-1, Once Upon a Time) as Bronson Alcott.</p>
+<p>Walden, a game has been a labor of love by a very small core team working over the past ten years. We sincerely hope you enjoy the experience and welcome your feedback! If you are an educator and would like to use Walden in your classroom, please contact us via our support form.</p>
+<p><strong><em>Original game soundtrack by Michael Sweet now&nbsp;available with game download!&nbsp;<a href="https://youtu.be/_C7jIUJvqbg" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Check out this Behind the Sounds of Walden video</a>.</em></strong><br></p>
+<p>
+	<a href="https://form.jotform.us/70756591970164" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Contact Walden support</a></p>
+<p>
+	<strong>System Recommendations:</strong></p>
+<p>
+	<span></span>PC
+</p>
+<ul>
+	<li>Windows 7* / 8 / 10</li>
+	<li>Processor: 2.4 GHz Dual Core or Equivalent</li>
+	<li>Memory: 8 GB RAM</li>
+	<li>Graphics: 1024 MB NVidia or ATI graphics card</li>
+	<li>Storage: 2 GB available space</li><li>Keyboard &amp; mouse or game controller (See this <a href="http://guavaman.com/projects/rewired/docs/SupportedControllers.html" target="_blank" referrerpolicy="origin" rel="nofollow noopener">list</a> for supported controllers)</li>
+</ul>
+<p>
+	* Users running Windows 7 with Nvidia cards may need to run the game in Compatibility Mode and as Administrator. See our <a href="http://www.waldengame.com/faq/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">FAQ</a>&nbsp;for more info.</p>
+<p>Mac
+</p>
+<ul>
+	<li>OS X 10.9+</li>
+	<li>Processor:&nbsp;2.4 GHz Core 2 Duo&nbsp;&nbsp;or Equivalent </li>
+	<li>Memory: 8 GB RAM</li>
+	<li>Graphics: 1024 MB NVidia or ATI graphics card</li>
+	<li>Storage: 2 GB available space</li><li>Keyboard &amp; mouse or game controller (See this&nbsp;<a href="http://guavaman.com/projects/rewired/docs/SupportedControllers.html" target="_blank" referrerpolicy="origin" rel="nofollow noopener">list</a>&nbsp;for supported controllers)</li></ul>
+<p>
+	<strong>Developer: <a href="http://www.gameinnovationlab.com" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Game Innovation Lab</a></strong>
+</p>
+<p>
+	Copyright 2014-2017 Tracy Fullerton and the Walden Team. All rights reserved. Not authorized for posting on Steam or any other sites.
+</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

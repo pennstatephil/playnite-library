@@ -1,0 +1,479 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>DragonRuby Game Toolkit</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> DragonRuby Game Toolkit</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:20</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:17:19</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/19/2019">4/19/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1><img src="https://web.archive.org/web/20210124232730im_/https://img.itch.zone/aW1nLzIzNjU2MzUucG5n/original/8FDvWY.png" style="margin-left: auto; margin-right: auto; padding: 10px; width: 300px" loading="lazy"></h1>
+<p>DragonRuby Game Toolkit&nbsp;is a commercial-grade, yet beginner-friendly, 2D&nbsp;game engine. It's tiny (~3MB), fast as hell, and cross-platform. <strong>The Standard License (this page)</strong> is a one-time purchase and includes support for PC, Mac, Linux, Raspberry Pi, and Web.&nbsp;</p>
+<p><strong>Made</strong><strong> for Indie Game Devs</strong> that want a powerful game engine that's royalty-free, fast, productive, and easy-to-use.<span></span></p>
+<div class="text-center">
+<table><tbody><tr><td><strong>Updated</strong></td><td><strong>Oct 4, 2024, Total releases (so far): 200</strong></td></tr><tr><td>Inception</td><td><span></span>Apr 19, 2019</td></tr><tr><td>Status</td><td><a href="https://itch.io/tools/released">Released</a></td></tr><tr><td>Category</td><td><a href="https://itch.io/tools/top-rated/tag-game-engine">Game engine</a></td></tr><tr><td>Platforms</td><td>Windows,&nbsp;macOS,&nbsp;Linux, Raspberry Pi</td></tr><tr><td>Rating</td><td><span></span><span></span><span></span><span></span><span></span>★★★★★(309)</td></tr><tr><td>Author</td><td><a href="https://dragonruby.itch.io/">DragonRuby</a></td></tr><tr><td>Tags</td><td><a href="https://itch.io/tools/tag-2d">2D</a>,&nbsp;<a href="https://itch.io/tools/tag-dragonruby">dragonruby</a>,&nbsp;<a href="https://itch.io/tools/tag-game-engine">Game engine</a>,&nbsp;<a href="https://itch.io/tools/tag-moddable">Moddable</a>,&nbsp;<a href="https://itch.io/tools/tag-ruby">ruby</a></td></tr></tbody></table>
+</div>
+<h1>Tech Demo</h1>
+<p>Here is what's possible with just a Standard license.&nbsp;</p>
+<div class="text-center">
+<div class="text-center"><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;500&quot; height=&quot;281&quot; src=&quot;//www.youtube.com/embed/SigxxNUCxOw&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/SigxxNUCxOw/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button><br></div></div>
+<h1 class="text-center">Tour and Tutorial</h1>
+<p>Ryan put together a 5-minute intro to DragonRuby, to give you a whirlwind tour of the big ideas.</p>
+<div class="text-center">
+<button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/DYBRzglsEzU&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;>&amp;lt;span id=&amp;quot;selection-marker-1&amp;quot; class=&amp;quot;redactor-selection-marker&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;</iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/DYBRzglsEzU/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button></div>
+<h2 class="text-center"><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;500&quot; height=&quot;281&quot; src=&quot;//www.youtube.com/embed/xZMwRSbC4rY&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/xZMwRSbC4rY/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button></h2>
+<h2><a href="https://samples.dragonruby.org" referrerpolicy="origin" rel="nofollow noopener">Try the Samples</a> (150+ included in the download).</h2>
+<h1>Features</h1>
+<ul><li><strong>Dirt simple, data-oriented&nbsp;APIs</strong>&nbsp;capable of&nbsp;creating&nbsp;complex 2D games.
+</li><li><strong>Fast as hell</strong>. Powered by highly optimized C code written by Ryan C. Gordon, one of the juggernauts behind&nbsp;SDL&nbsp;(the tech that powers thousands of games, triple-A game engines, and the Steam client).
+</li><li><strong>Battle-tested</strong> by Amir Rajan, a critically acclaimed indie game dev with titles built with DragonRuby&nbsp;on mobile and the <strong>Nintendo Switch</strong>.
+</li><li>Tiny. Like really tiny. <strong>The entire engine is a few&nbsp;</strong><em><strong>megabytes</strong></em>.
+</li><li><strong>Hot loaded, real-time coding</strong>, optimized to provide constant feedback to the dev. Productive and an absolute joy to use.
+</li><li><strong>Turnkey builds</strong> for Windows, macOS, and Linux with seamless&nbsp;publishing to Itch.io.
+</li><li><strong>Cross-platform</strong>: PC, Mac, Linux, Raspberry PI, Web, iOS, Android, Nintendo Switch, XBOX One, and PS4 (mobile requires a Pro License, and console compilation requires a business entity, and NDA verification; contact us at support@dragonruby.org for more info).
+</li></ul>
+<p>The Standard license is a <strong>one-time/lifetime purchase</strong>.<strong> </strong><a href="http://dragonruby.org/toolkit/game#purchase" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong>Indie and Pro licenses</strong></a> are subscription-based but come with some incredibly powerful features.</p>
+<h2>Free Unrestricted License</h2>
+<p>You are eligible for a free license if any of the following items pertain to you:</p>
+<ul><li>Your income is below $2000 (USD) per month.</li><li>You are under 18 years of age.</li><li>You are a student of any type: traditional public&nbsp;school, homeschooling, college, boot camp, or online.</li><li>You are a teacher, mentor, or parent who wants to teach a kid how to code.</li><li>You work/worked in public service or at a charitable organization: for example&nbsp;public office, army, or any 501(c)(3) organization.</li></ul>
+<p>Just contact Amir at&nbsp;ar@amirrajan.net with a short explanation of your current situation and he'll set you up. No questions asked.&nbsp;</p>
+<table><tbody>
+<tr><td><strong>Standard Features&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong></td></tr><tr><td>MacOS</td></tr>
+<tr><td>Windows</td></tr>
+<tr><td>Linux/Steam&nbsp;Deck</td></tr>
+<tr><td>Raspberry Pi</td></tr>
+<tr><td>Web Builds</td></tr>
+<tr><td>In-Game Web Server</td></tr>
+<tr><td>Portrait Mode</td></tr>
+<tr><td>Sound Synthesis</td></tr>
+<tr><td>Pixel Arrays<br></td></tr><tr><td>Triangle Primitives</td></tr>
+<tr><td>Itch.io Distribution: Streamlined</td></tr>
+<tr><td>Steam Distribution: Steamworks CLI</td></tr>
+<tr><td><a href="https://dragonruby.itch.io/dragonruby-gtk/purchase">Purchase Standard</a></td></tr><tr><td><br></td></tr>
+<tr><td><strong>Indie Features</strong></td></tr>
+<tr><td>All features from Standard</td></tr>
+<tr><td>Steam Distribution: Streamlined</td></tr>
+<tr><td>C Extensions</td></tr>
+<tr><td>Bytecode Compilation</td></tr>
+<tr><td><a href="https://dragonruby.org/toolkit/game#purchase" referrerpolicy="origin" rel="nofollow noopener">Purchase Indie</a><br></td></tr>
+<tr><td><br></td></tr>
+<tr><td><strong>Pro Features</strong></td></tr><tr><td>All features from Indie</td></tr>
+<tr><td>iOS Distribution</td></tr>
+<tr><td>Android Distribution</td></tr>
+<tr><td>HD Mode</td></tr>
+<tr><td>All Screen Mode</td></tr>
+<tr><td>MP4 Replay Export</td></tr>
+<tr><td>Oculus Quest VR Mode</td></tr>
+<tr><td><a href="https://dragonruby.org/toolkit/game#purchase" referrerpolicy="origin" rel="nofollow noopener">Purchase Pro</a></td></tr>
+</tbody></table>
+<p><br></p>
+<h1>Hello World is one file, three lines.</h1>
+<p>This is all you need to create a game. One file. One method called&nbsp;<code>tick</code>. Here we render the&nbsp;current step value as a label:</p>
+<pre>def tick args  
+  args.outputs.labels &lt;&lt; [100, 100, args.state.tick_count]
+end
+</pre>
+<p>That's it. <strong>I</strong><strong>f you know how to use the <code>array</code> datatype in any language, you know everything needed to get started with&nbsp;DragonRuby Game Toolkit</strong>. Play around with the engine in your browser. </p>
+<h2><a href="https://docs.dragonruby.org" referrerpolicy="origin" rel="nofollow noopener">You can skim our documentation here</a>&nbsp;if you need more details<strong></strong>.</h2>
+<h1>Output: Six rendering primitives are all you need.</h1>
+<p>Here are the six draw primitives you need to know:&nbsp;<code>solids, sprites, labels, lines, borders, and sounds</code>. Here is how you use them:</p>
+<pre>def tick args    
+  # draw a blue square that's half way faded out
+  args.outputs.solids &lt;&lt; [100, 100, 50, 50, 0, 0, 255, 128]
+  
+  # draw a red label
+  args.outputs.labels &lt;&lt; [100, 100, "This is a label.", 255, 0, 0]
+  
+  # draw a sprite turned 45 degrees and half way faded out
+  args.outputs.sprites &lt;&lt; [200, 200, 50, 50, 'ninja.png', 45, 128]
+  
+  # draw a diagonal green line from bottom left to top right
+  args.outputs.lines &lt;&lt; [0, 0, 1280, 720, 0, 255, 0]
+  
+  # draw a black border (unfilled square)
+  args.outputs.borders &lt;&lt; [100, 100, 50, 50, 0, 0, 0, 255]
+  
+  # play a sound every second
+  args.outputs.sounds &lt;&lt; "ping.wav" if args.state.tick_count % 60 == 0
+end</pre>
+<p>That's it. You now know the entire render API for DragonRuby.</p>
+<p>Here's a more complicated example.&nbsp;This is how you create a nighttime scene, with a title, and a ninja:</p>
+<ol><li><code>solids</code>: A black background, and two hundred stars made of tiny squares.</li><li><code>labels</code>: Display some smokey-white text.</li><li><code>sounds</code>: Play a sound when the game starts up.</li><li><code>sprites</code>: Render a sprite on the screen.</li><li><code>lines</code>: Draw a line representing the floor</li><li><code>borders</code>: Frame the entire scene&nbsp;with a white border.</li></ol>
+<pre>def tick args  
+  # destructure args into local variables  
+  state, outputs, grid = args.state, args.outputs, args.grid  
+  
+  # set some default values for the game  
+  state.colors.background ||= [0, 0, 0]  
+  state.colors.star       ||= [128, 200, 255]  
+  state.colors.text       ||= [200, 200, 200]  
+  state.colors.landmarks  ||= [255, 255, 255]  
+  state.night             ||= [grid.rect, state.colors.background]  
+  state.stars             ||= 200.map do
+    [rand * grid.w,
+     rand * grid.h,
+     rand * 2 + 2,
+     rand * 2 + 2,
+     state.colors.star]
+  end
+  
+  # start up some background music
+  outputs.sounds  &lt;&lt; "opening_fx.wav" if state.tick_count == 0
+  
+  # render the background and stars
+  outputs.solids  &lt;&lt; state.night
+  outputs.solids  &lt;&lt; state.stars
+  
+  # set a title for the game
+  outputs.labels  &lt;&lt; [grid.left + 50, grid.top  - 50,
+                       "Ninja Game", state.colors.text]
+  
+  # set a sprite
+  outputs.sprites &lt;&lt; [50, 50, 50, 50, 'ninja.png']
+  
+  # create a line that represents the ground
+  outputs.lines   &lt;&lt; [grid.left,
+                      grid.bottom + 50,
+                      grid.right,
+                      grid.bottom + 50,
+                      state.colors.landmarks]
+  
+  # create a border to frame the game
+  outputs.borders &lt;&lt; [grid.left + 1,
+                      grid.bottom + 1,
+                      grid.right - 1,
+                      grid.top - 1,
+                      state.colors.landmarks]
+end</pre>
+<h1>Input: Controllers, Mouse, and Keyboard.</h1>
+<p>This is how you move a sprite using your gamepad:
+</p>
+<pre>args.state.ninja.x ||= 100
+args.outputs.sprites &lt;&lt; [args.state.ninja.x, 300,
+                         50, 50,
+                         'ninja.png']
+if args.inputs.controller_one.key_held.right
+  args.state.ninja.x += 10
+elsif args.inputs.controller_one.key_held.left
+  args.state.ninja.x -= 10
+end
+</pre>
+<p>This is how you move a sprite using your mouse:
+</p>
+<pre>args.state.ninja.x ||= 100
+args.outputs.sprites &lt;&lt; [
+   args.state.ninja.x,
+   300,
+    50,
+    50,
+    'ninja.png'
+]
+if args.inputs.mouse.click
+  args.state.ninja.x = args.inputs.mouse.click.point.x
+end</pre>
+<p>This is how you move a sprite using your keyboard:</p>
+<pre>args.state.ninja.x ||= 100
+args.outputs.sprites &lt;&lt; [
+  args.state.ninja.x, 300, 50, 50,
+  'ninja.png'
+]
+if args.inputs.keyboard.key_held.right
+  args.state.ninja.x += 10
+elsif args.inputs.keyboard.key_held.left
+  args.state.ninja.x -= 10
+end</pre>
+<h1>Game State: Entities and Collision.</h1>
+<p>Randomly create 500&nbsp;ninjas on the screen. Create a lookup table that contains the alpha property of ninjas that have collided. Present all ninjas with their alpha properties set.</p>
+<pre>def tick args  
+  # destructure args into local variables
+  grid, state, outputs = args.grid, args.state, args.outputs
+  # use Game Toolkit's built in helper methods to create
+  # adhoc entities
+  state.ninjas ||= 500.map do
+    state.new_entity(:ninja,
+                     rect: [grid.w.-(50) * rand,
+                            grid.h.-(50) * rand,
+                            50,
+                            50])
+  end
+  # use Ruby's powerful apis to determine collision
+  state.collisions ||= state.ninja
+                            .product
+                            .reject { |n, n2| n == n2 }
+                            .find_all { |n, n2| n.rect.intersects_rect?(n2.rect) }
+                            .map { |n, _| [n.entity_id, 128] } 
+                            .pairs_to_hash
+  #render everything to the screen
+  outputs.sprites &lt;&lt; state.ninjas.map do |n|
+    [n.rect, 'dragonruby.png', 0,
+     state.collisions[n.entity_id] || 255]
+  end
+end</pre>
+<h1>The developers behind DragonRuby Game Toolkit.</h1>
+<p>This is Ryan C. Gordon (<a href="https://en.wikipedia.org/wiki/Ryan_C._Gordon" referrerpolicy="origin" rel="nofollow noopener">Wikipedia</a>), he is one of the juggernauts behind Simple DirectMedia Layer (<a href="https://en.wikipedia.org/wiki/Simple_DirectMedia_Layer" referrerpolicy="origin" rel="nofollow noopener">Wikipedia</a>).&nbsp;</p>
+<p>Ya know...&nbsp;</p>
+<p>SDL.</p>
+<p>That low-level library&nbsp;<strong>that powers thousands of games, Triple-A game engines, and Valve's Steam client</strong><strong>?</strong>&nbsp;</p>
+<p>He's also worked on porting a number of games to Linux and Mac OS: such as Braid, Super Meat Boy, Dear Esther, and LIMBO.</p>
+<p><img src="https://web.archive.org/web/20210124232730im_/https://img.itch.zone/aW1nLzIwMTM3NDkucG5n/original/Z%2F%2Fpmx.png" style="max-width: 100%; margin-left: auto; margin-right: auto; padding: 10px; width: 300px" loading="lazy"></p>
+<p>And this is Amir Rajan, he is an indie game dev with titles on iOS, Android, desktop,&nbsp;and Nintendo Switch...&nbsp;<strong>amassing 3 million downloads and counting</strong>&nbsp;(<a href="https://www.nintendo.com/games/detail/a-dark-room-switch/" referrerpolicy="origin" rel="nofollow noopener">Nintendo</a>,&nbsp;<a href="https://killscreen.com/articles/ensign/" referrerpolicy="origin" rel="nofollow noopener">Kill Screen</a>,&nbsp;<a href="https://www.newyorker.com/tech/annals-of-technology/a-dark-room-the-best-selling-game-that-no-one-can-explain" referrerpolicy="origin" rel="nofollow noopener">The New Yorker</a>). And yes, all these games are built with the DragonRuby Runtime.</p>
+<p><img src="https://web.archive.org/web/20210124232730im_/https://img.itch.zone/aW1nLzIwMTM3NTAuanBn/original/jrb8Tz.jpg" style="max-width: 100%; margin-left: auto; margin-right: auto; padding: 10px; width: 300px" loading="lazy"></p>
+<p><strong>Both of these guys hate the complexity of today's engines.&nbsp;</strong>And as luck would have it, their paths ended up crossing. After six months and 50,000 lines of DragonRuby Runtime enhancements,&nbsp;Ryan and Amir now have a live/hot loadable, cruft-free, productive game engine&nbsp;that can target... well... any gaming device you can think of.&nbsp;</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

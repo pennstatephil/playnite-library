@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Touhou Fan Game Jam Black Lives Matter Collection</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Touhou Fan Game Jam Black Lives Matter Collection</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:52:16</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:06:07</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-6/5/2020">6/5/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://copperchihuahua.itch.io/touhou-jam-blm" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Touhou%20Fan%20Game%20Jam%20Black%20Lives%20Matter%20Collection" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>This is a sizable collection of Touhou fangames created for the Touhou game jams.&nbsp;Our jam community has no tolerance for racism and strives to live in a Touhou fan community without it, so many of our creators have donated their jam entries here to be submitted to itch.io's Bundle for Racial Justice and Equality. Included as well is new content for <a href="https://store.steampowered.com/app/772260/NitorInc_Touhou_Microgames/" referrerpolicy="origin" rel="nofollow noopener">NitorInc.: Touhou Microgames! DEMO+</a>.<br></p>
+<p>This project can be downloaded for free or with a donation tip. Tips will be split 50/50 between:<br></p>
+<ul><li><a href="https://www.naacpldf.org/" referrerpolicy="origin" rel="nofollow noopener">NAACP Legal Defense and Educational Fund</a></li><li><a href="https://secure.actblue.com/donate/bail_funds_george_floyd" referrerpolicy="origin" rel="nofollow noopener">Community Bail Fund</a></li></ul><p>
+</p><p></p><p><strong>EDIT: </strong>The bundle is now over, so this project is now available for free with an optional donation, which will continue to be forwarded to the same areas as the bundle.<br></p>Some of the games have exclusive updated content added after the jams as well. We hope you enjoy them and continue to show support for this cause.<br><p></p>
+<p>Most downloads are for Windows. The individual game pages below may have a web version available however.<br>Games included in this collection:</p>
+<p>
+</p>
+<ul>
+<li><a href="https://cookiegames.itch.io/cirno-the-rice-fairy">Cirno the Rice Fairy!<br></a></li><li><a href="https://metatronius.itch.io/cirnos-blockbuster">Cirno's BlockBuster</a></li>
+<li><a href="https://peacock-roy.itch.io/cirnos-frog-freeze">Cirno's Frog Freeze</a></li>
+<li><a href="https://gman8r.itch.io/cooking-cirno">Cooking Cirno: Former Hell's Kitchen</a></li><li><a href="https://copperchihuahua.itch.io/eternal-memory-for-a-poltergeist">Eternal Memory for a Poltergeist</a>&nbsp;&nbsp;</li>
+<li><a href="https://gman8r.itch.io/babygame">Flight of the Baby Princess</a></li>
+<li><a href="https://kurantob.itch.io/formidable-alice">Formidable Alice</a></li>
+<li><a href="https://tboddy.itch.io/frozen-dirt">Frozen dirt</a></li><li><a href="https://dichotomouscreator.itch.io/gensokyoninjawarrior">Gensokyo Ninja Warrior</a></li>
+<li><a href="https://kurantob.itch.io/green-9-deal">Green 9 Deal</a></li>
+<li><a href="https://tboddy.itch.io/inabatron">Inabatron</a></li>
+<li><a href="https://cookiegames.itch.io/kogasas-lunar-fright-mission">Kogasa's Lunar Fright Mission</a></li>
+<li><a href="https://gman8r.itch.io/little-ideology">Little Ideology</a></li>
+<li><a href="https://firecat1311.itch.io/lovely-fairy-action">Lovely Fairy Action<br></a></li><li><a href="https://gman8r.itch.io/mimi-chan">Mimi-Chan's Ballistic Adventure</a></li>
+<li><a href="https://copperchihuahua.itch.io/memories-of-a-phantoms-fortitude">Memoir of Phantom's Fortitude</a></li>
+<li><a href="https://hunt-the-past.itch.io/mighty-no9">Mighty No.(9)</a></li>
+<li><a href="https://thecookielord.itch.io/mochi-making-mischief">Mochi Making Mischief<br></a></li><li><a href="https://store.steampowered.com/app/772260/NitorInc_Touhou_Microgames/" referrerpolicy="origin" rel="nofollow noopener">NitorInc.: Touhou Microgames! DEMO+</a></li>
+<li><a href="https://gman8r.itch.io/rumia-roller">Rumia Roller</a></li>
+<li><a href="https://jacoder23.itch.io/scarlet-midnight">Scarlet Midnight</a></li>
+<li><a href="https://firecat1311.itch.io/the-egg-of-basan">The Egg of Basan</a></li>
+<li><a href="https://copperchihuahua.itch.io/the-grimoire-of-alice">The Grimoire of Alice</a></li>
+<li><a href="https://9vaca.itch.io/hearts-illumination">The Heart's Illumination</a></li>
+<li><a href="https://yaru.itch.io/touhou-history-eater">Touhou History Eater</a></li>
+<li><a href="https://cookiegames.itch.io/youmu-is-a-zombie">Youmu is a zombie!</a></li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

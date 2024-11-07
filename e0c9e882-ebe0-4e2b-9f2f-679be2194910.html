@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Codemancer</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Codemancer</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:19</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:16:51</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-7/3/2019">7/3/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Puzzle">Puzzle</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Important Little Games">Important Little Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Important Little Games">Important Little Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1103400" target="_blank">Steam</a><br/><a href="https://importantlittlegames.itch.io/codemancer-ch-1" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Codemancer" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><strong>**UPDATE** Mac &amp; PC Builds now have translated text in Spanish, French, German and the original English!</strong></p>
+<p>Codemancer brings the <strong>mystery of magic</strong> and the <strong>exhilaration of learning to code</strong> together in a fantasy universe that uses spell casting as a way to teach and learn programming skills. Codemancer’s fantasy universe is filled with rival sorcerers and their minions for players to encounter along their journey. Codemancer is a non-violent, entertaining, and educational game designed to be <strong>inclusive and accessible</strong> to learners at any stage. Features include a gender-neutral fantasy setting with a female protagonist, a narrative backbone, and a programming interface that’s designed to be easy to understand by kids with varying degrees of skill and experience. Codemancer breaks down barriers that may have discouraged some kids from embracing technology and <strong>elevates their screentime</strong> to be more productive <em>and</em> entertaining.&nbsp; It isn’t a typical coding or technology game.</p>
+<p><strong>WHAT IS CODEMANCER ALL ABOUT?</strong>&nbsp;&nbsp;&nbsp;</p>
+<p>Codemancer tells a moving story about Aurora, a young, creatively talented girl who’s trying to grow up, become independent, and do good in the world in the face of incredible obstacles when her <strong>father is suddenly kidnapped</strong>. Aurora has to embark on an adventure to save him as she grows into a gracious and independent young woman. She must learn magic spells to save her father, but the <strong>magic used in Aurora’s world works the same as programming does in ours</strong>. Inspire children to explore their potential as they discover the magic of coding.</p>
+<p><strong>CODEMANCER IS AN EDUCATIONAL GAMING ADVENTURE:</strong>&nbsp;&nbsp;&nbsp;</p>
+<ul><li>Codemancer is designed for <strong>6 to 12 year olds</strong> as an educational game that teaches the magic behind coding—and can be fun for grownups, too!</li></ul>
+<p><strong>CODEMANCER SPECIFICALLY TEACHES:</strong></p>
+<ul><li>Sequential Algorithms</li><li>Debugging</li><li>Function Arguments</li><li>Scope</li><li>Looping Constructs</li><li>Concurrent Programming</li></ul>
+<p><strong>...AND TEACHES IN GENERAL:</strong></p>
+<ul><li>Computational Thinking</li><li>Planning</li><li>Problem Solving</li><li>Resilience
+</li></ul>
+<p><strong>CODEMANCER FEATURES:</strong></p>
+<ul><li>A narrative inspired by popular works of young adult fantasy worlds such as Harry Potter, Percy Jackson, The Neverending Story, The Last Airbender, and many more!</li><li>Gameplay that takes place in a hexagonal world, making it easy to estimate distances and angles by eye.&nbsp;</li><li>'Freeze time' ability, so players can debug the programs they've written and potentially code their way out of a jam to learn from their mistakes.</li><li>Availability for PC, Mac, iPad, and Android tablets.</li></ul>
+<p><strong>CODEMANCER IS STRUCTURED FOR ACCESSIBILITY AND INCLUSIVITY:</strong>&nbsp;&nbsp;&nbsp;</p>
+<ul><li>The goal of Codemancer is to be as broadly <strong>inclusive as possible</strong> by creating a gender-neutral fantasy setting with a female protagonist, a narrative backbone, and language interface that’s designed to make the game appeal to kids at different skill levels.&nbsp;</li><li>Codemancer breaks down barriers that can hinder some kids from feeling comfortable with engaging with programming, for example Codemancer <strong>uses pips (like on a die) instead of numerals</strong>, and sets the gameplay in a hexagonal world that makes it easy to estimate distances and angles by eye.&nbsp;</li><li>No syntax errors -- if you can enter a spell, it will run. Syntax errors can be frustrating and cause learners to quit before they really begin.</li><li>Codemancer uses an <strong>open dyslexic font</strong>, where letters are designed to look distinctly different from each other to make reading easier for kids with dyslexia.</li><li>The game is fully voiced, so <strong>reading is completely optional</strong>.</li><li>Codemancer's programming language is designed to be accessible, but also translates easily to a variety of popular real-world programming languages (such as Python).</li><li>Codemancer appeals to many educational groups, from children with special needs for reading, to younger children new to coding, to older children with more advanced coding and programming skill sets.&nbsp;</li><li>Codemancer has the potential to reach under-represented groups in coding and teach them an often-exclusionary, but nonetheless important, 20th-century skill.</li></ul>
+<p></p>
+<p></p>
+<p><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

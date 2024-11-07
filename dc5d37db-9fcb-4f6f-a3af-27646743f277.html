@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>We should talk.</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> We should talk.</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:57:19</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:24:26</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-5/19/2018">5/19/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-60">60</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Visual Novel">Visual Novel</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Insatiable Cycle">Insatiable Cycle</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Whitethorn Games">Whitethorn Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://www.weshouldtalkgame.com/" target="_blank">Official</a><br/><a href="https://store.steampowered.com/app/1255990/We_should_talk/" target="_blank">Steam</a><br/><a href="https://weshouldtalk.itch.io/we-should-talk" target="_blank">Itch</a><br/><a href="https://twitter.com/_weshouldtalk" target="_blank">Twitter</a><br/><a href="https://www.instagram.com/_weshouldtalk" target="_blank">Instagram</a><br/><a href="https://www.youtube.com/channel/UCFyHG8BBw3avWXBj1yMkJaw" target="_blank">YouTube</a><br/><a href="https://www.twitch.tv/directory/game/We%20should%20talk." target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><strong><img src="https://img.itch.zone/aW1nLzM4MTUxMDQucG5n/original/nXYFtk.png" loading="lazy"><br></strong></p>
+<p><strong>It's not what you say, it's how you say it.&nbsp;</strong><em>We should talk</em>&nbsp;is a short-form narrative game that will make you think carefully about the words you choose,&nbsp;<strong>released Thursday July 16th&nbsp;2020 to Windows, Mac, PlayStation 4, Xbox One, Linux, and Nintendo Switch.</strong>&nbsp;</p>
+<p>In&nbsp;<em>We should talk</em>, you'll use the sentence spinner to piece together modular sentences in response to the in-game characters. Choose your words carefully to express yourself as you discuss ongoing problems about life and romance with Sam, your in-game partner, over text messages, while also chatting with friends and strangers at your favorite local bar.</p>
+<p><img src="https://img.itch.zone/aW1nLzM4MTUxNTQuZ2lm/original/Zd16XO.gif" loading="lazy"></p>
+<p>The combination of words you choose impacts the conversations you have, how genuinely you can connect with your partner, and whether your relationship can survive the night. It's up to you how you respond—depending on how you communicate, you'll see one of many possible endings.</p>
+<p><img src="https://img.itch.zone/aW1nLzM4MTUxNTUucG5n/original/dMAc2C.png" loading="lazy"><br></p>
+<p><strong>Personalized Choices:&nbsp;</strong>Using the sentence spinner, make choices that connect with you. Countless options abound—be yourself, or role play someone you never thought you could be.</p>
+<p><img src="https://img.itch.zone/aW1nLzM4MTUxNjcuZ2lm/original/mbMFJl.gif" loading="lazy"><br></p>
+<p><strong>Unique Characters:&nbsp;</strong>Your night at the bar is more interesting thanks to all the unique people you encounter. Find your healthy balance between chatting with your friends and keeping up with the texts from your partner at home.&nbsp;</p>
+<p><img src="https://img.itch.zone/aW1nLzM4MTY5MTUuZ2lm/original/4ZpzZg.gif" loading="lazy"><br></p>
+<p><strong>Different Paths:&nbsp;</strong>Your choices drastically affect the way folks respond to you, leading to one of many different paths in each conversation. Will you be accommodating, flirty, stand-offish, or somewhere in-between?</p>
+<p><img src="https://img.itch.zone/aW1nLzM4MTY5MTAuZ2lm/original/H6okJz.gif" loading="lazy"><br></p>
+<p><strong>Multiple endings:</strong>&nbsp;Play again and again to find all 9 possible endings. Conclusions aren't based on a specific path or route the way many traditional narrative games branch, but instead the endings are based on the tone your responses express throughout the game. What do&nbsp;<strong>your</strong>&nbsp;relationships look like at the end of the night?</p>
+<p><img src="https://img.itch.zone/aW1nLzM4MTY5MDguZ2lm/original/Leiv25.gif" loading="lazy"><br></p>
+<p><strong>Realistic conversations:</strong>&nbsp;Experience the emotions that come with real conversations, whether it’s the the joy that comes with teasing a friend, the anxiety that comes with a heavy text message, or the frustration of navigating a touchy conversation with a creep. Express yourself as clearly as you can and hope that your conversational partner understands, though there's always a risk they might interpret your words differently than you intended.</p>
+<p><a target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://img.itch.zone/aW1nLzM4MTUxNjEucG5n/original/7dCT%2Fy.png" loading="lazy"></a><br></p>
+<p><a href="https://www.weshouldtalkgame.com/press-kit/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://img.itch.zone/aW1nLzM4MTUxNjMucG5n/original/sOnAU5.png" loading="lazy"></a></p>
+<p class="text-center"><strong><button itchio="" aria-label="Click to activate iframe embed" type="button" class="embed_preload other_embed" title="https://open.spotify.com/embed/playlist/0P9AMgJ9ZxQVfT7Is9zG10" data-embed_code="<iframe src=&quot;https://open.spotify.com/embed/playlist/0P9AMgJ9ZxQVfT7Is9zG10&quot; width=&quot;400&quot; height=&quot;250&quot; frameborder=&quot;0&quot;></iframe>" style="height: 168px; width: 300px"><div class="embed_url">https://open.spotify.com/embed/playlist/0P9AMgJ9ZxQVfT7Is9zG10</div></button><br></strong></p>
+<p><strong>The We should talk Team:</strong></p>
+<p><a href="https://toki-e.itch.io/" style="font-size: inherit">Kat Aguiar</a>,&nbsp;<a href="https://nobohb.com/" target="_blank" style="font-size: inherit" referrerpolicy="origin" rel="nofollow noopener">Nobonita Bhowmik</a>,&nbsp;<a href="https://ceschiii.itch.io/" style="font-size: inherit">Francesca Carletto-Leon</a>,&nbsp;<a href="https://jjb672.itch.io/" style="font-size: inherit">Jordan Jones-Brewster</a>,&nbsp;<a href="https://carolmertz.itch.io/" style="font-size: inherit">Carol Mertz</a>&nbsp;and&nbsp;<span></span><a href="http://jackschlesinger.com" style="font-size: inherit" referrerpolicy="origin" rel="nofollow noopener">Jack Schlesinger</a></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

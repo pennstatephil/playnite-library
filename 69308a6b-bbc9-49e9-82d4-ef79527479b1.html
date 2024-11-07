@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Electric Zine Maker (a work in progress, be gentle, hug it often)</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Electric Zine Maker (a work in progress, be gentle, hug it often)</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:53:59</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:07:11</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-5/10/2019">5/10/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>The Electric Zine Maker (⚡️📝✂️) is a printshop and art tool for making zines.<br>This tool includes a drawing interface. You can import images, size and place, write text with any font that you have installed, smudge, paint, and a number of other options. You can also save your zines, and easily re-import them by dragging the saved zine folder back into the main menu. It is built with collaboration in mind.<br><br>The <a href="http://unicornycopia.com/ezm/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Electric Zine Maker has a new beautiful website</a> where you can learn more about it! <a href="http://unicornycopia.com/ezm/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Click here to visit it</a>.<br><br><strong>macOS users that have trouble opening the Electric Zine Maker</strong> (the file keeps getting blocked), <a href="http://www.nathalielawhead.com/candybox/opening-electric-zine-maker-on-macos-guide-i-downloaded-the-electric-zine-maker-but-it-wont-open-on-my-mac-it-keeps-getting-blocked" target="_blank" referrerpolicy="origin" rel="nofollow noopener">please read this guide for how to open it.</a></p>
+<p><strong>Windows users that have trouble saving their Zines</strong> (or other issues) <a href="https://alienmelon.itch.io/electric-zine-maker/devlog/226346/-windows-troubleshooting-my-files-dont-save-other-issues-" target="_blank">please read this guide.</a><br><br><strong>If you liked The Electric Zine Maker please consider paying for it</strong> so I can cover development costs and make money from it. Thank you kindly.<br><br><strong>The Electric Zine Maker is still under development!!!</strong><br><em>This is an early beta.</em><br>Be gentle! It has early beta feelings!!!&nbsp; 💔❤️!??</p>
+<p>More art tools are being built for it.<br>There are a number of bugs. It is rough around a few edges.<br>You can read more about <a href="http://www.nathalielawhead.com/candybox/announcing-the-electric-zine-maker-about-my-new-art-tool-toy-game-thing-being-developed-the-direction-its-taking" target="_blank" referrerpolicy="origin" rel="nofollow noopener">what is planned for it here</a>.</p>
+<p>The Electric Zine Maker is planned to be an "art toy". It's a playful tool with which you can create cute little things. The finished version will feature a silly little back-story, and other characters, maybe even some small game-like interactions to build a story around it, so that it's an all around playful piece of freeware.</p>
+<p><strong>Things planned:</strong><br><br>* Many strange and interesting art-tools for the drawing interface<br>* Bugs need to be fixed and the UI's still need more work<br>* A back story, and little characters that reinforce the fictional universe it is placed in.<br>* A number of other art-tools (that are packaged with it), that allow you to create effects and glitch art for your zines.<br>* Clip art will be bundled with the Zine Maker so you have more art to work with.<br><br><strong>Things from other devs:</strong><br><br></p>
+<p>* Jeremy Oduber made an html template for turning zines made with the Electric Zine Maker into a web ready html zine (web zines!). You can host those on itch. It's easy to use! Check it out:<a href="https://jeremyoduber.itch.io/js-zine"> https://jeremyoduber.itch.io/js-zine</a></p>
+<p><strong>Kind Words:</strong><br></p>
+<p></p>
+<p>"I think that just about everything Nathalie Lawhead makes is wonderfully energetic, raw, and approachable. Top of the charts, for me, is their Electric Zine Maker project, which makes single-page-zine creation a breeze."<br>- <a href="https://www.rockpapershotgun.com/priceless-play-20-june-2020" target="_blank" referrerpolicy="origin" rel="nofollow noopener">by Kat Brewster on Rock Paper Shotgun</a></p>
+<p>"The arrival of this software into my life restored a sense of play to my creative practice and brought back a flame I thought had dimmed for good. It gave me the courage, too, to send scrappy, earnest writing to the people who wanted to read it, without the intense pressure of online publishing or the quick-fire takes of social media."<br>- <a href="https://www.theguardian.com/games/2021/feb/22/electric-zine-maker-video-game" target="_blank" referrerpolicy="origin" rel="nofollow noopener">by Sarah Maria Griffin on The Guardian</a></p>
+<p>"What Lawhead and the Electric Zine Maker suggest is that seriousness is not always the best way to fight back against a system that doesn’t care about you; choosing lightness, lack of coherence, silliness and restful creation can be just as effective."<br>- <a href="https://observer.com/2021/03/electric-zine-maker-diy-open-souce-tool/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">by Nicole Froio on The Observer</a><br>
+</p><p>"Zines und OpenSource passen wunderbar zueinander, findet Nathalie Lawhead und entwickelt seit 2018 den Electric Zine Maker. Nun ist ein großes Update für das Printshop-Tool erschienen."<br>-<a href="https://page-online.de/tools-technik/zine-design-micro-heft-gestalten-mit-dem-electric-zine-maker/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">by Lena Simonis on PAGE</a></p>
+<p></p><p><strong>Awards:</strong><strong></strong></p>
+<p>IndieCade - Innovation in Interaction Design Award ("Honoring the craftsmanship and innovation behind unique interaction, hardware, and system design")</p>
+<p>
+</p>
+<p>The Webby Awards - Honoree in General Websites and Mobile Sites - Weird</p>
+<p><strong>Special Thanks To...</strong><br></p>
+<p><a href="https://www.du.edu/ahss/opensourcearts/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Clinic for Open-Source Arts, University of Denver</a></p>
+<p><a href="https://twitter.com/creativeinquiry" target="_blank" referrerpolicy="origin" rel="nofollow noopener">The STUDIO at CMU - OSSTA</a><br><br><a href="https://queergamesbundle.itch.io/" target="_blank">Partly funded by the Queer Games Bundle</a><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

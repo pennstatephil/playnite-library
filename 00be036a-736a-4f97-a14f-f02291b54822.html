@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pig Eat Ball</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Pig Eat Ball</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:47</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:22:15</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-9/27/2018">9/27/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Puzzle">Puzzle</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Mommy's Best Games">Mommy's Best Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Mommy's Best Games">Mommy's Best Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Operative">Co-Operative</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/339090" target="_blank">Steam</a><br/><a href="http://www.pigeatball.com" target="_blank">Official</a><br/><a href="https://www.facebook.com/PigEatBall" target="_blank">Facebook</a><br/><a href="https://mommysbestgames.itch.io/pig-eat-ball" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Pig%20Eat%20Ball" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><strong>Ki</strong><strong>ng Cake, the dessert-headed monarch, has decided it’s time for his daughter to get married, but she other plans! </strong><br>The King has devised “The Royal Games” in which the winner will marry Princess Bow. Since she can’t talk her father out of it, Bow decides to put on a disguise and enter the competition herself. Along the way, she discovers a nefarious plot that threatens all life aboard the Space Station Kingdom. Can she get to the bottom of things before it’s too late… <em>and </em>win the Royal Games at the same time?<br></p>
+<h2>Features</h2>
+<p><strong>TWISTED ARCADE GAMEPLAY</strong> Get bigger as you eat. Barf to squeeze down to size. Barf on anything that moves. Reap the rewards.</p>
+<p><img src="https://img.itch.zone/aW1nLzE1MTgxNTAuZ2lm/original/Wb0Y3c.gif" loading="lazy"></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p><em>
+<p><strong>EXPLORE INTRICATE WORLDS</strong> Giant interconnected overworlds are filled with strange life, and secret rewards. Travel to five completely unique areas including Sushi Gardens, Kitchen Chaos, and Astro Farm.<br><em><img src="https://img.itch.zone/aW1nLzE1MTgxNTUucG5n/original/kw4cWN.png" loading="lazy"></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p><em>
+<p><strong>HAND-CRAFTED CHALLENGE</strong> Each hand-made, non-procedural level has a unique hook or puzzle from dodging alien bulls, spitting bombs, eating flying pies, or bowling while on conveyor belts—there’s always something new.</p>
+<p><strong>MASSIVE, WILD BOSSES</strong> Nearly a <u>dozen</u> <strong>bat-barf crazy bosses</strong> will be coming your way. How will you beat the Accordion Centipede? Or a living pile of nachos? Use your BRAIN, your SKILLS, and your MOUTH!<br><em><img src="https://img.itch.zone/aW1nLzE1MTgxNTcuZ2lm/original/LNP94y.gif" loading="lazy"></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p><em>
+<p><strong>ONE-OF-A KIND POWERUPS</strong> Throughout the Space Station Kingdom there are dozens of special Disguises. These look cool and also give you special abilities! Each Disguise has a Pro and a Con. Swap Disguises to find the best one for each situation.<br><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p><em>
+<p><strong>OPEN-ENDED ANTICS</strong> Charming Pillbugs roam these space stations. They may want to play a nice game of tennis, or may steal your balls! Watch out for their lawn darts, bombs, flying pies, and tractors! Barf on them, bump them, torch them, or knock them into open space. Don’t worry they can hold their breath a long time!<br><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p><em>
+<p><strong>HOURS OF ADVENTURE</strong> The main story is 8-12 hours alone on the first playthrough. Getting the “Gold Medal” for quick completions on each level opens a special CHALLENGE SECTION in each world!<br><em><img src="https://img.itch.zone/aW1nLzE1MTgxNTguZ2lm/original/041uEo.gif" loading="lazy"></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p><em>
+<p><strong>WILD CHARACTERS</strong> Talk to dozens of interesting aliens on your journey including Cupcake people, Scrounger Goblins, sentient shrimp, and of course your insane father King Cake.</p>
+<p><strong>MANIC MULTIPLAYER MAYHEM</strong> The 4-player, <strong>OFFLINE</strong> couch competitive mode is the definition of PARTY TIME. Dozens of custom levels give you a variety of goals to compete to win. Casual and Hardcore players can boost it out, bumping bums, barfing blobs, and belching balls!<br><em><img src="https://img.itch.zone/aW1nLzE1MTgxNjAuZ2lm/original/xhNc2g.gif" loading="lazy"></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p>
+<p><em></em></p><em>
+<p><strong>ONLINE LEADERBOARDS</strong> Each action level lets you compete for the fastest time with the world! (Must be connected through Steam)<br></p>
+</em></em><p><em><em></em></em><br></p><p><em><em></em></em><br></p>
+<p><em><em></em></em><br></p>
+<p><em><em></em></em><br></p>
+<p><em><em></em></em><br></p>
+<p><em><em></em></em><br></p>
+<p><em><em></em></em><br></p>
+<p><em><em></em></em><br></p>
+<p><em><em></em></em><br></p>
+<p><em><em></em></em><br></p>
+<p><em><em></em></em><br></p>
+<p><em><em><strong>ONLINE LEVEL SHARING</strong> Ready to craft your own levels? The intuitive level editor will have you combining and arranging all manner of crafty creations in no time. Quickly make and then test your levels. Ready to share your level with your friends or the world? Upload it to Steam Workshop and invite them to play it! (Online level sharing requires connection through Steam. You can still make levels not connected to Steam.)<em><br></em></em></em></p>
+<p><img src="https://img.itch.zone/aW1nLzE1MTgxNjMucG5n/original/HsRa1z.png" loading="lazy"></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p></em></em></em></em></em>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

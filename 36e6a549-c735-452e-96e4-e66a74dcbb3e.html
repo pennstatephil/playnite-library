@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Intra-System: Trust Issues</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Intra-System: Trust Issues</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:57:06</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:23:39</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/26/2017">4/26/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://smokesomefrogs.itch.io/intra-system-trust-issues" target="_blank">Itch</a><br/><a href="https://smokesomefrogs.com/" target="_blank">Official</a><br/><a href="https://twitter.com/smokesomefrogs" target="_blank">Twitter</a><br/><a href="https://www.twitch.tv/directory/game/Intra-System:%20Trust%20Issues" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2>Intra-System: Trust Issues is a short minimalistic Audio-Adventure based on decisions. </h2>
+<p>
+	You co-operate with a system to communicate with an unknown person.&nbsp;</p>
+<p>He communicates with you per voice messages and asks for advice as he passes through different rooms.&nbsp;</p>
+<p>
+	He trusts you.
+</p>
+<p>
+		Are you a nice person and willing to help him?
+</p>
+<p>
+	Every playthrough of this audio-adventure takes about 15 minutes to complete.
+	<br>
+	Your decisions have a great impact on the game and make every run unique.</p>
+<p>
+	<br>
+</p>
+<p>
+	<em>"After he screamed with all the intensity of a hyena caught in a bear trap, I resolved to help him out." - </em> <a href="https://www.rockpapershotgun.com/2017/05/06/free-loaders-this-boy-is-bananas/" referrerpolicy="origin" rel="nofollow noopener">Brendan Caldwell, Rock Paper Shotgun</a><br><br><em>"Figuring out the interface is not rocket science, but finding answers is." - </em><a href="http://www.electrondance.com/the-lever/" referrerpolicy="origin" rel="nofollow noopener">Joel Goodwin, Electron Dance<br><br></a><em>"Intra-System is something completely new [...]<span></span>" - </em><a href="https://indieflock.net/2017/05/10/vertrauen-ist-optional/#more-1401" referrerpolicy="origin" rel="nofollow noopener">Pascal W., Indieflock</a>
+	<br></p>
+<p>
+	<br>
+	<img alt="Key Features" src="http://smokesomefrogs.com/pics/key.png" loading="lazy">
+</p>
+<p>
+	</p>
+<p>• fully voice acted in English and German<br>• discover different paths and endings<br>• make decisions that matter<br>• experience a novel genre approach<br>• find unique collectables <br>• find secrets and explore the hidden lore around the setting</p>
+<p></p>
+<p>
+	<img alt="Key Features" src="http://smokesomefrogs.com/pics/sssneu.png" loading="lazy">
+</p>
+<p>
+	This is our first project at SmokeSomeFrogs and we've been working on it since July 2016.
+	<br>
+</p>
+<p>
+	For further information check out our website or twitter. You can also subscribe to our Newsletter if you want to! Want to report a bug or just say hello? Contact us at protagonist@smokesomefrogs.com :)
+	<br>
+	<br>
+	<strong>Links:</strong><br>
+• 
+	<a href="http://smokesomefrogs.com/" referrerpolicy="origin" rel="nofollow noopener">Website</a>
+	<br>
+	• 
+	<a href="https://twitter.com/smokesomefrogs/" referrerpolicy="origin" rel="nofollow noopener">Twitter</a>
+	<br>
+	• 
+	<a href="http://smokesomefrogs.com/press" referrerpolicy="origin" rel="nofollow noopener">Press Kit</a>
+	<br>
+</p>
+<p>Intra-System: Trust Issues was updated on 26.04.2019.<br></p>
+<p>Version 1.2 "Repolished, Remastered, Repurposed!"</p>
+<p>System Requirements: Works on your toaster. Recommended is an Intel Celeron J3060 (Dual Core 1,6 GHz), its iGPU (HD 400) and 2 GB RAM but it should perform well even on much older systems.<br></p>
+<p>Please note: contains strong language.</p>
+<p><br></p>
+<p><strong>Made by:</strong>&nbsp;Christopher Schmidt (Programming), Daniel da Silva (Story, Sound), Devon Wolters (Voice) and Angela Reinert (Graphics)&nbsp;<br></p>
+<p><iframe src="https://itch.io/embed/139031?bg_color=070707&amp;fg_color=ffffff&amp;link_color=ababab&amp;border_color=333333" width="552" height="167" frameborder="0" style="color: inherit; font-size: inherit"></iframe><br></p>
+<p><br></p>
+<p>Daniel da Silva is&nbsp;currently working on <a href="https://store.steampowered.com/app/1535240/Sonucido_The_Mage__A_Dungeon_Crawler_by_Daniel_da_Silva/" referrerpolicy="origin" rel="nofollow noopener">Sonucido: The&nbsp;Mage</a>!</p><p><a href="https://store.steampowered.com/app/1535240/Sonucido_The_Mage__A_Dungeon_Crawler_by_Daniel_da_Silva/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://img.itch.zone/aW1nLzg3NzE4ODYucG5n/original/jMF1yv.png" loading="lazy"></a><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

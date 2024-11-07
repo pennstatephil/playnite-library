@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rulent Tower VR</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Rulent Tower VR</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:51:22</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:02:09</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/1/2020">4/1/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Point-and-click">Point-and-click</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://setsune.itch.io/rulent-tower-vr" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Rulent%20Tower%20VR" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><strong><a href="http://" target="_blank" referrerpolicy="origin" rel="nofollow noopener"></a>"Thanks for trying out the latest dimension in Game Boy games!"</strong></p>
+<p>For April Fools Day 2020, I took my GB Studio project, "<a href="https://setsune.itch.io/rulenttower" target="_blank">Rulent Tower</a>", the adventures of a bunch of parody furry characters in an apartment building together, and "converted" it to VR. I only had a few days to smash it together, so the scope had to be restrictive, and a lot of things were left on the table. After April Fools, I spent a few extras weeks tinkering with the project, until I was satisfied.</p>
+<p>But it's now 2021, and Oculus has released the Quest 2, running at 120 Hz (effectively 120 Frames per Second)! The original Quest version was locked at 72 Hz. The change itself was relatively simple (once I could find the information), but I decided to add in a few small adjustments and additional Easter Eggs. And then something went very wrong and I basically had to redo the process all over again. Learning!</p>
+<p>This is a 5 minute gimmicky prototype. There isn't a ton to do here, as it's more about the novelty of seeing these pixel graphics converted to voxel and presented as if you were actually there in GB Land. There's a few oversized props you can play with, and maybe an easter egg or two, if you poke around.</p>
+<p>There are two versions available. One was built for PC VR hardware, the other built specifically for Oculus Quest and Oculus Quest 2 (and can run untethered). You'll need to sideload the APK for the Quest and Quest 2, but there's an easy-to-follow tutorial linked in the included Readme if you've never done that before.</p>
+<p><strong><br></strong></p>
+<p><strong>[Controls:]</strong><br>Point your blocky mitts at something that interests you. If it's interactive, the small dark green beams will switch to light green. You can grab objects from anywhere those beams can point at by pressing the trigger button, so don't worry about things being out of reach. Anything in your hands can be rotated by tilting the analog sticks Left or Right, and moved closer or further away from you by tilting those sticks Back or Forward. You can teleport around the lobby and hallway by pointing the mini voxel foxel at your desired floor location and pressing the trigger button.</p>
+<p>There's no in-game menu, so on PC if you want to Reset the Scene, hit "R" on your keyboard. If you want to close the game, use your VR overlay's Close Software function, or tap "Esc" on your keyboard. If you can't do either of these things, I'm sorry but I've accidentally trapped you in blocky greenscale virtual reality. I promised myself I'd stop doing this...</p>
+<p><strong><br></strong></p>
+<p><strong>[Supporters:]</strong><br>I want to thank my Patrons and other Awesome and Amazing Supporters who make this stuff possible, including:</p>
+<p><strong><em>Sofox</em></strong> (knock to thank him!), <strong>Commander D</strong>, <em>Darkdekumon</em>, <em>A. Kitty</em>, <em>Jeffrey Perigo</em>, <em>Jessica Bumpus</em>, MaskRider, Matt Schock, and braedon benson<br>And thank you to everyone who contributed to the itch.io <em>Bundle for Racial Justice and Equality</em>!</p>
+<p>If you want to see me continue to make weird things like this, follow my Itch.io ( <a href="https://setsune.itch.io/" target="_blank">https://setsune.itch.io/</a> ) or Twitter ( <a href="https://twitter.com/setsunedev" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/setsunedev</a> )! If you'd like to get credited in works and see behind-the-scenes content and previews, you might also consider backing my Patreon ( <a href="https://patreon.com/setsune" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://patreon.com/setsune</a> ). You can also buy me a Ko-Fi ( <a href="https://ko-fi.com/setsune" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://ko-fi.com/setsune</a> ) if you just want to give me a one-time nod.</p>
+<p>Thank you so much for visiting Rulent Tower VR!</p>
+<p><br></p>
+<p></p>
+<p><strong>[Changelog:]</strong><br><em>v1.20 [2021/02/20]</em><br>-Quest 2 upgrade (still fully compatible with Quest 1)<br>-90 Hz/120 Hz on Quest 2<br>-Changed Package information<br>-Added #1 Requested Feature: Carpet for the Lobby and Hallway<br>-Made it easier to hear a dweller's responses<br>-Added grip points to paper stacks<br>-Scooted some things around in a barely noticeable way<br>-Easter Egg (There's now two of them...?)<br>-Easter Egg inside Easter Egg</p>
+<p><em>v1.11 [2021/**/**]</em><br>-Cursed</p>
+<p><em>v1.00 [2020/04/01]</em><br>-"Full" Release<br>-Intro Sequence<br>-Added Hallway of Apartments<br>-Changed some characters<br>-Knocking on Doors<br>-Game Girl FX<br>-Emote Bubbles<br>-Toggle Music by Clicking on Speaker<br>-Fixed some physics weirdness<br>-Thank You Message</p>
+<p><em>v0.20 [2020/04/01]</em><br>-Original "April Fools Day" release</p>
+<p>And once again, there are absolutely zero bugs, and any bugs that didn't exist before definitely don't exist now.<strong><br></strong></p>
+<p><strong><br></strong></p>
+<p><strong>[Credits:]</strong><br><em>Voice:</em> Sofox <a href="https://twitter.com/thesofox" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/thesofox</a><br><em>Music:</em> "Peppy Regal Overworld", "Swing into Victory", and "Twilight Drive" by krümel <a href="https://github.com/DeerTears/GB-Studio-Community-Assets/tree/master/Music" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://github.com/DeerTears/GB-Studio-Community-Assets/tree/master/Music</a><br><em>Font:</em> "Pixel-Narrative" by Gabriel C. C. (with modifications) <a href="https://universesync.itch.io/pixel-narrative-pixelart-font" target="_blank">https://universesync.itch.io/pixel-narrative-pixelart-font</a><br><em>Door Sound Effects:</em> Cafofo <a href="https://assetstore.unity.com/publishers/16881" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://assetstore.unity.com/publishers/16881</a></p>
+<p></p>
+<p><strong>[Software Tools Used:]</strong><br>Unity v2019.3.7f1-10f1 + v2019.4.19f1 <a href="https://unity.com/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://unity.com/</a><br>GB Studio v1.2.1 (Dev Build fd01821) <a href="https://www.gbstudio.dev/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://www.gbstudio.dev/</a><br>MagicaVoxel v0.99.4.2 + v0.99.6.2 <a href="https://ephtracy.github.io/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://ephtracy.github.io/</a><br>Aseprite v1.2.16.3 + v1.2.25 <a href="https://www.aseprite.org/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://www.aseprite.org/</a><br>Paint Shop Pro v7.0.4 <a href="https://www.paintshoppro.com/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://www.paintshoppro.com/</a> (You probably shouldn't use this)<br>BFXR v1.5.1 (Web) <a href="https://www.bfxr.net/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://www.bfxr.net/</a><br>Audacity v2.3.1 <a href="https://www.audacityteam.org/" referrerpolicy="origin" rel="nofollow noopener">https://www.audacityteam.org/</a><br>Notepad++ v7.8.5 + v7.9.1 <a href="https://notepad-plus-plus.org/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://notepad-plus-plus.org/</a><br></p>
+<p></p>
+<p></p>
+<p></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

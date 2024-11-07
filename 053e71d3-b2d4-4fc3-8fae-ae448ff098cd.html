@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Long Lost Boys of Nowhereland</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Long Lost Boys of Nowhereland</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:51:32</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:03:22</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-2/21/2019">2/21/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2 class="text-center">-Chapter One-<br>Nibs, in the Snowy Wood</h2>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Nibs lived like most any other Lost boy in Nowhereland, without much of anything to his name except a nest in the big trees of the Snowy Wood. So imagine his exasperation when two Pirates surrounded him with swords drawn asking him to empty his pockets. Nibs having only the inside of his pockets inside his pockets pulled those out hoping to satisfy the two but as Pirates are never satisfied with what a Lost boy has to say they demanded Nibs now take off the leather sacks he called shoes. Standing barefoot in the snow is as cold as cold gets and Nibs couldn't help but vibrate from the shivers upon shivers traveling over his skin. The Pirates finished inspecting his shoes but rather than give them back they tossed them aside and began inspecting Nibs himself. They lifted his jacket, dropped his pants, pulled at his arms, patted his pits and even scoured through his matted hair before they were ready to concede that what they were looking for was not there.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">You see, just a league and a half away was the Pirates encampment. Some gold doubloons had been stolen from them and these two were sent as the rescue party for their precious doubloons. Nevermind the fact that the Pirates had at one point stolen those doubloons themselves, once something belongs to a Pirate it is a Pirate’s property forever. Pirating from a Pirate is simply unconscionable. Unfortunately for the Pirates these thefts occurred all too often and they were rarely able to repossess the stolen goods because, like today with Nibs, the Pirates were astoundingly incompetent at telling one Lost boy apart from any other. 'Short or Tall? Skinny or Fat?' This was the extent of the visual identification of a Lost boy among the Pirates.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">And so, having found nothing, the two Pirates hurriedly moved on without even an apology, leaving Nibs to put back on his shoes and retie the drawstring of his pants and put his pockets back in his pockets. Nibs felt embarrassed and angry but most of all cold so he decided to trudge over to Highbranch Tree to visit the cafe.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Highbranch Tree, so named for having the highest branches in the Snowy Wood housed the most popular cafe in Nowhereland beneath it's roots. And it was no wonder this cafe was popular as it was always warm and served free hot water. This was a smart business move on the part of the boys who ran the cafe as it kept the place lively so that when someone who actually had the hooves and beaks to afford flavors in their water arrived, they would want to stick around for the fun and would in turn purchase many drinks.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">When Nibs arrived it was as bustling as ever with unintelligible chatter and the crackle of the fire and the whistle of the big kettle. Nibs lined up for a mug of the delicious hot water. As he got closer to the front of the line the kettle was getting low so one of the cafe's workers tossed in some more snow and as the line stalled waiting for the water to reheat there was a sudden rapturous amount of hollering and laughing and hooting at the entrance. The excitement was that Slightly and his cadre had entered the cafe and so now the free hot water line would be stalled even longer as the cafe attendants manned the prices counter and brought out the spice rack and sugars and creams and fancy little cookies and cakes.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Who was this Slightly, that could cause such a raucus, you ask? He was easily the most popular musician of Highbranch Tree if not all of Snowy Wood. Maybe you've heard one of his hit songs like On Doubloons On Doubloons or Shipstar or Long Lost Birds (In Flight) or Plank Walker? No? Well Nibs knew who he was and couldn't help but feel irritated by the world stopping to serve Slightly just because he was well known and wore a string of Doubloons around his neck and always could afford to buy whatever he wanted. It's not like he was actually really truly talented—Nibs could do any music Slightly did—it was just rhymes and screeches and the occasional blowing in his panflute. And so with knowing that Nibs was feeling this way, what happened next would be of no surprise for you or me.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Slightly waved his hands to silence the cafe and asked them if they wanted him to do a song at which point everyone heard Nibs mutter to himself <em>"Just buy your drink and shut your dumb trap."</em> After which the silence didn't stop and Nibs could feel the whole room staring arrows at him.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Slightly's best friend Curly broke the silence with a stamp of his foot and a bellow of <em>"You got somethin' to say?!"</em></p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">The kettle started to whistle again and Nibs turned to it, hoping if he ignored them they'd just disappear and he could get what he came for. Curly stomped over, the scabbard on his back thwacking in response to each step as he bloviated <em>"This acorn licker has nothing to say now! Tough guy is shaking in his shoes! Shivering in his shirt! A shimmy in his shorts!"</em></p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Nibs couldn't ignore the barrage any longer and so exploded with a <em>"Cram it up your nose, you Pirate-pleasing dust-sniffer!"</em></p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Slightly could see this had all the makings of a wolfing and so decided to support his friend, <em>"Wolf him Curly!"</em> he hyped and so Curly wolfed away…</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"This boy is SO POOR that his nest got NO FLOOR so he's got NO BED, he sleeps on the COLD DOOR."</em></p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Slightly punctuated Curly's howl by whipping a blow across his panflute. The audience erupted in fingersnaps and 'Ohhhh's. Nibs thought for a moment then responded.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"Wow, it's SLIGHTLY and his best friend UNSIGHTLY, he's such a WEAKLING, he gets tucked in NIGHTLY."</em></p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Nibs thought this was a good wolfing on his part—a real solid howl—but the audience didn't seem to agree. No one made a peep as Curly launched into his next howl.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"Listen to this little BOY BURP with his little BIRD CHIRP, little, little, LITTLE does his WORDS HURT."</em></p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Hearing this Nibs thought it very generic, 'little' could mean he was talking about his stature but could be directed to just about anyone and so he thought this howl must be one used repeatedly. Yet, in defiance of Nibs opinions this howl ended the same as Curly's last, with a hoot of Slightly's pan flute and a rain of snaps and a choir of 'Ohhh's. Nibs knew now that this wasn't a fair fight and that good wasn't good enough.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"You call me LITTLE while playing second FIDDLE to some BAMBOO, they're not cheering for YOU, they're cheering for that PANFLUTE."</em></p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">No snaps, no 'Ohhh's, nothing at all... until one boy scoffed. Just a little sciffing scoff that he caught before it flew too far but that was all it took to make Curly grimace with dissatisfaction and then seeing his face the room exploded with laughs and once they bared their laughs there was no reason to hold back their snaps. Nibs was ecstatic from the validation.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"ENOUGH!"</em> Curly shouted as he drew the cutlass from the scabbard on his back and clanged it at Nibs. The cafe sucked back in their laughs and Nibs bit down on his triumphant feelings, in hope of not becoming a pin cushion.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"Hey, put that away, you're scaring everyone"</em> said Slightly, trying to calm his friend. Curly glanced away from Nibs towards the onlookers and caught the reflection of himself in their faces. He was being a spoiled-sore-loser, waving a sword around because he lost a wolfing. Curly put his cutlass back in it's scabbard and decided to exit the cafe to cool off.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Once Curly left, the pressure in the room returned to normal, chatting resumed and Nibs let out a big sigh of relief. Slightly ordered some drinks and left swiftly. The hot water line resumed progress but as Nibs reached the front, instead of a hot water, the staffer greeted Nibs with a cup of Honeyed Cinnamon with Cream 'from Slightly'. Nibs sat down and slurped his drink and thought maybe he had harshly judged Slightly as he enjoyed the warmth from his drink and from the air and from the occasional boy telling him they liked his howls.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Nibs reached the bottom of his cup and having enjoyed the expensive taste of Honeyed Cinnamon with Cream decided he should try to earn some money himself. As he climbed the stairs exiting the Highbranch Tree Cafe he tried to imagine what he could do. The boys in the cafe made money from their culinary skills so maybe his skills could make him money. Nibs trudged through the snow in no particular direction, staring up at the sky through the bare black branches of the Snowy Wood. Slightly made his money from music performances but he wasn't sure how that worked. No one paid to attend those performances so how did that make money? Thinking and thinking, Nibs couldn't come up with a way to make money with his skills and so came to the conclusion that if he couldn't get people to give him money—beaks and hooves—he would go straight to the source and hunt.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">It's hard to say if Nibs would be a good hunter or not but he would certainly be a good hunted. Nibs didn't notice Slightly and Curly following him until Curly stepped out in front of him and pressed the cold steel of his cutlass to his neck. Nibs jumped back but had his escape stopped by Slightly's chest.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"Did you enjoy the drink?"</em> asked Slightly with a cruel smile.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Being insulted once again, having his life threatened with a sword for the third time this day, Nibs anger reached boiling point.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"I ENJOYED IT!"</em> Nibs answered as he smacked away Curly's blade and tackled his face. The snow jumped and sprayed as Nibs choked Curly and as Curly smacked at Nibs head and as Slightly kicked at Nibs's back. All this violence caught the attention of Solomon.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"Stop, stop!"</em> cawed Solomon as he swooped down from his perch. Solomon flapped his massive wing to swipe Slightly away.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"That's enough, boys"</em> Solomon crowed as he pecked at Nibs jacket and pulled him off of Curly.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Finally free, Curly picked up his sword and prepared to lunge but <em>"CAAAAAWWW" </em>dropped it again in fright at Solomon's cry.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Solomon was the largest Crow in the Snowy Wood. Larger than any Lost boy. Larger than the largest Pirate. And if he wanted he could be louder than anyone too. Solomon was a voice of reason and always did his best to look out for the boys of the Snowy Wood, despite himself. It was very tiring being Solomon, trying to bring reason to so many unreasonable, ungrateful, unfaithful humans.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Slightly—being familiar with Solomon's fierce lectures on responsibility and empathy—scampered off. Curly grabbed his cutlass and chased after, leaving Nibs to bear the brunt of Solomon's tirade.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"Is that any way to act? You could have killed that boy with how you were choking him."</em> Solomon cawed.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"GOOD! I WANT HIM DEAD!"</em> shouted Nibs out in the direction Curly ran.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Solomon wasn't impressed, <em>"What's your name, boy?"</em></p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Nibs—while still angry—realized he was a might bit scared of big, black-eyed Solomon, <em>"Nibs"</em> he answered.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"I know life can be hard, Nibs, but it's even harder to live if you don't treat your brothers with respect and kindness"</em> lectured Solomon.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"Those aren't brothers of mine!"</em> snapped Nibs, <em>"Treat them with respect? With kindness!? They would've killed me! He put that sword of his to my neck! Should I let him slit my throat? Should I let them turn out my pockets?!"</em> Nibs turned and stomped away.</p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%"><em>"Listen to me"</em> cawed Solomon, hopping along behind Nibs. <em>"I understand you want to hurt others for having been hurt. Your brothers feel the same. But think of that world where everyone is inflicting pain on everyone else. In that world we are all wounded and hurting one another. How can anyone ever heal in such a violent world? You need to be brave and withstand your pain without inflicting it back on your brothers. Could you do that, Nibs? Could you be the brave one to stop the back and forth of violence? Can you be brave?"</em></p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Nibs was sick of being followed by Solomon and so told him what he wanted to hear, <em>"Sure, I'll be brave."</em></p>
+<p class="text-justify" style="padding-left:18%; padding-right:18%">Solomon—satisfied in seemingly having gotten through to Nibs—flew off back to his perch but Nibs idea of bravery wasn't at all the same as Solomon's. Nibs decided he needed a cutlass of his very own to protect himself with.</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,381 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hive Time</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Hive Time</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:54:51</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:07:16</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-5/31/2019">5/31/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Two Lof Bees">Two Lof Bees</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Two Lof Bees">Two Lof Bees</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://hivetime.twolofbees.com/" target="_blank">Official</a><br/><a href="https://twitter.com/hive_time" target="_blank">Twitter</a><br/><a href="https://www.youtube.com/channel/UCuPIOJ_gPlKLino_sOeOKCg" target="_blank">YouTube</a><br/><a href="https://cheeseness.itch.io/hive-time" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Hive%20Time" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<div class="custom-salesBar"><div class="custom-salesProgress"></div></div>
+<p><strong>Hiveversary Update now available!</strong> See the <a href="https://cheeseness.itch.io/hive-time/devlog/203611/v12-the-hiveversary-update">devblog</a> for more details.<br></p>
+<p><a href="https://cheeseness.itch.io/hive-time/devlog/147869/v11-the-informational-update"><img src="https://img.itch.zone/aW1nLzQwNDU3NjAucG5n/original/hsn961.png" loading="lazy"></a>&nbsp; <a href="https://cheeseness.itch.io/hive-time/devlog/203611/v12-the-hiveversary-update"><img src="https://img.itch.zone/aW1nLzQ3NzkzODcucG5n/original/OV61KT.png" alt="Hiveversary Update" title="Hiveversary Update" loading="lazy"></a><br></p>
+<p>
+</p>
+<p>Build a hive, make some honey! Hive Time is a bee themed management/base building sim. Harvest resources, grow your hive, and produce a new Queen before the current one dies.</p>
+<p>Manage different bee roles in a totally scientifically inaccurate depiction of hive dynamics. Send Foragers out to find pollen and nectar, have Builders research new cell types, and ensure you have enough Beesitters to raise the next generation of bees.</p>
+<p>Make interesting choices that affect the hive. Respond to wasp attacks, deal with outlaw slugs, or help a caterpillar realise a lifelong dream!</p>
+<p>Hive Time's original soundtrack is available <a href="https://kestrelpi.bandcamp.com/album/hive-time" referrerpolicy="origin" rel="nofollow noopener">on Bandcamp</a>, and you can find Hive Time t-shirts, stickers, and prints <a href="https://www.redbubble.com/people/cheeseness/shop?artistUserName=cheeseness&amp;collections=1936171&amp;iaCode=all-departments&amp;sortOrder=relevant" referrerpolicy="origin" rel="nofollow noopener">on RedBubble</a>.<br></p>
+<p><br></p>
+<h2>FAQ (click to expand)</h2>
+<details>
+<summary>Is this game free?</summary>
+<p>I believe that the effort we have put into creating and supporting Hive Time is worth at least $10. However, I also believe that in an ideal world, financial barriers should never prevent people from participating in culture. For this project, I'm in a position to make the game available under a pay-what-you-want model so that it can be accessible to people who can't afford $10.</p>
+<p>If you can afford $10, but would prefer to not pay, that's up to you, but I hope that if you find enjoyment in the game that you'll come back to give some support that matches that enjoyment.</p>
+<p>Similarly, Peter has released <a href="https://kestrelpi.bandcamp.com/album/hive-time" referrerpolicy="origin" rel="nofollow noopener">Hive Time's original soundtrack on Bandcamp</a> under a pay-what-you-want model.</p>
+<p>- Cheese</p>
+</details>
+<details>
+<summary>Is this game finished?</summary>
+<p>We consider Hive Time to be a complete game.</p>
+<p>In the weeks and months following release, we shipped many patches as well as two large content updates, which are included with the game for free.</p>
+</details>
+<details>
+<summary>Default controls</summary>
+<p>Default controls are as follows (custom bindings can be set from the Controls menu):</p>
+<ul>
+<li><strong>Left mouse</strong> - Select/interact</li>
+<li><strong>Right mouse</strong> - Close radial menu</li>
+<li><strong>Middle mouse/Cursor keys</strong> - Pan view</li>
+<li><strong>Scroll wheel/Page Up/Page Down</strong> - Zoom view</li>
+<li><strong>Home</strong> - Reset pan and zoom</li>
+<li><strong>End</strong> - Zoom out as far as possible</li>
+<li><strong>Space</strong> - Toggle bee inspection mode</li>
+<li><strong>F5</strong> - Trigger autosave</li>
+<li><strong>F9</strong> - Load latest save</li>
+<li><strong>Shift</strong> - Hold before performing an action in a radial menu to be able to repeat that menu option with subsequent cell clicks</li>
+<li><strong>Alt+Enter</strong> - Toggle fullscreen</li>
+<li><strong>Escape</strong> - Close radial menu, close/select negative option in events, pause game</li><li><strong>Print Screen</strong> - Save a screenshot</li></ul>
+</details>
+<details>
+<summary>Chat integration</summary>
+<p>Hive Time now has optional chat integration, including voting for preferred event choices, voting on periodic "gifts," and have chat participants show up as bees in-game!</p>
+<p>If you use Twitch, you can use the <strong>Prefill for Twitch</strong> button and then pop in your channel name preceded by a hash symbol (eg: <em>#ValiantCheese</em>). That's it - no passwords or tokens needed!</p>
+<p>The Community settings menu has a <strong>Show Instructions</strong> button with more details and information on how each chat feature works.</p>
+<p>If you want every chat user to end up with a bee the first time they speak (providing the population limit hasn't been reached - you can still manually spawn them from the throne though), make sure the <strong>Chat Bees</strong> setting is set to <strong>Always</strong>.</p>
+</details>
+<details>
+<summary>Cheats and debug controls</summary>
+<p>My hope is that you won't need them, but if you get stuck or want to try specific stuff, there are a few "cheats" in place. To access debug functions, you must enable "debug mode" from the System settings menu. Pressing the <strong>Backtick</strong> key (typically the key with ~ on it will display a menu, which lists available debug functions and their shortcuts.</p>
+<ul>		<li><strong>B</strong> - Complete all in-progress construction</li>
+		<li><strong>C</strong> - Clear all in-progress cooldowns</li>
+		<li><strong>H</strong> - Raise resource storage limits by 999</li>
+		<li><strong>G</strong> - Give 9999 of all resources (won't increase storage limits)</li>
+		<li><strong>Shift+E</strong> - Show event debug/selection dialog</li>
+		<li><strong>Shift+V</strong> - Show vignette debug/selection dialog</li>
+		<li><strong>E</strong> - Force the next queued event to trigger (events with unmet conditions will not show)</li>
+		<li><strong>V</strong> - Force the next vignette to trigger</li>
+		<li><strong>T</strong> - Give 99999 progress to current research item</li>
+		<li><strong>R</strong> - Reload all data files (resets research!)</li>
+		<li><strong>F</strong> - Mark all foraging zones as explored</li></ul>
+</details>
+<details>
+<summary>Log, save, and config file locations</summary>
+<p>Logs, saves, and configuration files can be found in the following locations for each supported platform:</p>
+<ul>
+<li><strong>Linux:</strong> <pre>~/.local/share/hivetime/</pre>
+ (<em>note that this respects XDG_DATA_HOME</em>)</li>
+<li><strong>Mac:</strong> <pre>~/Library/Application Support/hivetime/</pre>
+</li>
+<li><strong>Windows:</strong> <pre>%APPDATA%/hivetime/</pre>
+</li>
+</ul>
+<p>Selecting the <strong>Open User Folder</strong> option from the settings menu will open this location in a file browser.</p></details>
+<details>
+<summary>Technical help</summary>
+<p>If you're experiencing troubles, please send a detailed description of what is occurring along with relevant save files and logs to <strong>support [AT] jbushproductions.com</strong></p>
+<p>Common technical hurdles and how to cross them:</p>
+<details>
+<summary>No text is visible outside of the main menu</summary>
+<p>This occurs when the game is unable to load fonts (the main menu text is actually a 3D model!).</p>
+<p>The most common cause of this is the game being unable to find the <strong>fonts</strong> folder. Please make sure that it is extracted into the same folder as the game's executable (.x86_64, .exe) and that the <strong>working folder</strong> is set to the same location when running the game.</p>
+<p>If you're not feeling confident extracting the game properly or are still experiencing problems, consider playing Hive Time through the <a href="https://itch.io/app">Itch.io App</a>, which handles all of that for you.</p>
+</details>
+<details>
+<summary>MacOS says the app is damaged!</summary>
+<p>It's lying. Thanks Apple.</p>
+<p>You should be able to run the game without problems if you install and launch it via the <a href="https://itch.io/app">Itch app</a>.</p>
+<p>Alternatively, you can use the <em>xattr</em> command line tool with <em>-cr</em> parameters on the game's .app folder to clear the quarantine flags that are preventing it from running. You can learn more about <em>xattr</em> by opening a terminal and typing <strong>man xattr</strong></p>
+</details>
+<details>
+<summary>The game freezes briefly when bees commence construction on a cell</summary>
+<p>The construction progress indicators may require the shader cache to be updated for some graphics drivers, which may cause a brief pause. Turning off <strong>Construction Indicators</strong> from the <strong>Video Settings menu</strong> will prevent this.</p>
+</details>
+<details>
+<summary>Sound suddenly becomes garbled or stutters</summary>
+<p>When under high load, the Godot engine's sound server can become unstable and cause the rest of the game to lag.</p>
+<p>Typically, this is caused by the <strong>Bee Sound Count</strong> setting in the Audio settings menu being too high. The default value of 25 seems to be appropriate for most systems that the game has been tested on, but <strong>lower may be more appropriate for your computer</strong>.</p>
+<p>When this occurs, <strong>the game will typically need to be restarted</strong> in order for audio to return to normal.</p>
+</details>
+<details>
+<summary>As my hive gets big, the game's frame rate slowly declines</summary>
+<p>During development, I made the decision to not put a performance oriented maximum cap on hive or population size, so generally speaking, it will always be possible to make a hive that's too big for your computer to handle.</p><p>The game should still be playable at a low frame rate, and spawning a new Queen doesn't specifically require a large hive, so <strong>it's up to you to play within the constraints of what you're comfortable with</strong>.</p>
+<p>The game's minimum requirements are based on running the game with <strong>Shadows</strong>, <strong>Anti-alising</strong>, and <strong>Depth Of Field</strong> settings all <strong>disabled</strong>, and with the <strong>Bee Sound Count</strong> audio setting set to <strong>zero</strong>. These options can have a big impact on performance.</p>
+<p>If you find that sound is garbled or stuttering, please refer to the "<strong>Sound suddenly becomes garbled or stutters</strong>" section.</p>
+</details>
+<p>Current known issues:</p>
+<ul>
+<li>Keyboard bindings with modifiers that share primary keys with other bindings (eg: Ctrl+S and S) may behave unexpectedly</li>
+</ul></details>
+<details>
+<summary>Gameplay tips</summary>
+<p>There's a lot to keep track of in Hive Time! Part of the fun is in exploring and learning how different systems work. Generally, the impact of your actions takes a little while to be apparent, so observing after experimenting can be important!</p><p>If you're feeling stuck, take a look at the <strong>Hints/tips</strong> section of the in-game "<strong>Beepedia</strong>"!</p>
+</details>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>BFF or Die</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> BFF or Die</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:55:55</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:13:59</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-11/8/2014">11/8/2014</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Puzzle">Puzzle</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-ASA Studio">ASA Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-2Awesome Studio">2Awesome Studio</a><br/><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-ASA Studio">ASA Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Co-Operative">Co-Operative</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/652360" target="_blank">Steam</a><br/><a href="http://www.bffordie.com" target="_blank">Official</a><br/><a href="https://asa-studio.itch.io/bff-or-die" target="_blank">Itch</a><br/><a href="https://twitter.com/bffordie" target="_blank">Twitter</a><br/><a href="https://www.twitch.tv/directory/game/BFF%20or%20Die" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2>New Game!</h2>
+<p>Hey, Shaz here, the game designer - I'm working on a new hospital, co-op game called... <a href="https://store.steampowered.com/app/2097840/Co_OPERATION_MultiTurn/" rel="nofollow noopener" referrerpolicy="origin">Co OPERATION: MultiTurn. You can play the free demo on Steam</a>.</p>
+<p><a href="https://store.steampowered.com/app/2097840/Co_OPERATION_MultiTurn/" rel="nofollow noopener" referrerpolicy="origin"><img src="https://img.itch.zone/aW1nLzkzNjk5OTIuanBn/original/zafu8B.jpg" alt="Co OPERATION" title="Co OPERATION" loading="lazy"></a>
+</p>
+<p>
+</p>
+<p class="text-center">____________________________________________</p>
+<h2>BFF or Die is also out on:&nbsp;</h2>
+<p><a href="https://www.microsoft.com/en-us/p/bff-or-die/9p1kmhf16gg1" rel="nofollow noopener" referrerpolicy="origin">Xbox</a>|&nbsp;<a href="https://www.nintendo.com/games/detail/bff-or-die-switch/" rel="nofollow noopener" referrerpolicy="origin">Switch</a>|&nbsp;<a href="https://store.playstation.com/en-us/product/UP1249-CUSA24491_00-5161590649382433" rel="nofollow noopener" referrerpolicy="origin">PlayStation</a>|&nbsp;<a href="https://store.steampowered.com/app/652360/BFF_or_Die/" rel="nofollow noopener" referrerpolicy="origin">Steam</a><br></p>
+<h2>Congratulations!</h2>
+<p class="text-justify">You and your friends are graduating from the prestigious Intergalactic Time Academy. No time for partying though as your first mission awaits! The Orbees are all missing. Yes, those curious little beings made of energy who power our time-tech are nowhere to be fou... no, wait! We have a faint trace on their signal. Are you brave enough to rescue them?</p>
+<p class="text-justify">Prepare yourself for unknown dangers. If you find some of the Orbees they might equip your Space-Time Machine with new tech. Decide who is in charge of each gadget and combine your abilities to discover the best strategies.</p>
+<p class="text-justify">Use cunning, comradeship and co-operation to survive and never forget the Academy motto: “BFF or Die!”<br></p>
+<h2>Best Friends Forever</h2>
+<p class="text-justify">BFF or Die is a game for you if:<br></p>
+<ul class="text-justify"><li class="text-justify">You want a 2-4 player game to play with your partner/family/friends where you get to do everything as a team.
+</li><li class="text-justify">Pure co-operation sounds fun to you as it’s a different feeling when you all work together.
+</li><li class="text-justify">You like games that are easy to start playing but then gradually get more challenging.
+</li><li class="text-justify">You like games that let you figure things out yourself rather than “hand holding” you too much and telling you what to do.&nbsp;</li><li class="text-justify">You want a game with a fun, short campaign mode which adds replayability by having difficult trophies to collect and also an unlockable “Infinite” mode.</li></ul>
+<h2>Is There Online Multiplayer?</h2>
+<p class="text-justify">We do not have native online multiplayer support… BUT… you *can* <a href="https://parsecgaming.com/" rel="nofollow noopener" referrerpolicy="origin">play with your friends online by using Parsec</a>. Parsec (which is free to use) lets you share games with friends by streaming your screen and sound  to them. Their inputs (control pad or keyboard commands) then get sent to you and with almost no lag (depending on your computer and internet). This let's you play  real-time online co-op together..!<br></p>
+<h2>What to Expect</h2>
+<p class="text-justify">We strongly recommend playing in co-op 2, 3 or 4 player mode as this is when the game is most fun. There’s a story mode with 30 levels followed by an unlockable “Infinite Trials” mode with challenging randomised/procedural levels.&nbsp;Playtime will vary depending on your skill level but as a guide:</p>
+<p class="text-justify">1-Player story game: 2-3 hours</p>
+<p>2-Player story game: 2-3 hours</p>
+<p class="text-justify">3-Player story game: 2-3 hours</p>
+<p class="text-justify">4-Player story game: 2-3 hours <br></p>
+<p class="text-justify">“The Infinite Trials”: 1-999 hours! Or maybe ∞ hours :) Complete as many randomised/procedural levels in a row as you can without losing. Go back to the start if you die.</p>
+<p class="text-justify">You can either share controllers (two people per controller) or have separate controllers. As a minimum you need the keyboard and one control pad to have a 4-player game. Or you can use four separate control pads, it’s up to you.</p>
+<p class="text-justify"><br></p>
+<h2>Is Your Computer Fast Enough?</h2>
+<p class="text-justify">If you have a dedicated graphics card and/or your computer can normally play 3D games then you should be able to run BFF or Die just fine.
+</p>
+<p class="text-justify">If you have a high resolution screen (like with newer Macbooks) then you will probably want to set the bootup options of the game to 1920x1080 to get a smooth frame rate unless you also have a super fast graphics card to match your high screen resolution.</p>
+<p><br></p>
+<p><strong>Info for Mac Users</strong></p>
+<p>Please note that because of changes Apple have made, the game won't launch on Mac OS Catalina and above.</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

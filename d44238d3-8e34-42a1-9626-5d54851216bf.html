@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>I&#39;m a love interest in my childhood friend&#39;s reverse harem!!!</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> I&#39;m a love interest in my childhood friend&#39;s reverse harem!!!</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:57:22</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:25:20</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-8/19/2019">8/19/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Visual Novel">Visual Novel</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1365620" target="_blank">Steam</a><br/><a href="https://red-baby.itch.io/my-childhood-friend" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/I'm%20a%20love%20interest%20in%20my%20childhood%20friend's%20reverse%20harem!!!" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="text-center"><img src="https://img.itch.zone/aW1nLzI0MDI4NzYucG5n/original/HmgOmr.png" loading="lazy"></p>
+<p class="text-center"><strong><br></strong></p>
+<p class="text-center"><strong>♦&nbsp;<a href="https://www.witpopgames.com/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Website</a>&nbsp;♦&nbsp;<a href="https://twitter.com/WitPOP" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Twitter</a>&nbsp;♦&nbsp;<a href="https://discord.gg/VWFW8sWbCU" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Discord</a>&nbsp;♦&nbsp;&nbsp;<a href="http://www.patreon.com/redchan17" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Patreon</a>&nbsp;♦&nbsp;<br></strong></p>
+<p class="text-center"><strong>A not-so-generic otome game with BL possibilities.&nbsp;&nbsp;</strong></p>
+<p class="text-center">&nbsp;Instead of playing the heroine and choosing between several men that have typical dating-sim personalities, you play as the childhood friend. That's right! The route that's usually the easiest to complete is no longer available.&nbsp;
+You (Geum Park) are thrust into the world of a reverse harem, where your precious childhood friend (Emily Carter) is being hit on by two of your classmates (Ao Yazawa and Hong Yang Chan). You can choose to either play the role of a love interest and try to win the heroine's heart, or... you can play your own game and try to make the two boys fall for you instead! The choice is yours!
+</p>
+<p class="text-center"><em>Note: The game takes place in Australia, so there are times when the characters may say things that seem a little odd to people not familiar with Aussie culture.&nbsp;</em></p>
+<p class="text-center"><em>Additional Note: Australia is a multicultural place, a good majority of the population speak more than one language. As such, in certain routes the characters may end up speaking to one another in different languages. &nbsp;</em></p>
+<p></p>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzM1NjkyMjAucG5n/original/fx7VTS.png" loading="lazy"><br></p>
+<p class="text-center"><br></p>
+<p class="text-center"><strong>Game Features [2.0.0 Update]:</strong><br>- A spin on your everyday otome game<br>- BxB and BxG routes to play<br>- Three romanceable characters (2 male 1 female)<br>- Over 45k words<br>- Mini Games&nbsp;<br>- 20+ CG scenes and Gallery<br>- Over 10 different endings<br>- Phone texting feature<br>- Original music and SFX<br>- Animated chibis and transitions<br>- Secondary&nbsp;outfits for sprites<br>- Unlockable polyamory route<br>- 4 After stories</p><p class="text-center"><img src="https://img.itch.zone/aW1nLzE4Mjg5MDc0LnBuZw==/original/FPt07Q.png" loading="lazy"><br></p>
+<p class="text-center"><em>[2.0.0 Update released on 25/06/2024]</em></p>
+<p class="text-center"><em>[1.4.1&nbsp; Update released on 05/05/2024]<br>[1.4.0&nbsp; Update released on 30/04/2024]<br>[1.3.0 Update released on 29/01/2024]<br>[1.2.0 Update released on 28/11/2022]<br>[PDF guide to achieving Endings 00-03 (Romance Endings) uploaded 13/04/2021]<br>[1.1.0 Update was released on 12/11/2020]<br>[1.0.0 Initial release build was released on 01/07/2020]</em></p>
+<p class="text-center"><strong>Demo Features:</strong><br>- Approx. 5500 w for the demo<br>- Phone texting feature<br>- Original music and SFX<br>- Animated chibis and transitions<br><br></p>
+<p class="text-center"><strong>Credits:</strong><br>Red Chan (<em>project lead</em>)<br>Alison 'Draz' Huang (<em>editor</em>)<br>Eric Matyas (<em>composer</em>)<br>Jeff Penny (<em>SFX composer</em>)<br>Cats on a Lilypad (<em>audio editor</em>)<br>thiskidthatkid (<em>additional artist</em>)<br>Adhylia&nbsp;(<em>additional artist</em>)<br>Pumpkin Spike&nbsp;(<em>additional artist</em>)<br>Arctic Fox (<em>additional artist</em>)</p>
+<p><br></p>
+<p class="text-center"><strong>Played the game? Want more?</strong><br>Try the Halloween special, made for Spooktober 2019.<br><a href="https://red-baby.itch.io/imaloveinterest-halloween2019" target="_blank">Spooky fun at Geum's house.</a></p>
+<p class="text-center"><iframe frameborder="0" src="https://itch.io/embed/502468?linkback=true&amp;border_width=5&amp;bg_color=a4a4a4&amp;fg_color=000000&amp;link_color=ffc316&amp;border_color=333333" width="560" height="175">&lt;a href=&quot;<a href="https://witpop.itch.io/imaloveinterest-halloween2019">I&#x27;m&quot; class=&quot;redactor-linkify-object&quot;&gt;https://witpop.itch.io/imaloveinterest-halloween2019&quot;&gt;I&#x27;m</a> a love interest in my childhood friend&#x27;s HALLOWEEN story by WitPOP&lt;/a&gt;</iframe><br></p>
+<p class="text-center">Or try the spin-off game, made for YaoiJam2020<br><a href="https://red-baby.itch.io/imasidecharacter" target="_blank">Geum is a side character in a side character's game.&nbsp;</a></p>
+<p class="text-center"><a href="https://red-baby.itch.io/imasidecharacter" target="_blank"><img src="https://img.itch.zone/aW1nLzkwMTAzNDYucG5n/original/FEvHyZ.png" loading="lazy"></a><br><br>Or our other spin-off, made for YaoiJam2021.<br><a href="https://red-baby.itch.io/love-interest-own-game" target="_blank">Less about Geum, more about Ao and Hong Yang.</a></p>
+<p class="text-center"><a href="https://red-baby.itch.io/love-interest-own-game" target="_blank"><img src="https://img.itch.zone/aW1nLzkwMTAzMzgucG5n/original/UBHivT.png" loading="lazy"></a><br></p>
+<p class="text-center"><br></p>
+<p class="text-center">Also available on Steam<br><br></p>
+<p><button itchio="" aria-label="Click to activate iframe embed" type="button" class="embed_preload other_embed" title="https://store.steampowered.com/widget/1365620/" data-embed_code="<iframe src=&quot;https://store.steampowered.com/widget/1365620/&quot; frameborder=&quot;0&quot; width=&quot;646&quot; height=&quot;190&quot;></iframe>" style="height: 168px; width: 300px"><div class="embed_url">https://store.steampowered.com/widget/1365620/</div></button></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

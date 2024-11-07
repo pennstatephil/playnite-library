@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>STARDROP</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> STARDROP</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:55:45</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:11:51</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/23/2016">4/23/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Joure Visser">Joure Visser</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Joure Visser">Joure Visser</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/552880" target="_blank">Steam</a><br/><a href="http://www.stardropgame.com" target="_blank">Official</a><br/><a href="https://twitter.com/STARDROPGAME" target="_blank">Twitter</a><br/><a href="https://joure.itch.io/stardrop" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Stardrop" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<figure><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/01_About_Demo.png?t=1548179411" loading="lazy"></figure>
+<iframe frameborder="0" src="https://itch.io/embed/922639?linkback=true&amp;bg_color=222&amp;fg_color=ffffff&amp;link_color=ff0120" width="552" height="167">&lt;a href=&quot;<a href="https://joure.itch.io/stardropfirstcontact">STARDROP&quot; class=&quot;redactor-linkify-object&quot;&gt;https://joure.itch.io/stardropfirstcontact&quot;&gt;STARDROP</a> - First Contact by Joure&lt;/a&gt;</iframe>
+<p><strong>TRY IT BEFORE YOU BUY IT:</strong>&nbsp;Be sure to give it a try before you buy it. We want you to enjoy the game but only if you're sure that&nbsp;<strong>STARDROP</strong>&nbsp;is your kind of game.<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/SD_TeamV_LQ.jpg?t=1548179411" loading="lazy"><br><strong>STARDROP</strong>&nbsp;is a single-player first-person video game where you take on the role of a&nbsp;<strong>Salvage &amp; Rescue Operative</strong>&nbsp;named&nbsp;<strong>Aryn Vance</strong>. With her partner,&nbsp;<strong>John Kindley</strong>, at her side, the two embark on a journey full of mystery and suspense with some laughs along the way.&nbsp;<strong>STARDROP</strong>&nbsp;tells a genuine heart-felt story about a long lost starship, its crew and one individual in particular.<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/03_About_Experience.png?t=1548179411" loading="lazy"><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/SD_SP_Story.gif?t=1548179411" loading="lazy"><br><strong>STARDROP</strong>&nbsp;presents its narrative through traditional cut scenes and in-game cinematic story telling as you play. The main campaign is where the heart of the game's narrative lies but you will also be able to experience the universe of&nbsp;<strong>STARDROP</strong>&nbsp;through its side missions.<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/04_About_Explore.png?t=1548179411" loading="lazy"><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/SD_Exploration_LQ.jpg?t=1548179411" loading="lazy"><br>Exploration lies at the game's core but so does accessibility. While the game offers puzzles and asks the player to figure out what to do or where to go next, the flow of information within the game will always guide you. Objectives are always made clear and designed with logic in mind. However, those who venture off the beaten path will find that there are more than enough secrets to be discovered.<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/06_About_Interact.png?t=1548179411" loading="lazy"><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/SD_Interact_LQ.jpg?t=1548179411" loading="lazy"><br>Throughout the game the player will be able to interact with various types of interfaces such as control panels, elevators and security systems as well as other various interactive objects such as computer interfaces where you can read emails, listen to audio logs and more.<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/07_About_APD.png?t=1548179411" loading="lazy"><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/SD_APD_LQ.jpg?t=1548179411" loading="lazy"><br>Your&nbsp;<strong>All-Purpose-Design (APD) space suit</strong>&nbsp;is equipped with a set of tools that you will need in order to succeed. The suit comes with a built-in flashlight. The object scanner enables you to identify objects of interest that you can interact with and it's also capable of zero gravity mobility under certain circumstances.<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/08_About_DataPad.png?t=1548179411" loading="lazy"><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/SD_SP_DataPad.gif?t=1548179411" loading="lazy"><br>The&nbsp;<strong>DataPad</strong>&nbsp;is an essential tool. It enables you to view your current objective, read audio and text logs that you've collected and it also comes with a built-in mini-map.<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/09_About_Visuals.png?t=1548179411" loading="lazy"><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/SD_IntelWinner_LQ.jpg?t=1548179411" loading="lazy"><br>Our main focus will always be on the game's story but we strife to deliver breathtaking visuals where possible. Our efforts have lead us to win&nbsp;<strong>Best 3D Graphics</strong>&nbsp;in the&nbsp;<strong>Intel Level Up Contest</strong>&nbsp;of 2017. We will continue to uphold these standards if not lifting them up even higher.<br><br><img src="https://steamcdn-a.akamaihd.net/steam/apps/552880/extras/11_About_Features.png?t=1548179411" loading="lazy"><br></p>
+<ul><li>Four full fledged chapters that concludes the main game's narrative.</li><li>An engaging story enthralled by a captivating mystery.</li><li>Explore multiple spacecraft, Outposts, Stations and more as a salvage &amp; rescue operative.</li><li>A small but diverse cast of characters brought to life by incredible voice talents.</li><li>A range of light environmental puzzles and a touch of stealth.</li><li>Exploration mixed with narrative driven gameplay.</li><li>SRO side missions</li></ul>
+<p><iframe frameborder="0" src="https://itch.io/embed/375309?linkback=true&amp;bg_color=222&amp;fg_color=ffffff&amp;link_color=b41544" width="552" height="167">&lt;a href=&quot;<a href="https://joure.itch.io/stardrop-original-soundtrack">STARDROP&quot; class=&quot;redactor-linkify-object&quot;&gt;https://joure.itch.io/stardrop-original-soundtrack&quot;&gt;STARDROP</a> Original Soundtrack by Joure&lt;/a&gt;</iframe></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

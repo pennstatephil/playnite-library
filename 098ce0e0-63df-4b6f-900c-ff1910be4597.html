@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Oikospiel Book I</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Oikospiel Book I</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:25</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:17:41</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-2/16/2017">2/16/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-David Kanaga">David Kanaga</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://oikospiel.com/" target="_blank">Official</a><br/><a href="https://dkoikos.itch.io/oikospiel" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Oikospiel" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="text-center"><strong>Winner:&nbsp;2017 IGF Nuovo Award&nbsp;</strong></p>
+<p class="text-center"><em>with an honorable mention for the Grand Prize&nbsp;</em></p>
+<p class="text-center"><strong>Winner of the&nbsp;2017&nbsp;Indiecade Grand Jury Prize</strong></p>
+<p class="text-center"><strong>Featured in PC Gamer's <a href="http://www.pcgamer.com/best-pc-game-music/" rel="nofollow noopener" referrerpolicy="origin">Best Game Music of 2017</a>&nbsp;&amp;&nbsp;</strong><strong><a href="https://www.pcgamer.com/best-indie-games/2/" rel="nofollow noopener" referrerpolicy="origin">Best Indie Games</a></strong></p>
+<p class="text-center"><span><em><strong><br></strong></em></span></p>
+<p class="text-center"><span><em><strong>ABOUT</strong></em></span></p>
+<p>Play as a German Shepherd named Pluto and explore the enchanted climates of planet Earth and the asteroid 433 Eros. Visit an Arctic Ocean wind farm, Kochiri Forest, a computer OS, a cluttered desk, a union-busting prairie in Kansas, a private jet, a flooded city at the North Pole, and many more fevered landscapes.</p>
+<p>Written, assembled, and with an original score by David Kanaga, composer of Proteus, Panoramical and Dyad, Oikospiel's soundtrack is "100 percent intertwined with the game" (PC Gamer), featuring a lush variety of interactive musical experiences woven together into an operatic whole.</p>
+<p><img src="https://img.itch.zone/aW1nLzc2OTIyMS5wbmc=/original/auhazP.png" loading="lazy"><br></p>
+<p><span><br></span></p>
+<p class="text-center"><span><strong><em>COST</em></strong></span></p>
+<p><em>Please visit the Box Office at </em><a href="http://www.oikospiel.com/" rel="nofollow noopener" referrerpolicy="origin"><span><em>oikospiel.com</em></span></a><em> to determine your price, check out the Wind Sales, &amp; Buy.&nbsp;</em></p>
+<p><img src="https://img.itch.zone/aW1nLzc2OTYyNi5wbmc=/original/jhfGXp.png" loading="lazy"></p>
+<p><em>&amp; Feel free to email opera@oikospiel.com with press inquiries, or requests for a game key if you are unable to afford the minimum cost, we are happy to share.&nbsp;</em></p>
+<p><em>Thank you!</em></p>
+<p><span></span>
+</p>
+<p class="text-center"><em><strong><span>FEATURES</span>:</strong></em></p>
+<ul>
+<li>40 levels in five epic acts</li>
+<li>3+ hours of gameplay</li>
+<li>Playable characters including dog, fox, snake, spider, rabbit, and ghost</li>
+<li>Several full classic novels (Frankenstein, Investigations of a Dog, Dialogue of the Dogs, Flush, etc..)</li>
+<li>1st, 2nd, 3rd person controls</li>
+<li>Original rich orchestral soundtrack</li>
+<li>Various new approaches to OS-native opera</li></ul>
+<p><br></p>
+<p><span></span>
+</p>
+<p class="text-center"><span><em><strong>BACKSTORY</strong></em></span></p>
+<p>The Oikospielen Opera is developing an epic global-gaming festival called THE GEOSPIEL, scheduled for the year 2100. The opera's employees, organized by the Union of Animal Workers, are trying to integrate the game dev dogs of Koch Games into their group, but these loyal pups love their jobs and boss Donkey Koch too much! Will there be Unity, or will Multiplicity prevail? Money has awakened-- Pluto has captured the spirit of Orpheus, and Eurydice is lead composer in this operatic RE-FORM of the Adventure Game genre.</p>
+<p><br></p>
+<p><span></span>
+</p>
+<p class="text-center"><span><em><strong></strong></em></span></p>
+<p class="text-center"><a href="https://dkoikos.itch.io/oikospiel-ost-i-iv">ORIGINAL SOUNDTRACK</a></p>
+<p><a href="https://dkoikos.itch.io/oikospiel-ost-i-iv" target="_blank"><img src="https://img.itch.zone/aW1nLzc2OTUyNi5wbmc=/original/DZTLEX.png" loading="lazy"></a><br></p>
+<p>Oikospiel's OST comes in 4 episodes, each of which explores a different facet of the game's spectrum of moods.</p>
+<p>Buy the the OST's EPs at Bandcamp for $5 each (1 2 3 4) or save 20% by getting the bundle of all 5 on itch for $15</p>
+<p><br></p>
+<p><span></span>
+</p>
+<p class="text-center"><em><strong></strong></em></p>
+<p class="text-center"><a href="https://dkoikos.itch.io/oikospiel-libretto">LIBRETTO / NOVEL</a></p>
+<p class="text-center"><a href="https://dkoikos.itch.io/oikospiel-libretto"><img src="https://img.itch.zone/aW1nLzc2OTUzMC5wbmc=/original/me70H4.png" loading="lazy"></a><br></p>
+<p>Read the novelization for deeper backstory, plot interpretation, and walkthrough help, featuring many clues into the expanded universe of Oikospiel and the history of Orpheus.</p>
+<p><br></p>
+<p><span></span>
+</p>
+<p class="text-center"><span><em><strong>SELECTED PRESS</strong></em></span></p>
+<p><span><em></em></span></p>
+<p class="text-center"><span><em>~ARTICLES / REVIEWS~</em></span></p>
+<p class="text-center"><a href="https://hyperallergic.com/361800/a-video-game-immerses-you-in-an-opera-composed-by-dogs/" rel="nofollow noopener" referrerpolicy="origin">Hyperallergic</a> - Everest Pipkin&nbsp;</p>
+<p class="text-center"><a href="http://www.pcgamer.com/opera-writing-dogs-meet-celine-dion-in-this-game-about-making-games/" rel="nofollow noopener" referrerpolicy="origin">PC Gamer</a>&nbsp;- James Davenport &nbsp;<sup></sup></p>
+<p class="text-center"><a href="https://www.pastemagazine.com/articles/2017/04/the-socialist-surrealist-oikospiel-has-a-wild-visi.html" rel="nofollow noopener" referrerpolicy="origin">Paste</a> - Daniel Fries</p>
+<p class="text-center"><a href="https://www.rockpapershotgun.com/2017/02/16/oikospiel-dog-opera-released/" rel="nofollow noopener" referrerpolicy="origin">Rock Paper Shotgun</a> - Alice O'Connor</p>
+<p class="text-center"><a href="http://kotaku.com/oikospiel-is-a-surreal-game-about-work-and-play-from-th-1792536322" rel="nofollow noopener" referrerpolicy="origin">Kotaku</a> - Ethan Gach</p>
+<p class="text-center"><a href="https://waypoint.vice.com/en_us/article/mg4kpp/david-kanagas-dog-opera-oikospiel-is-delirious-protest-art" rel="nofollow noopener" referrerpolicy="origin">Waypoint</a> - Lewis Gordon</p>
+<p class="text-center"><a href="http://www.electrondance.com/pay-what-you-should/" rel="nofollow noopener" referrerpolicy="origin">Electron Dance</a> - Joel Goodwin</p>
+<p class="text-center"><br></p>
+<p class="text-center"><span><em>~INTERVIEWS~</em></span></p>
+<p class="text-center"><a href="http://www.gamasutra.com/view/news/292111/Road_to_the_IGF_David_Kanagas_Oikospiel_Book_I.php" rel="nofollow noopener" referrerpolicy="origin">Gamasutra</a> - Joel Couture</p>
+<p class="text-center"><a href="http://www.unwinnable.com/2017/05/01/david-kanagas-dog-opera-an-excerpt-from-unwinnable-monthly-90/" rel="nofollow noopener" referrerpolicy="origin">Unwinnable</a>&nbsp;- Brendan Keogh</p>
+<p class="text-center"><a href="https://www.redbullradio.com/shows/adam-harpers-bubblebath/episodes/david-kanaga-chinese-sounds" rel="nofollow noopener" referrerpolicy="origin">Adam Harper's Bubblebath (Redbull Radio)</a></p>
+<p class="text-center"><a href="https://medium.com/@katierosepipkin/an-interview-with-dog-opera-manager-and-koch-games-employee-david-kanaga-on-oikospiel-book-i-452c10c2f76a" rel="nofollow noopener" referrerpolicy="origin">Everest Pipkin</a>&nbsp;</p>
+<p><br></p>
+<p><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

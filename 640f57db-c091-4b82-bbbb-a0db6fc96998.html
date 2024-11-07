@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>HomeTeam GameDev training library: gamedev textbook, examples, exercises, articles, productivity &amp; philosophy audiobooks</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> HomeTeam GameDev training library: gamedev textbook, examples, exercises, articles, productivity &amp; philosophy audiobooks</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:51</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:23:00</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-6/8/2021">6/8/2021</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>This is a collection of several training materials from&nbsp;Chris DeLeon /&nbsp;Gamkedo LLC,&nbsp;normally part of the resources&nbsp;included with <a href="https://HomeTeamGameDev.com" target="_blank" referrerpolicy="origin" rel="nofollow noopener">HomeTeam GameDev</a> membership,&nbsp;now available&nbsp;together here on itch as a set at 35%-off (materials included are sold&nbsp;separately on other platforms for a combined value of $180).</p>
+<p>Courses (note: <em>not part of this collection</em>) based directly on this material have been taken by more than 300,000 people on Udemy.</p>
+<p>Though only 2 of these included resources focus on programming,&nbsp;included source code is&nbsp;platform independent (works on Windows, Mac, Linux, or mobile) since it runs in-browser using&nbsp;built-in functionality. The non-code material is applicable regardless of engine or platform choice.<br></p>
+<p>This collection includes the&nbsp;full versions of...</p>
+<p>• Hands-On Intro to Game Programming textbook: 559 page PDF, step-by-step walkthrough with example&nbsp;source code in plain browser JavaScript for 6 types of retro games, 100+ exercises, no special software or prior background is required - used to pick up general pre/non-engine&nbsp;gameplay programming fundamentals even if later planning to use Unity, Godot, Unreal, etc.</p>
+<p>• Videogame Developer's Strategy Guide: 448 page PDF, curated collection of more than 50 of the top&nbsp;articles from 5 years of weekly writing&nbsp;for new game makers&nbsp;(sections include getting started, education, programming, motivation, game design, level creation, team projects, and industry)</p>
+<p>•&nbsp;From Tutorials to Original Games: 31 page PDF exercises booklet, with tips on navigating team projects, planning&nbsp;milestones for long-term schedules, and practicing gameplay coding fundamentals, based on methods tested and iterated across several indie and student gamedev communities since 2004</p>
+<p>• Self-Command: 4 hour 54 min. audiobook (as&nbsp;DRM-free M4B and per-chapter MP3s) / full ebook transcript (combined with Self-Doubt transcript as Get Yourself to Do Things), productivity strategies combining simple techniques and perspectives for better&nbsp;staying on task<br></p>
+<p>• Self-Calm: 7&nbsp;hour 11 min. audiobook&nbsp;(as DRM-free&nbsp;M4B and per-chapter MP3s) / 251 page ebook, modern adaptation based closely on&nbsp;public domain translations of Meditations by Marcus Aurelius (practical Stoic philosophy)<br></p>
+<p>• Self-Doubt: 2 hour 30 min. audiobook (as&nbsp;DRM-free M4B and per-chapter MP3s) / full ebook transcript (combined with Self-Command transcript as Get Yourself to Do Things), assorted tips from training conversations to help in&nbsp;overcoming obstacles that prevent us from starting and sticking with&nbsp;learning new skills<br></p>
+<p>• (Bonus) Why Make&nbsp;Games and How to Start: infographic flyer, breaking down 9 tips on how to make games for personal development and enrichment</p>
+<p>
+</p>
+<p><strong>This package is for downloads-only, and&nbsp;does not include troubleshooting support or HomeTeam GameDev membership for custom training.</strong> Materials later made available to HomeTeam members will not be added to this set.</p>
+<p><br></p>
+<p>Responses to the included audiobooks from professional game developers:</p>
+<p><br></p>
+<p><em>"I love creative work. I'll start making something, maybe divert briefly to an exciting adjacent opportunity, perhaps explore and research it a little, think about how to fold it into the rest of the work, and in a few hours I've redesigned my project. And that's great! This is how projects improve. But, it's not how they get finished. When I want to finish something I need it to keep moving forward, so I have to commit to completing the occasional task. I've found Chris' technique excellent for this."<br></em></p>
+<p>-Farbs</p>
+<p><br></p>
+<p>
+</p>
+<p><em>"As a chronic scatterbrain I cannot TELL you how much it has improved my productivity... If you're very easily distracted like me and staying on task (especially during these hell times) has been a challenge, I super recommend it! ...absolutely check out his books at Self-Command.com. TONS of stuff on how to reprogram your mindset to be more productive and kinder to yourself. I don't think I know a creative professional who doesn't struggle with productivity issues and/or negative self talk, and Chris' work is a huge resource for doing better work and feeling better about it. Can't recommend it enough!"</em></p>
+<p>-@RyanIkeComposer</p>
+<p><br></p>
+<p><em>"If you have any to-do list system, whether it be a bullet journal, a to-do list app, Trello, Asana, or anything else, you know how easy it is to get overwhelmed when looking at it. Heck, you may even have a large whiteboard right in front of you, chock full of tasks that are constantly staring at you, but never get done. [Self-Command] forces you to distill what you're working on down to one specific thing that you're currently doing. That's all you need to think about, which means your focus skyrockets and you get way more done in less time. And I'll let Chris' excellent book explain them in more detail. There's plenty more nuance to this system, and he explains it perfectly (and he's a great audio book narrator too!)... Get Chris' books."</em></p>
+<p>-Akash Thakkar</p>
+<p><br></p>
+<p>
+</p>
+<p><em>"I've been using Chris's Self-Command method all year, it works... I'm a pretty organised person with todo lists and spreadsheets etc. I need to be in order to run my business effectively. But [the] Self-Command method helped me to take things to a new level in a difficult year (2020) and beyond. I recommend it... This is very easy to get started."</em></p>
+<p>-Jake Birkett</p>
+<p><br></p>
+<p>
+</p>
+<p><em>"Self-Calm lives up to its name. It takes on stoic concepts in clear concise language which I found was a helpful and centering way to start my days. For someone who is familiar with other modern stoic voices like Ryan Holiday but unfamiliar with the original text, this book helped flesh out my knowledge of the topic without feeling bogged down by historical language. Self-Calm helps give perspective to the common trials of life."</em></p>
+<p>-Erin McCarty</p>
+<p><br></p>
+<p><em>"I started my second listen through of Self-Calm. I can honestly say that the thoughts it provoked have contributed to a marked improvement in life as to how I cope with stress. Thank you for making this."
+</em></p>
+<p>-Dmitri Roujan</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

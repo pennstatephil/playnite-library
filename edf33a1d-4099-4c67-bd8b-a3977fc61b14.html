@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Last Fleet</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Last Fleet</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:51</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:22:59</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-1/28/2021">1/28/2021</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>The last of humanity are fleeing across space, pursued by the implacable inhuman adversary that destroyed their civilisation. They're outnumbered and outgunned. Supplies are running low. The actions of a brave few could be all that stands between humanity and extinction.</p>
+<p>Welcome to the&nbsp;<strong><span>Last Fleet</span>.</strong></p>
+<p><strong>Last Fleet</strong> is a PBTA tabletop roleplaying game where you play brave pilots, officers, engineers, politicians and journalists struggling to hold the human race - and themselves - together under unbelievable pressure. The game focuses on action, intrigue and drama in this high-stakes situation. You'll fight space battles, search for enemy infiltrators, tackle supply shortages and navigate faction politics. You'll strive against your own self-doubt and sometimes crack under the stress.</p>
+<p>The game provides support to create your own evocative setting, or you can play out of the box as the survivors of the Interplanetary Commonwealth. This fractious alliance of planets was wiped out by the Corax - an extradimensional fungus network that dwells in the tenebrium, the same medium that FTL ships travel through. The Corax attack through spatial rifts, launching spore ships to harry the fleet. Victims are paralysed and have their genetic and neural patterns harvested: everything you know, the Corax now know. And worse, your former friends may see you again, reincarnated as a Corax avatar.</p>
+<p><strong>Testimonials<br></strong></p>
+<p><em>"I had the good fortune to get in on a playtest of Last Fleet, and Joshua has delivered a satisfying and crunchy deep dive into the action, emotion, and escalating paranoia that make up the life of a Rag-Tag (space) Fugitive on the run from a mysterious, implacable, existential alien threat. I'm very much looking forward to having it on my tables to put into the eager hands of prospective CAGs, politicians, and shady operators."</em></p>
+<p><em>- Jim Crocker, jimlikesgames.com</em></p>
+<p><em>"From the very first session of Last Fleet, our group felt hunted! The tension that arises from just the premise of the game alone--humanity fleeing an implacable enemy--really fueled not just every action scene, but, especially, the interpersonal scenes as our characters reached out, broke down, let loose, and tried to maintain their humanity at the edge of annihilation."</em></p>
+<p><em>-Zach Bain, playtester</em></p>
+<p><em>"The beauty of Last Fleet is that you're going to want to put your characters under pressure -- the roleplaying that spins out is just so juicy. It's extremely clever, extremely fun design."</em></p>
+<p><em>-Nick Bate, playtester</em></p>
+<p><em>"Black Armada is part of a new generation of PbtA designers who are tackling new concepts in new genres with new ideas. Last Fleet is aimed at replicating some of my favorite fiction, and I'm excited to see Josh exploring concepts of authority, tension, and political pressure through that lens. I can't wait to see the finished game!"</em></p>
+<p><em><span>-Mark</span>&nbsp;<span>Diaz Truman, Magpie Games</span></em></p>
+<p><strong>Join the Fleet</strong></p>
+<p>The playbooks each represent a particular personality, approach or set of issues you want to explore. There are twelve:</p>
+<ul><li>&nbsp;<span>Aries</span>, a hot-headed character who rushes in where angels fear to tread, and is unafraid to speak their mind.</li><li>&nbsp;<span>Taurus</span>, a tough, selfless and principled character who does what’s needed no matter how much punishment is thrown at them.</li><li>&nbsp;<span>Gemini</span>, a charismatic communicator who pursues their own agenda that might not be completely in line with the fleet’s interests.</li><li>&nbsp;<span>Cancer</span>, an experienced leader who cares deeply for their comrades, but may be a little too willing to overlook their problems.</li><li>&nbsp;<span>Leo</span>, a magnetic individual who people want to follow. Where will they lead them?</li><li>&nbsp;<span>Virgo</span>, a serious professional who prides themselves on being the best, but may put themselves under too much pressure at time.</li><li>&nbsp;<span>Libra</span>, a skilled diplomat and negotiator who may be looked to for leadership.</li><li>&nbsp;<span>Scorpio</span>, a secretive manipulator whose motives are in doubt – including by themselves.</li><li>&nbsp;<span>Sagittarius</span>, a relentlessly curious person who might be an explorer, engineer or spy, or perhaps all three.</li><li>&nbsp;<span>Capricorn</span>, an uncompromising tactician who is willing to take risks to defeat the enemy. Will they take things too far?</li><li>&nbsp;<span>Aquarius</span>, a perceptive investigator who does not shrink from confronting the truth, no matter how painful it might be.</li><li>&nbsp;<span>Pisces</span>, an otherworldly person with strange abilities that allow them to see things others do not.</li></ul>
+<p>In addition to your playbook, you can choose a role within the fleet. You can play a military officer, pilot or marine, engineer or scientist, journalist or civilian leader. Each comes with its own special move.</p>
+<p><strong>PBTA</strong></p>
+<p>
+</p>
+<p>Last Fleet is based on the excellent Powered by the Apocalypse framework pioneered by Apocalypse World. In this case, that means it uses a simple 2d6 based system, with &nbsp;prompts for interesting, dramatic outcomes from every roll; characters are organised into playbooks that provide everything you need on a single piece of paper; and GM advice is codified into clear principles that tell you not just how the mechanics work but how to get the best from the game.</p>
+<p><strong>Under Pressure</strong></p>
+<p>The game's mechanics push forward the central theme of pressure: pressure on your characters, pressure on the fleet, pressure on humanity. You can win almost any conflict if you're willing to pay the consequences, by racking up more pressure on your character that ultimately pushes them to&nbsp;<span>Breaking Point</span>. That's when your character goes off the rails, lashing out at their friends or hurling themselves into certain doom.</p>
+<p>The only way to keep the pressure under control is by indulging your vices and risking losing control, or by building relationships that matter with other characters. Neither route is risk-free. When you're not putting your life on the line, you're putting your heart on the line.</p>
+<p><strong><em>Last Fleet</em>&nbsp;downloads</strong></p>
+<p><a href="http://blackarmada.com/last-fleet-downloads/" referrerpolicy="origin" rel="nofollow noopener">Scenarios, handouts and other resources for Last FLeet.</a></p>
+<p><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

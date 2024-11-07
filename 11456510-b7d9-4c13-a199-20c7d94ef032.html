@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Spa&#223; Taxi</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Spa&#223; Taxi</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:58</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:23:04</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-3/24/2019">3/24/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-ScaniX">ScaniX</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-ScaniX">ScaniX</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://www.spasstaxi.de" target="_blank">Official</a><br/><a href="https://twitter.com/hibegame" target="_blank">Twitter</a><br/><a href="https://store.steampowered.com/app/1206770" target="_blank">Steam</a><br/><a href="https://scanix.itch.io/spasstaxi" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Spa%C3%9F%20Taxi" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><img src="https://i.imgur.com/ZbXVKFw.gif" loading="lazy"></p>
+<p class="text-center"><strong><em>Check out the demo!</em><br>&nbsp;<br></strong></p>
+<p class="text-center">Get more info, Stay in touch <br>&amp; give me your feedback:<br><a href="https://www.spasstaxi.de" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Official Game Site</a><br></p>
+<p><br></p>
+<h2 class="text-center">About</h2>
+<p>Spaß Taxi ("Spaß" is the German word for "fun") is a remake/clone of the original Space Taxi, where you need to bring passengers from one pad to another in mostly weird unnatural environments.</p>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzE5NTY4MTMucG5n/original/Xv2FcH.png" loading="lazy"><em>
+</em></p>
+<p><br></p>
+<h3 class="text-center">The gameplay</h3>
+<p>The 40 levels of Spaß Taxi offer a variation of challenges:</p>
+<p><strong>&nbsp;Quick reactions</strong><br>Avoid rockets and lasers or pass through moving gaps.<br></p>
+<p><strong>&nbsp;Puzzles</strong><br>Push the right buttons, find the shortest path or utilize teleporters.<br></p>
+<p><strong>&nbsp;Learning</strong><br>Memorize the passengers and their destinations, find out better (and quicker) ways to move, land or get your customers into or out of your car.<br></p>
+<p><strong>&nbsp;Dexterity</strong><br>Use the right amount of thrust to be fast, but not crash into stuff and quickly know which thruster to use while flying upside down in veteran mode.<br><br></p>
+<p><img src="https://img.itch.zone/aW1nLzE5OTg4NDEucG5n/original/vpZqo7.png" loading="lazy"></p>
+<h3 class="text-center">Requirements</h3>
+<p>Spaß Taxi can be played with the keyboard, but is best played with a controller (currently only the XBox controller is supported, but others will follow).</p>
+<p>It is looking best in a 16:9ish resolution at FullHD or above, preferring a multiple of it (e.g. 1920x1080, 1920x1200, 3840x2160).</p>
+<p>Please check out the demo for Mac and Linux before buying to see if it runs on your machine, thank you!<br></p>
+<p><img src="https://img.itch.zone/aW1nLzE5OTg4NDEucG5n/original/vpZqo7.png" loading="lazy"><br></p>
+<h3 class="text-center">Play the demo!</h3>
+<p>The demo contains 6 levels (plus tutorial) and is a great way to check out the gameplay, controller support and performance on your machine.</p>
+<p>It also has a <em>separate highscore list</em>, so you can even compete with your friends here. :)<br></p>
+<p><img src="https://img.itch.zone/aW1nLzE5NTY3MjIucG5n/original/%2FYSbOJ.png" loading="lazy"><br></p>
+<p>&nbsp; <br></p>
+<h2 class="text-center">New and old</h2>
+<p>This version of the game takes the original concept and adds or changes a lot of things to get a whole new experience while retaining some of the retro feeling.</p>
+<p><img src="https://img.itch.zone/aW1nLzE5NTY3NzQucG5n/original/viPVJy.png" loading="lazy"><br></p>
+<h3 class="text-center">Rotation</h3>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzE5NTk1NjQuZ2lm/original/cXVNqb.gif" loading="lazy"><br></p>
+<p>The taxi can now rotate to get through narrow passages, avoid obstacles or even land on the ceiling.<br></p>
+<p>&nbsp; <img src="https://img.itch.zone/aW1nLzE5NTY3NzQucG5n/original/viPVJy.png" loading="lazy"><br></p>
+<h3 class="text-center">Different types of passengers</h3>
+<p><img src="https://img.itch.zone/aW1nLzE5NTY2NTYucG5n/original/gJ41dT.png" loading="lazy"><br><br>There are those that fancy to loop the loop and go fast, but there are also those who will reveal their last meal if you rotate too much.</p>
+<p>&nbsp; <img src="https://img.itch.zone/aW1nLzE5NTY3NzQucG5n/original/viPVJy.png" loading="lazy"><br></p>
+<h3 class="text-center">Health instead of lifes</h3>
+<h6 class="text-center"><img src="https://img.itch.zone/aW1nLzE5NTY2ODYucG5n/original/%2Bi6EFv.png" loading="lazy"></h6>
+<p>The car has health (or integrity) and you can repair it while parking at a repair station (which costs money) or by having a mechanic on board.<br>When there is nothing left to repair, you&nbsp; can buy a new car if you have enough money.<br></p>
+<p class="text-center"><img src="https://img.itch.zone/aW1nLzE5NTY3NjkucG5n/original/wXWT3h.png" loading="lazy"></p>
+<p><img src="https://img.itch.zone/aW1nLzE5OTg4NDEucG5n/original/vpZqo7.png" loading="lazy"><br></p>
+<h2 class="text-center"><img src="https://img.itch.zone/aW1nLzE5NTY3NzQucG5n/original/viPVJy.png" loading="lazy">Credits</h2>
+<table width="100%"><tbody><tr><td>Game</td><td>Burkhard Wick<br></td></tr><tr><td>Fonts</td><td><a href="https://twitter.com/somepx" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Eeve Somepx</a><br></td></tr><tr><td>Music</td><td><a href="http://gas1312.bandcamp.com/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Gas1312</a><br></td></tr><tr><td>Sound FX<br></td><td>Imphenzia<br>Burkhard Wick<br></td></tr><tr><td>Testers</td><td>Andreas Peters<br>Karsten Thiems<br>David Jandrey<br></td></tr></tbody></table>
+<p><img src="https://img.itch.zone/aW1nLzE5OTg4MjgucG5n/original/awiaiQ.png" loading="lazy"></p>
+<p><img src="https://img.itch.zone/aW1nLzE5OTg4NDEucG5n/original/vpZqo7.png" loading="lazy"><br></p>
+<h2 class="text-center">Highscores</h2>
+<p><a href="https://www.spasstaxi.de/#highscores" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://highscore.scanix.de/SpassTaxiCasual/simg" loading="lazy"></a></p>
+<p><a href="https://www.spasstaxi.de/#highscores" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://highscore.scanix.de/SpassTaxi/simg" loading="lazy"></a></p>
+<p><a href="https://www.spasstaxi.de/#highscores" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://highscore.scanix.de/SpassTaxiDemoCasual/simg" loading="lazy"></a></p>
+<p><a href="https://www.spasstaxi.de/#highscores" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><img src="https://highscore.scanix.de/SpassTaxiDemo/simg" loading="lazy"></a></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

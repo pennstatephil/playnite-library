@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hyperspace Dogfights</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Hyperspace Dogfights</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:10</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:15:11</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-3/24/2017">3/24/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-60">60</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Shooter">Shooter</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Sleeper Games">Sleeper Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Sleeper Games">Sleeper Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/842170" target="_blank">Steam</a><br/><a href="https://sleeper-games.itch.io/hyperspace-dogfights" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Hyperspace%20Dogfights" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<div class="text-center"><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe style=&quot;width: 500px; height: 281px&quot; src=&quot;//www.youtube.com/embed/q2MmrpngoD8&quot; allowfullscreen=&quot;&quot; frameborder=&quot;0&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/q2MmrpngoD8/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button></div>
+<p class="text-center"><strong>Fly the best jet in the galaxy and demilitarize planets by blowing up their entire combined armed forces,- in front of a never-ending nova sunset.<br></strong></p>
+<p class="text-center">
+	<strong>Featuring:<br></strong></p>
+<p class="text-center">
+	<a href="http://imgur.com/Uh3ReFU" referrerpolicy="origin" rel="nofollow noopener"><img src="http://i.imgur.com/Uh3ReFU.gif" title="source: imgur.com" loading="lazy"></a>
+</p>
+<p class="text-center">
+	<strong>Juicy Combat</strong>
+</p>
+<p class="text-center">
+	<strong> </strong>Out-boost your enemies, shoot off their parts, use gravity to your advantage and hyperspace-dodge through projectiles and obstacles when things get too hairy.<br>
+</p>
+<p class="text-center">
+	<strong><br>
+	</strong>
+</p>
+<p class="text-center">
+	<a href="http://imgur.com/VyOrikM" referrerpolicy="origin" rel="nofollow noopener"><img src="http://i.imgur.com/VyOrikM.gif" title="source: imgur.com" loading="lazy"></a>
+</p>
+<p class="text-center">
+	<strong>All The Loot</strong>
+</p>
+<p class="text-center">Make your jet stronger and stranger by gathering some of the 250+ currently available passive and active items. Use over 90 randomly modified weapons against your opponent, including aerial melee options like swords, whips and punches.</p>
+<p class="text-center">
+	<br>
+</p>
+<p class="text-center">
+	<a href="http://imgur.com/DaMoEPs" referrerpolicy="origin" rel="nofollow noopener"><img src="http://i.imgur.com/DaMoEPs.gif" title="source: imgur.com" loading="lazy"></a>
+</p>
+<p class="text-center">
+	<strong>Vicious Opposition<br>
+	</strong>
+</p>
+<p class="text-center">Engage zone specific enemy types in air-to-air and air-to-ground combat. Confront 10 distinct bosses and try surviving beyond that in endless play. Master the base game, then push your piloting skills even further in 12 different challenge modes that can even be combined with another.</p>
+<p class="text-center">
+	<br>
+</p>
+<p class="text-center">
+<a href="http://strasbourgfestival.com/" referrerpolicy="origin" rel="nofollow noopener"><img src="http://i.imgur.com/46HVpRA.png" loading="lazy"><br></a></p>
+<p class="text-center"><br></p>
+<p class="text-center">Featuring a full score by <a href="https://soundcloud.com/enuit_demotrax" referrerpolicy="origin" rel="nofollow noopener">ENUIT</a> and Ole Toensen.<br><a href="http://strasbourgfestival.com/" referrerpolicy="origin" rel="nofollow noopener"></a>
+</p>
+<button itchio="" aria-label="Click to activate iframe embed" type="button" class="embed_preload other_embed" title="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/522581232&amp;color=%231d2b53&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true" data-embed_code="<iframe scrolling=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/522581232&amp;color=%231d2b53&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true&quot; width=&quot;100%&quot; height=&quot;300&quot; frameborder=&quot;no&quot;></iframe>" style="height: 168px; width: 300px"><div class="embed_url">https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/522581232&amp;color=%231d2b53&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true</div></button>
+<p class="text-center">
+	If you have any questions you can reach me by mail: stefan[at]sleepergames.com
+</p>
+<p class="text-center">
+	Or on twitter: 	<a href="https://twitter.com/Sleeper_Games" referrerpolicy="origin" rel="nofollow noopener">@Sleeper_Games</a>
+<br>
+</p>
+<p class="text-center">
+	<strong><br></strong></p>
+<p class="text-center">If you want to see how the  game developed over the years, you can check out <a href="https://trello.com/b/JEMcU3rX/%20hyperspace-dogfights-development" referrerpolicy="origin" rel="nofollow noopener">the public development Trello</a>. The icebox list there shows stuff I consider adding in future updates.
+</p>
+<p class="text-center">
+	Cheers
+</p>
+<p class="text-center">
+	Stefan Widany - Sleeper Games<br></p>
+<p class="text-center"><br></p>
+<p class="text-center">
+	<strong>FAQ</strong>
+</p>
+<p class="text-center">
+	<strong>What do I do in Hyperspace Dogfights?</strong>
+</p>
+<p class="text-center">
+	Mainly you fly a jet in a 2d environment and blow things up. You'll also complete randomized goals in order to finish individual waves. In-between waves you'll buy items that modify your jet in various ways. Zones end with random boss encounters. Difficulty is pretty harsh, you'll probably die a lot in the beginning. But each subsequent run will play out a little different. Throughout the game you'll unlock additional items to find on later runs. The game is fairly light on story, but you can piece together a narrative from item descriptions and combat chatter if you choose so.<br></p>
+<p class="text-center"><br></p>
+<p><strong>Feature list?</strong><br>- Juicy, impact-full and tense 2d air combat, framed in a weird sci-fi universe<br>- 5+ player jets to fly, all coming with 2 alternate starting loadouts to unlock<br>-200+ different passive items, some providing simple bonuses, some completely changing how your jet behaves<br>- 90+ sci-fi jet weapons, including beam weapons, explosives and aerial melee options<br>- 50 active items used for offense, defense or utility<br>- Strong focus on synergies and weird jet builds. Most items will interact with others, be it in positive and negative ways. All passives can stack with themselves.<br>- 7 zones with distinct enemy composition to explore<br>- 10 bosses to die against<br>- Various wave goals: Hunt ace pilots, raid ground targets, perform recon scans and more<br>- 12 late game challenge modes that can be freely combined with another<br>- Colorful pixel art, powered by the Pico8 16 palette<br>- An adaptive soundtrack with combat and menu tracks, consisting of 14 tunes by ENUIT and Ole Toensen<br>- Persistent unlocks with lots of items in the loot pool from the get go, but some things only unlockable through the endgame<br>- Finished runs can seamlessly transition into endless mode if you choose so<br><br></p>
+<p class="text-center">
+	<strong>What platform does Hyperspace Dogfights run on?</strong>
+</p>
+<p class="text-center">
+	Window PC and Linux (currently only tested on Ubuntu). <br></p>
+<p class="text-center"><br></p>
+<p class="text-center">
+	<strong>What are the system requirements?</strong>
+</p>
+<p class="text-center">
+	<em>CPU: </em><em>3.2 GHz</em>
+</p>
+<p class="text-center">
+	Graphics: GeForce GT 710 or better
+</p>
+<p class="text-center">
+	Ram: 8 GiB
+</p>
+<p class="text-center">
+	OS: Ubuntu 14.04 64bit or higher
+</p>
+<p class="text-center">
+	Recent Windows</p>
+<p class="text-center"><br></p>
+<p class="text-center">
+	<strong>Only on Itch?</strong>
+</p>
+<p class="text-center">
+	If you buy the game on itch you'll also get a steam key. If you bought it through a bundle this might not apply though. <br></p>
+<p class="text-center"><br></p>
+<p class="text-center"><strong>Can I stream/make videos about Hyperspace Dogfights </strong></p>
+<p class="text-center">
+	<strong>(and monetize that)?</strong>
+</p>
+<p class="text-center">
+	You absolutely can and I love you for it. <br></p>
+<p class="text-center"><br></p>
+<p class="text-center"><strong>I found a bug? 0/10 worst game ever</strong>&nbsp;</p>
+<p class="text-center">Please report your findings on the itch forum or email me via stefan[at]sleepergames[dot]com and I'll look into it.
+</p>
+<p>
+	 Thanks I love you! :) <br></p>
+<p>More from the hyperspace Universe:</p>
+<p><button itchio="" aria-label="Click to activate iframe embed" type="button" class="embed_preload other_embed" title="https://store.steampowered.com/widget/2711190/" data-embed_code="<iframe src=&quot;https://store.steampowered.com/widget/2711190/&quot; width=&quot;646&quot; height=&quot;190&quot; frameborder=&quot;0&quot;></iframe>" style="height: 168px; width: 300px"><div class="embed_url">https://store.steampowered.com/widget/2711190/</div></button><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

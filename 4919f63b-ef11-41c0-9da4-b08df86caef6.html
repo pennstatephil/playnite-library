@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Witch Thief</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Witch Thief</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:55:46</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:12:17</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-8/1/2017">8/1/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Shooter">Shooter</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Cardboard Keep">Cardboard Keep</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Cardboard Keep">Cardboard Keep</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/675480" target="_blank">Steam</a><br/><a href="http://WitchThief.Games" target="_blank">Official</a><br/><a href="https://twitter.com/CardboardKeep" target="_blank">Twitter</a><br/><a href="https://cardboardkeep.itch.io/witch-thief" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Witch%20Thief" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="text-center"><strong>Play as the Witch, dodging and weaving through terrifyingly intricate bullet storms on her journey to steal the Ancient Grimoire.</strong></p>
+<p class="text-center"><strong>Description:</strong></p>
+<p><strong>Witch Thief</strong> is a 3D bullet-hell, set in a quirky fantasy realm. Play as the snarky Witch on a quest to steal the greatest magical Grimoire from the Last Immortal. Dodge and weave through endless waves of deadly projectiles, overcome a cast of quirky mages, unlock new heroes and discover the true power of the Grimoire.</p>
+<p class="text-center"><strong><br></strong></p>
+<p class="text-center"><strong>Feature List:</strong></p>
+<ul><li><p><strong>Dodge intricate bullet patterns</strong><br>Terrifyingly intricate storms of bullets will rain down as you journey on your quest. Study, learn and apply your dodging skills to outmaneuver the incoming perils.<br>Touching even one bullet will kill you - so beware! <br><br><br><img src="https://img.itch.zone/aW1nLzE1MTczOTIucG5n/original/YhwiIC.png" loading="lazy"><br></p></li><li><p><strong>Unique Bullet-Hell Perspective</strong><br>Unlike other Shmups, Witch Thief gives you control of a full 3D camera. Witness bullet hell from a whole new perspective!<br><br><img src="https://img.itch.zone/aW1nLzE1MTczOTUucG5n/original/J12uhm.png" loading="lazy"></p></li></ul>
+<ul><li><p><strong>Unlock a range of quirky playable characters </strong>(Image of different characters)<br>Choose to play one of many magicians, each clawing for the Ancient Grimoire, determined to let nothing stand in their way. Experience fresh new dialogue, different bosses and unique spells to achieve their goals.<br>Each character has unique spells and dialogue, and may encounter different and challenging bosses on their path to the Grimoire.<br>Complete the story to unlock new characters!<br><strong><img src="https://img.itch.zone/aW1nLzE1MTczOTYucG5n/original/UHa%2BTP.png" loading="lazy"><br></strong></p></li><li><p><strong>Musical tracks:</strong><br>A fully original soundtrack, accompanying you on your perilous journey to the Grimoire.&nbsp;<br>Each character and stage has a unique theme that captures and plays upon their essence.<br><img src="https://img.itch.zone/aW1nLzE1MTczOTcucG5n/original/yCQJKT.png" loading="lazy"><br><br><br></p></li><li><p><strong>Battle Relentless Bosses</strong><br>Your path is not an easy one. Face insane bosses, wielding great magical power and unleashing torrents of complex bullet patterns. They will stop at nothing to protect the Grimoire. <br><img src="https://img.itch.zone/aW1nLzE1MTczOTgucG5n/original/fdHd8k.png" loading="lazy"><br></p></li><li><p><strong>Unravel a world of mystery</strong><br>Piece the stories of every character together to &nbsp;Uncover what drives the defenders of the Grimoire, and learn the plans of the Last Immortal.<br><img src="https://img.itch.zone/aW1nLzE1MTc0MDIucG5n/original/OtIpmf.png" loading="lazy"><br><br></p></li><li>Accessibility options<br>
+Everyone should be able to have fun and play games. We’re always striving to help people play and include these features into Witch Thief to help out. If there are any features you’d like to see please shoot us an email and we’ll see what we can do!&nbsp;<p><br></p>
+<ul><li><strong>Rebindable keys:</strong>&nbsp;Nothing is worse than a control scheme that doesn’t work for you! Witch Thief’s controls can be rebound across keyboard, mouse and controller.&nbsp;</li><li><strong>Dyslexic font option:</strong>&nbsp;We love our stylized fonts, but we want you to know what’s going on. A dyslexic font option is available for all in-game text.&nbsp;</li><li><strong>Difficulty ranges:</strong>&nbsp;Not everyone wants the hardest difficulty. Witch Thief ranges from practically no combat “Chill” mode to the extreme “Insanity” mode which increases both bullet counts and speed. Oh you only get one life there too.</li></ul></li></ul>
+<p><br></p>
+<p>Disclaimer:
+If you encounter something in Witch Thief that you feel should be in this Disclaimer, please reach out!</p>
+<ul><li>Bright Colours</li><li>Flashing Lights</li><li>Camera Shake</li></ul>
+<p><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Muffin Fight VR</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Muffin Fight VR</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:29</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:19:03</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-5/18/2021">5/18/2021</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>Welcome to Muffin Fight! A&nbsp;high action multiplayer game developed for Virtual Reality!<br><br>Get into the game, take on your friends, or play against strangers. Players can bake muffins using many different recipes to create many different effects, and the person with the most points, wins!</p>
+<p><strong>What is it?</strong></p>
+<p>Muffin Fight is the ultimate party game / food fight (no clean-up required!)</p>
+<p><strong>Features</strong></p>
+<ul><li>Wanting to just get your bake on?&nbsp; Chill with your friends in the Social space (new v6.3)</li><li>Do you have what it takes to beat everyone? &nbsp;Try our <strong>Quick play&nbsp;</strong>(4 player multiplayer, single player challenge or bots modes)</li><li>Wanna play with your friends? &nbsp;Check out <strong>Custom matches</strong></li><li>New v4.6:&nbsp;Learning how to play?&nbsp; Get started in <strong>Single player mode<br></strong></li><li><strong>Many muffins, receipts,&nbsp;and things to bake! </strong></li></ul>
+<p>Friends offline at the moment? &nbsp;Play against other people, our new dancing muffin bots (new v8.1), or try and beat the single player mode (new v8.0) and beat your best time!</p>
+<p><strong>Other Platforms:</strong><br></p>
+<p><a href="https://store.steampowered.com/app/1506940/Muffin_Fight/" referrerpolicy="origin" rel="nofollow noopener">Get it on Steam</a> (<a href="https://store.steampowered.com/app/1506940/Muffin_Fight/" referrerpolicy="origin" rel="nofollow noopener">https://store.steampowered.com/app/1506940/Muffin_Fight/</a>)</p>
+<p><a href="https://www.oculus.com/experiences/quest/5375257132495819/" referrerpolicy="origin" rel="nofollow noopener">Get it on Oculus</a> (<a href="https://www.oculus.com/experiences/quest/5375257132495819/" referrerpolicy="origin" rel="nofollow noopener">https://www.oculus.com/experiences/quest/5375257132495819/</a>)</p>
+<p><strong>History:<br></strong></p>
+<p><strong>Update 2024-07-04 - Release Notes: 8.4.1.3</strong>       </p>
+<ul><li>Made it easier to see names in game view</li><li>Added hoops!</li></ul>
+<p><strong>Update 2024-07-04 - Release Notes: 8.4.1.2</strong>
+  </p>
+<ul><li>Added a new scene for "errors" to help reboot when problems happen</li><li>Rewrote sections of multiplayer connections</li><li>Added support for Oculus-link  <br>
+</li><li>Added support for WMR
+</li><li>Added key fixes for slow networks</li><li>Games will now attempt to force-connect after 5 seconds</li><li>Games will now automatically reboot the experience if it can't join a game for 10 seconds</li><li>Rework for the hosting/joining of custom maps</li></ul>
+<p><strong>Update 2023-12-26 - Release Notes: 8.3.0.0<br></strong></p>
+<ul><li>Major: Fixed an issue where quick start START button was not working</li><li>Major: Fixed an issue where custom match START button was not working</li><li>Disabled SteamVR controllers during intro video</li><li>Reduced rotation sensitivity for snap turn</li><li>Limited teleport to one hand, snap turn to another</li><li>Added a menu option to switch left/right hand preferences</li><li>Delayed teleport particles (performance bump)</li><li>Made it a lot quicker to use keyboard entry for usernames</li><li>Better anti-swear for text-names</li><li>Increased text-name sizes</li><li>Added new error message console when a game can't start</li><li>Added a restart timer of a room fails to load</li><li>Added a light on each station to show when they pressed the start button</li></ul>
+<p><strong>Update 2023-12-17 - Release Notes: 8.2.0.0<br></strong></p>
+<div><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe width=&quot;500&quot; height=&quot;281&quot; src=&quot;//www.youtube.com/embed/D9Ls7-bbess&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/D9Ls7-bbess/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button></div>
+<p>Another massive update<br></p>
+<ul><li>New holiday events</li><li>Dancing muffin bots are now added for multiplayer matches</li><li>You can now create and edit your player name</li><li>Brand new player graphics</li><li>New animations and systems for players</li><li>Mouth and voice sync</li><li>Eye blinking</li><li>Big improvements to player colliders</li><li>Better systems and API usage</li><li>Many many fixes and improvements</li><li>Bad word filter for names (you know why...)</li></ul>
+<p><strong>Update 2023-06-23 - Release Notes: 6.3.0.0 </strong><br></p>
+<div><button itchio="" aria-label="Click to activate YouTube embed" type="button" class="embed_preload youtube_preload" data-embed_code="<iframe src=&quot;//www.youtube.com/embed/BIj-SlRLSwA&quot; allowfullscreen=&quot;&quot; width=&quot;500&quot; height=&quot;281&quot; frameborder=&quot;0&quot;></iframe>" style="width: 250px; height: 140px; background: url(https://i.ytimg.com/vi/BIj-SlRLSwA/hqdefault.jpg) 50% 50% no-repeat; background-size: cover"></button></div>
+<p>Massive update</p>
+<ul><li>Brand new social space (for on-boarding and getting started)</li><li>New 5 star health system (now you can eat the muffins!)</li><li>Performance overhaul (up-to 10x faster)</li><li>Voice and mic support added</li><li>New Oculus Quest support added</li></ul>
+<p><strong>Update 2022-07-23 - Release Notes: 4.8.0.2</strong></p>
+<ul><li>Added a toggle lever for kids to be able to reach the tables</li><li>Moved the exit menu to make it harder to press by accident</li><li>New light baking in scenes</li><li>Small graphical fixes</li></ul>
+<p><strong>Update 2022-07-07 - Release Notes: 4.6.0.3</strong> <br></p>
+<ul><li>Oculus Quest Support!</li><li>New intro video</li><li>Cleaned up some controls</li><li>Added a bouncing ball to play with while waiting for other players</li><li>Added a bit tighter control schema in the game</li><li>Big improvement on usability and performance</li><li>Removed outlines of objects and control items (was slowing down the game)</li><li>Upgraded project to a newer game engine release (more reliable)</li></ul>
+<p><strong>Update 2021-08-05 - Release Notes: 4.3.0.0</strong></p>
+<ul><li>Addition of Single Player mode
+</li><li>Exit Menu model updated
+</li><li>New Splash Screen
+</li><li>Chocolate bars removed from Chocolate Cherry Muffin Explosion effect
+</li><li>Oven Doors are properly aligned and don't jitter while opening
+</li><li>Spatulas are bigger
+</li><li>Start Button can only be activated by Avatar's hands.
+</li><li>Resolved various issues with Blueberry, Banana &amp; Cherry Muffins
+</li><li>Muffin reset state issues resolved
+</li><li>Most visual effects can be seen by all players now
+</li><li>Duplicate Photon ID issues resolved
+</li><li>Vacuum Ray Reworked
+</li><li>Muffin Mondays Timer deactivated
+</li><li>Lighting improvements to all scenes
+</li><li>Updated Credits
+</li><li>Custom Match timer syncs with all players
+</li><li>Players now have their own client based pool of Muffins to draw from rather than all players sharing the same pool
+</li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

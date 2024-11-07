@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sheepless Nights (Math cardgame)</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Sheepless Nights (Math cardgame)</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:51:06</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:58:07</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-8/27/2015">8/27/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Card & Board Game">Card & Board Game</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Sander Voorn">Sander Voorn</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Sander Voorn">Sander Voorn</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://nobitgames.itch.io/sheepless-nights-cardgame" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Sheepless%20Nights" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><em>"Sheepless Nights - The Fun Way to Test Your Mathematical Skills!"</em> - AskYourAndroid<br><em>"Let your kids study math easy with this relaxing game"</em> - AppEggs</p>
+<p><em>- Scroll down for the&nbsp;</em><strong><em>Rules of the game.</em></strong></p>
+<p><strong>Sheepless Nights is an entertaining and educational (math) cardgame for kids (5+) and grownups.</strong> </p>
+<p>Sheepless Nights helps your kids improve the ability of count. Not only fun for kids but also for their parents. The kids math cardgame provides you the time playing together with your children and make good communication with them. If you want your child enjoy learning math, there's no other better choice except for Sheepless Nights.</p>
+<p><em>"If you ignore this game because you think it's just a kids' card game, you are missing out. It's equally fun for adults too. The rules of the game are unique, and you hardly notice you're doing math. You find yourself groaning when you receive a black sheep, and cheering when you are able to give it an opponent. I find myself whiling away the time playing this game. Fun!"</em></p>
+<p><strong>Rules of the game:</strong></p>
+<p>Each player will try to be the first to lose his cards. Remaining cards left</p>
+<p>in the players hand&nbsp; will count as points.</p>
+<p>The game has 56 sheepcards&nbsp; each a value from 1 up to 10,</p>
+<p>5 shepherds, 5 wolves, 3 lucky lambs and 3 black sheep. Each player is dealt 7 cards.</p>
+<p>The remainder of the deck will be left face down. One sheepcard will then be revealed.</p>
+<p>The player will take one of the following actions:</p>
+<ol><li>Play out an equal number sheepcard</li><li>Play two sheepcards by adding up the numbers</li><li>Play a special card</li><li>Take a card off the deck&nbsp;</li></ol>
+<p>Then it's the next player's turn.</p>
+<p><strong>Action 1 - Play out an equal sheepcard</strong></p>
+<p>The player will take one of the cards out of his hand with an equal value of&nbsp;the card showing and place their card on top on the pile.</p>
+<p><strong>Action 2 - Play two sheepcards by adding up the numbers.</strong></p>
+<p>A player can play two sheepcards at one time by calculating the value of the two&nbsp;cards in their hand and place them on the table pile.</p>
+<p>For instance you can play a 1 and a 5. This is possible:</p>
+<p>&nbsp; - when there is a 6 on the table pile:&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 6 - 5 = 1</p>
+<p>&nbsp; - when there is a 4 on the table pile:&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 4 + 1 = 5&nbsp;</p>
+<p><strong>Action 3 - Play a special card</strong></p>
+<p>The special cards are: black sheep, the sheppard, the wolf and the lucky lamb.&nbsp;You can play these cards by putting them on the second table pile. The next&nbsp;action depends on the kind of special card you played...</p>
+<p><em></em><em>- The lucky lamb</em></p>
+<p>A lucky lamb can either take a value of any number from 1 to 10 when it is used in&nbsp;a sum or serves as an equal sheepcard.</p>
+<p>&nbsp; &nbsp;- for example: 2 + * = 9</p>
+<p><em>- The big bad wolf</em></p>
+<p>When a player wants to play a wolf from his hand the next player will have to take a set&nbsp;of cards form the pile and take them in his hands. The player who played the wolf,&nbsp;will play another sheepcard. The value of this card defines the amount of cards that&nbsp;the next player will have to play. If the player who has to take cards immediately will&nbsp;play a wolf himself that buys him out to take extra cards. Now the next player will have&nbsp;to take the extra cards.</p>
+<p><em></em><em>- The shepherd</em></p>
+<p>This card can be played at any time if the previous player did not play the card.&nbsp;If a player plays this card then he will put it on the second table pile.&nbsp;The next player can only play an equal card (action 1) or take a card of the&nbsp;deck (action 4).</p>
+<p><em>- The black sheep</em><br></p>
+<p>Nobody wants a black sheep in his hand. Black sheep will give you many points.&nbsp;&nbsp;A black sheep can only be passed to another player if you have at hand a&nbsp;sheepcard with an equal value as the amount of cards at hand of the other player.&nbsp;When you put the black sheep card on the tablepile you can choose to give away&nbsp;the card to another player.</p>
+<p><strong>Finish the game</strong></p>
+<p>When the last card is played then the previous played cards will be automatically&nbsp;shuffeled and will make a new table pile.</p>
+<p>A round is finished when a player has put his last card on the table pile or when&nbsp;he has only black sheep left. After this the points will be counted.</p>
+<p>
+</p>
+<p><em>Counting points</em></p>
+<p>For each player the remaining cards in their hand are added up:</p>
+<ul><li>&nbsp;for every sheepcard the value is counted</li><li>&nbsp;for every Shepherd, Lucky lamb or Wolf you will get 10 points</li><li>for every Black sheep you will get 15 points, but ...</li><li>if you have all three black sheep, then 30 points will be taken of the total!</li></ul>
+<p>The game is finished after 4 rounds. The player with the least points wins the game!</p>
+<p><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

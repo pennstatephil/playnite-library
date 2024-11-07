@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Crystal Story: Awakening</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Crystal Story: Awakening</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:55:13</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:08:10</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-11/7/2019">11/7/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://bredfrown.itch.io/crystal-story" target="_blank">Itch</a><br/><a href="https://twitter.com/thecrystalstory" target="_blank">Twitter</a><br/><a href="https://www.youtube.com/channel/UCh1aaphqW0foMBizmlbejSA" target="_blank">YouTube</a><br/><a href="https://www.twitch.tv/directory/game/Crystal%20Story%3A%20Awakening" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<figure><img src="https://img.itch.zone/aW1nLzM0NDM1MTYucG5n/original/kHXUvp.png" style="font-size: 24px" loading="lazy"><span></span><br></figure>
+<h3><br>WHAT IS CRYSTAL STORY: AWAKENING?</h3>
+<p><em>Crystal Story: Awakening</em> is an Action-RPG that blends charming retro-style graphics with fast-paced action, heavily inspired by 16-bit classics!&nbsp;<br><br></p>
+<h3>SERIES?</h3>
+<p>I'm taking it easy with the project right now, starting things off with Crystal Story: Awakening! I decided that the best fit for this game would be to make it a series of games to fit my development schedule (I work full-time with game dev as a hobby).<br> <br>I keep my&nbsp;<a href="https://bredfrown.itch.io/crystal-story/devlog" style="font-size: inherit">devlog</a> and the <a href="https://twitter.com/thecrystalstory" style="font-size: inherit" referrerpolicy="origin" rel="nofollow noopener">official twitter</a>&nbsp; updated to share progress along the way.</p><p><br>Originally, this was known as the "PREVIEW VERSION", but I felt like this was a great intro to the series, so I decided to let it stand on its own!<br><br><strong>I recently wrapped up development for the sequel for Awakening – Crystal Story: Dawn of Dusk! I am gearing up to release it very soon.</strong><br><br></p>
+<h3>CONTROLS (<em>Keyboard</em>)</h3>
+<p><strong>ARROW KEYS</strong> - Movement (you can even do diagonal movement by holding Up + Left, Down + Right, etc.)<br><br><strong>SHIFT</strong> (Hold while moving) - Run<br></p>
+<p><strong>"I" Key</strong>&nbsp; - Open Menu<br><br><strong>ALT + ENTER</strong>&nbsp;- Fullscreen Mode</p>
+<p><img src="https://img.itch.zone/aW1nLzI4NDE4ODkucG5n/original/Mu68ct.png" loading="lazy"><br><strong><strong><em>For players using a QWERTZ keyboard layout, you can substitute the&nbsp;"Z" key&nbsp;with the "Y" key.</em></strong></strong><br><br><strong><em></em></strong></p>
+<h3>CONTROLS (<em>Controller</em>)</h3>
+<figure><strong><em><img src="https://img.itch.zone/aW1nLzI4NzkyODIuanBn/original/Rn5o2j.jpg" loading="lazy"></em></strong><br></figure>
+<p><strong><em>**Please read the included Read Me file for additional information!**<br></em></strong><br><strong><em>**Also, this game has some moving and flashing colors and imagery.**</em></strong><br><strong><br></strong></p>
+<h3>WHERE CAN I STAY IN THE LOOP?</h3>
+<p>The following places will keep you up-to-speed on the development of the game!<br><br><strong><em>The Official Crystal Story&nbsp;Twitter:<br><a href="https://twitter.com/thecrystalstory" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/thecrystalstory<br><br></a>The Creator's Personal Twitter:<br><a href="https://twitter.com/bredfrown" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/bredfrown<br><br></a>Instagram:<br><a href="https://www.instagram.com/fredbreezyfosheezy/" referrerpolicy="origin" rel="nofollow noopener">https://www.instagram.com/fredbreezyfosheezy/</a><br></em></strong><strong></strong></p>
+<p><br></p>
+<h3>CREDITS</h3>
+<p><strong>Fred&nbsp;"Bred Frown" Brown </strong>-<em>&nbsp;Creator, Game Designer, Director, Animator, Lead Artist, UI Designer, Art Director, and Writer<br><a href="https://twitter.com/bredfrown" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/bredfrown</a></em></p>
+<p><strong>Tetrix450 </strong>-<em>&nbsp;Lead Composer and Sound FX Design<br><a href="https://soundcloud.com/user-482788149" referrerpolicy="origin" rel="nofollow noopener">https://soundcloud.com/user-482788149</a></em><br><a href="https://twitter.com/tetrix450" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/tetrix450<br><br></a><strong>Satoko "Holly" Young&nbsp;(SkittleGirlHolly) </strong>- <em>Lead&nbsp;</em><em>Composer&nbsp;<br><a href="https://soundcloud.com/skittlegirl" referrerpolicy="origin" rel="nofollow noopener">https://soundcloud.com/skittlegirl</a></em><br><a href="https://twitter.com/skittlegrlHolly" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/skittlegrlHolly<br><br></a><strong>Joie "Cheesecake Lumps" Brown </strong>- <em>Character Designer and Story&nbsp;Advisor and Editor</em><em></em><br><a href="https://twitter.com/CheesecakeLumps" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/CheesecakeLumps</a></p>
+<p><strong>CQ</strong><strong>&nbsp;</strong>- <em>Guest Composer</em><br><a href="https://twitter.com/C_Q_Creator" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/C_Q_Creator</a></p>
+<p><em><a href="https://twitter.com/JobJobLLC" referrerpolicy="origin" rel="nofollow noopener"><br></a></em></p>
+<h3>SPECIAL THANKS</h3>
+<p><strong>Melissa Troubls </strong>-<em>&nbsp;Super Fan</em><br></p>
+<p><em><a href="https://twitter.com/bredfrown" referrerpolicy="origin" rel="nofollow noopener"></a></em><a href="https://twitter.com/MTtravaux" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/MTtravaux</a><br></p>
+<p><strong>Andrew Alford&nbsp;</strong>-<em>&nbsp;Super Fan and Video Wizard!<u><br><a href="https://twitter.com/bredfrown" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/MTtravaux" referrerpolicy="origin" rel="nofollow noopener"></a></u></em><a href="https://www.youtube.com/channel/UCkhMu2Qlt_dH-5-8ypkDe9w" referrerpolicy="origin" rel="nofollow noopener">https://www.youtube.com/channel/UCkhMu2Qlt_dH-5-8ypkDe9w</a></p>
+<p><strong>Brian "Artblaster" Farrar </strong>-<em>&nbsp;Super Fan and Lead Artist on&nbsp;Toasty!<br><strong><a href="https://twitter.com/bredfrown" referrerpolicy="origin" rel="nofollow noopener"></a></strong></em><strong><a href="https://twitter.com/MTtravaux" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://www.youtube.com/channel/UCkhMu2Qlt_dH-5-8ypkDe9w" referrerpolicy="origin" rel="nofollow noopener"></a></strong><a href="https://twitter.com/art_blaster" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/art_blaster</a><br></p>
+<p><strong>Max "Mr. Tenda" Ponoroff&nbsp;</strong>-<em><del>&nbsp;</del>Super&nbsp;Fan, Advisor,&nbsp;</em><em>&nbsp;and Game Developer! Currently working on Starstruck!</em><em></em><br><a href="https://twitter.com/_mrtenda" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/_mrtenda</a><br><a href="https://twitter.com/playstarstruck" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/playstarstruck</a></p>
+<p><a href="https://twitter.com/_mrtenda" referrerpolicy="origin" rel="nofollow noopener"></a></p>
+<p><strong>Quincy Pringle</strong> -<em>&nbsp;Creator and Developer&nbsp;of OTHER: Her Loving Embrace<br><strong><a href="https://twitter.com/bredfrown" referrerpolicy="origin" rel="nofollow noopener"></a></strong></em><strong><a href="https://twitter.com/MTtravaux" referrerpolicy="origin" rel="nofollow noopener"></a></strong><a href="https://twitter.com/qpringledev" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/qpringledev</a><br><a href="https://www.youtube.com/channel/UCkhMu2Qlt_dH-5-8ypkDe9w" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/otherRPG" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/otherRPG" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/otherRPG</a><br></p>
+<p><strong>Bryan Cox</strong>&nbsp;-<em>&nbsp;Co-Developer of Blue Omen Operation<br><a href="https://twitter.com/bredfrown" referrerpolicy="origin" rel="nofollow noopener"></a></em><a href="https://twitter.com/MTtravaux" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/BryanCoxDev" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/BryanCoxDev" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/BryanCoxDev</a><br></p>
+<p><strong>Matt Espiritu</strong>&nbsp;-<em>&nbsp;Super Fan and Awesome Artist<br><a href="https://twitter.com/bredfrown" referrerpolicy="origin" rel="nofollow noopener"></a></em><a href="https://twitter.com/MTtravaux" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/BryanCoxDev" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/BryanCoxDev" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/CapnCocoCharms" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/CapnCocoCharms</a></p>
+<p><strong>Friendly Cosmonaut&nbsp;</strong>-<em>&nbsp;Creator of the FC Dialogue System<br><a href="https://twitter.com/bredfrown" referrerpolicy="origin" rel="nofollow noopener"></a></em><a href="https://twitter.com/MTtravaux" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/BryanCoxDev" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/BryanCoxDev" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/CapnCocoCharms" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/tobyfox" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://friendlycosmonaut.itch.io/dialoguesystem">https://friendlycosmonaut.itch.io/dialoguesystem</a><br><a href="https://friendlycosmonaut.itch.io/">https://friendlycosmonaut.itch.io/</a><br></p>
+<p><strong>Toby Fox&nbsp;</strong>-<em>&nbsp;Creator of Undertale and Deltarune&nbsp;<br><a href="https://twitter.com/bredfrown" referrerpolicy="origin" rel="nofollow noopener"></a></em><a href="https://twitter.com/MTtravaux" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/BryanCoxDev" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/BryanCoxDev" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/CapnCocoCharms" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://twitter.com/tobyfox" referrerpolicy="origin" rel="nofollow noopener">https://twitter.com/tobyfox<br></a></p>
+<p><strong>bnapky&nbsp;-</strong><em>&nbsp;Co-creator of Hammer Dongers and assistance with CSS with the Itch.io page</em><br><a href="https://itch.io/profile/bnapky"></a><a href="https://itch.io/profile/bnapky">https://itch.io/profile/bnapky</a><br></p>
+<p><strong>Crave&nbsp;</strong>-<em>&nbsp;Co-creator of Hammer Dongers</em><br><a href="https://cravecraw.itch.io/">https://cravecraw.itch.io/</a></p>
+<p><strong>Rachel Harder&nbsp;</strong>-<em>&nbsp;Creator of Catto</em><br><a href="https://cravecraw.itch.io/"></a><a href="https://balloonpuppy.itch.io/catto">https://balloonpuppy.itch.io/catto<br><br></a><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

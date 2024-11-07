@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Headspun: Dazed Edition</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Headspun: Dazed Edition</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:12</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:15:21</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-8/20/2018">8/20/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Visual Novel">Visual Novel</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Superstring">Superstring</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://svperstring.itch.io/headspun-dazed-edition" target="_blank">Itch</a><br/><a href="http://www.superstring.studio" target="_blank">Official</a><br/><a href="http://www.twitter.com/SuperstringLtd" target="_blank">Twitter</a><br/><a href="https://store.steampowered.com/app/808770" target="_blank">Steam</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h3>📢 NEW!&nbsp;Headspun is now available as a reward via the <a href="https://www.patreon.com/superstring" referrerpolicy="origin" rel="nofollow noopener">Superstring Patreon</a> at ALL reward tiers $2 and above.</h3>
+<h3>📢 NEW! Looking for advice marketing your game?&nbsp;<a href="https://svperstring.itch.io/game-marketing-manual">The Zero&nbsp;-Budget Game Marketing Manual</a>, also from Superstring,&nbsp;is available now!</h3>
+<figure><img src="https://img.itch.zone/aW1nLzExNjI1MjIuZ2lm/original/z0yr3K.gif" style="color: inherit" loading="lazy"><br></figure>
+<p><strong>Cortex is in ruins.&nbsp;</strong><br><br>After waking from a five week coma, Theo Kavinsky finds his life in disrepair, and with no memory of the accident, it’s up to Ted and Teddy – the conscious and subconscious voices in his head – to work out what happened, and put his life back on track.&nbsp;<br><br><strong>Headspun </strong>is an FMV/Adventure hybrid which puts you in the shoes of Ted: the Director of Cortex - the rational, intelligent voice in Theo's head. What Ted thinks is best for Theo isn't necessarily a view shared by Teddy, however; the primal, emotional subconscious voice...&nbsp;<br><br>In the process of repairing Cortex, re-hiring a team and finding out what happened the night of the accident, Ted and Teddy must cast aside their differences and learn to work together. Headspun is a game about recovery, discovery, and the ongoing battle between logic and emotion.&nbsp;</p>
+<figure><img src="https://img.itch.zone/aW1nLzI1ODMxMTAuZ2lm/original/472kDi.gif" loading="lazy"></figure>
+<hr>
+<h3>FEATURES</h3>
+<ul><li>Rich FMV story-telling</li><li>Branching dialogue - sway the outcome of your interactions</li><li>Rebuild Cortex - earn Neuros to hire staff and commission renovations&nbsp;</li><li>Retrieve Lost Memories and work out what happened the night of Theo's accident</li><li>Original Synthwave Score from Soho Loop</li></ul>
+<hr>
+<h3>THE DAZED EDITION</h3>
+<p>The Headspun:&nbsp;Dazed Edition is <strong>exclusive to itch</strong>&nbsp;and includes the official OST by Soho Loop as standard. The MP3 files are&nbsp;included in your download.&nbsp;</p>
+<p><img src="https://img.itch.zone/aW1nLzI1ODMwOTcucG5n/original/Cb65ys.png" loading="lazy"><br></p>
+<p><strong><u>TRACKLIST</u></strong></p>
+<p><strong>1. </strong>Press On<br><strong>2.</strong> Drift<br><strong>3. </strong>Synthesia<br><strong>4. </strong>Function Shift<br><strong>5.</strong> PAUSE<br><strong>6.&nbsp;</strong>The Expanse<br><strong>7.</strong> Go Explore<br><strong>8.</strong> Temporal<br><strong>9. </strong>Headspun&nbsp;</p>
+<hr>
+<h3>FAQ</h3>
+<p><strong>SO HOW IS THE DAZED EDITION DIFFERENT, EXACTLY?</strong><br>The Headspun: Dazed Edition includes the official Headspun OST&nbsp; and is exclusive to Itch.&nbsp;</p>
+<p><strong>DOES MY ITCH PURCHASE INCLUDE A STEAM KEY?<br></strong>If you decide to purchase the game, drop us a line and I'm sure we can help you out.&nbsp;<span></span></p>
+<p><strong>IS HEADSPUN AVAILABLE ON OTHER PLATFORMS?</strong><br>It is! Headspun is available on PlayStation 4, Xbox One, Nintendo Switch and Steam.&nbsp;</p>
+<p><strong>LINUX?</strong><br>A Linux version isn't in the *official* roadmap, but we'll be updating this page with a Linux build shortly after launch. We're a small team, however, and updates/supports to this version will be sporadic. We'll do our best.&nbsp;</p>
+<p><strong>I'M&nbsp;DIGGING THE SYNTHWAVE MUSIC - TELL ME MORE!?</strong><br>Headspun's OST has been composed by UK-based electronic outfit <a href="http://www.soholoop.co.uk/" referrerpolicy="origin" rel="nofollow noopener">Soho Loop</a>, with composer Stephen Willey also looking after the sound design in the game.&nbsp;</p>
+<p><strong>I'VE FOUND A BUG / GOT A PROBLEM / WANT TO TELL YOU SOMETHING!</strong><br>Great! Sling us a line at support@superstring.studio, or drop us a note on any of the channels below.&nbsp;</p>
+<hr>
+<h3>FROM THE SUPERSTRING STORE...</h3>
+<p><a href="https://www.superstring.studio/shop" referrerpolicy="origin" rel="nofollow noopener"><img src="https://img.itch.zone/aW1nLzI0MDcxNjgucG5n/original/%2B%2BHcXq.png" loading="lazy"></a><br></p>
+<p><a href="https://www.superstring.studio/shop" referrerpolicy="origin" rel="nofollow noopener">More.</a></p>
+<hr>
+<h3>SUPERSTRING</h3>
+<p><strong>Superstring is a London-based studio dedicated to abusing the boundaries of genre.&nbsp;<a href="http://www.headspun.co" referrerpolicy="origin" rel="nofollow noopener">Headspun</a>&nbsp;</strong>released on PS4, Xbox One, Nintendo Switch and PC on August 28th 2019.&nbsp;</p>
+<p>Don't be a stranger...<br></p>
+<ul><li>Follow &nbsp;<a href="http://www.twitter.com/SuperstringLtd" referrerpolicy="origin" rel="nofollow noopener">Superstring on Twitter</a>&nbsp;</li><li>Say hi on <a href="https://www.facebook.com/SuperstringLtd" referrerpolicy="origin" rel="nofollow noopener">Facebook</a></li><li>Chat with us on <a href="https://discordapp.com/channels/482316489916022784/482316489916022786" referrerpolicy="origin" rel="nofollow noopener"></a><a href="https://discord.gg/JW6MUUk" referrerpolicy="origin" rel="nofollow noopener">Discord</a></li><li>Join our <a href="http://headspun.co/newsletter" referrerpolicy="origin" rel="nofollow noopener">mailing list</a></li><li>See our pretty photos on&nbsp;<a href="https://www.instagram.com/superstring_studio/" referrerpolicy="origin" rel="nofollow noopener">Instagram</a></li><li>Support us on&nbsp;<a href="https://www.patreon.com/superstring" referrerpolicy="origin" rel="nofollow noopener">Patreon</a></li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

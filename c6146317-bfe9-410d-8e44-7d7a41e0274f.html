@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Towayami</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Towayami</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:51:54</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:05:24</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/12/2019">4/12/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Point-and-click">Point-and-click</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Andrea Pignataro">Andrea Pignataro</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Andrea Pignataro">Andrea Pignataro</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://approductions.itch.io/towayami" target="_blank">Official</a><br/><a href="https://approductions.itch.io/towayami" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Towayami" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><strong>A loud noise came from the sky.&nbsp;<br>Our town was swallowed up by a thick and engulfing darkness.&nbsp;<br>We are afraid to step outside our homes.&nbsp;<br>No place is safe anymore.&nbsp;<br>Especially when night arrives...</strong></p>
+<hr>
+<p>A veil of darkness falls over a quiet town in eastern Japan.&nbsp;<br>Fear and horror are freely wandering through its empty streets.&nbsp;<br>Find out what's behind this&nbsp;curse while&nbsp;trying to escape from it.</p>
+<hr>
+<p><strong>Left click = Interact (firm touch)</strong><br></p>
+<p><strong>Right click = Examine (light touch)</strong></p>
+<p><strong>F5 = Save game</strong></p>
+<p><strong>Esc = Quit game</strong></p>
+<hr>
+<p><strong>Minimum system requirements:</strong><br></p>
+<ul><li>O.S.:<strong>&nbsp;Windows® 98/ME/2000/XP/Vista/7/8/8.1/10</strong></li><li>CPU:&nbsp;<strong>Pentium® III 800 MHz or higher</strong></li><li>Screen resolution:&nbsp;<strong>1280x720</strong></li><li>Free hdd space:&nbsp;<strong>500&nbsp;</strong><strong>MB</strong></li><li>Free ram space:&nbsp;<strong>512 MB</strong></li><li>GPU memory:&nbsp;<strong>128 MB</strong></li><li>DirectX®:&nbsp;<strong>DirectX® 8.0 or higher</strong></li></ul>
+<hr>
+<h3 class="text-center">Frequently Asked Questions</h3>
+<p><strong>Q -</strong>&nbsp;<strong>So, what is this game about?</strong><br><strong>A -</strong>&nbsp;Towayami is essentially a horror adventure game.<br>I won't spoil too much about its story, but you'll have to explore, find and use items, solve puzzles... and survive.<br>Oh... and you'll also be immersed in darkness. All the time.</p>
+<p><strong>Q -</strong>&nbsp;<strong>I got it. It's as if I'm playing through the eyes of a blindfolded person. Do I have any visual clues to help me out?</strong><br><strong>A -</strong>&nbsp;No, you don't. It's pitch black, so you'll have to make use of the four other senses available to the main character.<br>Mainly touch and sound, but you'll also get to know when something smells or tastes "different".<br>Anyway, your brain will soon get used to this condition and will start filling the gaps by creating visual references where, in fact, there are none.<br>Just like when you happen to wander in the dark in real life.</p>
+<p><strong>Q -</strong>&nbsp;<strong>Do I at least get a tutorial?</strong><br><strong>A -</strong>&nbsp;During the first part of the game, even if you won't find any "hand in hand" guide in it, you'll have all the time and relatively safe areas to learn how to play.<br>At first you'll be confused about who you are and what you have to do, but just by touching and examining your surroundings, you'll soon get enough information to understand all the important bits of the story.</p>
+<p><strong>Q -</strong>&nbsp;<strong>Hey, what's the deal with that black screenshot?</strong><br><strong>A -</strong>&nbsp;You know, taking meaningful screenshots of a game where the main feature is the absence of any graphics... was quite challenging. (⌒_⌒;)</p>
+<p><strong>Q -</strong>&nbsp;<strong>What was your main inspiration to make this game?</strong><br><strong>A -</strong>&nbsp;After I made "<strong>Five minutes a day</strong>", I kept thinking about how that short "graphicless" experience could've been expanded into a proper adventure game.<br>Coming up with a good story and a smooth gameplay wasn't a quick and easy task, so this game became a sort of "secret project" I kept working on in between my other releases.<br>Obviously, as previously stated in my other works (like with "<strong>The hair in the wall</strong>"), one of my biggest ispirations is Junji Ito and his works.<br>Many of his stories resonate really strong with <strong>Towayami</strong>.</p>
+<p><strong>Q -</strong>&nbsp;<strong>One last advice?</strong><br><strong>A -</strong>&nbsp;Only one? I'll give you three: keep your ears open, touch everything, and remember to use the "light touch" (right click) to examine things in a safe way.</p>
+<hr>
+<p>For any further questions, or to receive&nbsp;help and support, feel free to&nbsp;contact me on twitter&nbsp;(<strong>@evonture</strong>), or on the&nbsp;<strong>Discord&nbsp;</strong>server linked below.<br></p>
+<p class="text-center"><u><strong><a href="http://discord.gg/R9Hgnfu" target="_blank" rel="nofollow noopener" referrerpolicy="origin"></a></strong></u></p>
+<p class="text-center"><a href="https://approductions.itch.io/" target="_blank"><img src="https://img.itch.zone/aW1nLzQ0MzMxNjgucG5n/original/0yZXlc.png" style="max-width: 100%" loading="lazy"></a></p>
+<p class="text-center"><u><strong><a href="http://discord.gg/R9Hgnfu" target="_blank" rel="nofollow noopener" referrerpolicy="origin">Official Discord</a></strong></u></p><p class="text-center"><strong></strong></p>
+<p class="text-center"><strong><a href="https://www.patreon.com/approductions" target="_blank" rel="nofollow noopener" referrerpolicy="origin"></a></strong></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

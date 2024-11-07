@@ -1,0 +1,306 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Discsphere</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Discsphere</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:51:17</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:01:09</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-5/21/2019">5/21/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://happy-frog-games.itch.io/discsphere" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Discsphere" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Discsphere</h1>
+<h3></h3>
+<h3>About the game, the ramble-y, not so formal&nbsp;version:</h3>
+<h6>( Feel free to skip to the short version if you're short on time or already know what the game is about.)</h6>
+<p>Discsphere is an easy-to-learn sports game where your objective is to throw a sphere at your opponent. The catch? You have to capture 3 goals with discs before you can throw spheres. You can also throw power discs on a cooldown timer to stun your opponent, or to remove ownership of an opponent's goal.</p>
+<p>Oh, and I'd be remiss if I didn't mention the dodge rolls, activated by tapping a movement key in multiplayer and by pressing the dedicated dodge roll key in single-player.</p>
+<p>Did I mention the game has a single-player mode? It has a single-player mode. The single-player mode has a story and boss battles, and even has two final bosses depending on how you go about defeating the bosses.</p>
+<p>Oh yeah, when you first play the game, please play the tutorial first! The game does not play very conventionally, so you'll need to understand how everything works before you begin! Even if you remap the controls, that won't really explain everything there is to know.</p>
+<h3></h3>
+<h3></h3>
+<h3><br><br>About the game, the short, somewhat more formal version:</h3>
+<p><strong>( Feel free to skip right to downloading the game if you already know what the game is about.</strong><strong>)</strong></p>
+<p>Discsphere is a sports game about capturing goals which also has elements of dodgeball. The game has a conventional multiplayer mode and a boss-battle-focused unconventional single-player mode, which both have slightly different controls. Playing the tutorial before playing the game for your first time&nbsp;is recommended. Just remapping the controls isn't enough to understand how everything works here.</p>
+<p><br></p>
+<h3><br>The obligatory features list:</h3>
+<ul><li>Single-player and multiplayer modes!</li><li>Keyboard controls with support for remapping!*</li><li>A dedicated dodge roll button, only in the single-player mode!**</li><li>Two ways to win:&nbsp;Hit your opponent with a sphere,&nbsp;or have more goals than your opponent when times runs out!</li><li>Multiple stage layout options in multiplayer, including the option to randomly cycle between stages after every point scored!</li><li>Several songs, randomly cycled in the multiplayer mode and carefully picked to be relevant in the single-player mode!***</li><li>You play as a knight in the single-player mode!! I mean,&nbsp;why not!!!</li><li>Boss battles!</li><li>A&nbsp;sort of overworld segment thing for the single-player mode between the boss battles!&nbsp;This gives you a breather between bosses.</li><li>Two final bosses, the arguably harder one requiring you to win by time against every boss in the game!</li><li>A generally speaking highly experimental design!</li><li>You can turn off music with Control+M! (You can't un-mute it immediately but Shift+M will make music play once more the next time the game changes scenes.)</li></ul>
+<p>*There are programs out there if you need to play this with a controller. Sorry, good&nbsp;controller support is really hard to code and even harder to code for more than one player with the engine I'm using in mind.&nbsp;;_;<br>Game development can be hard,,,</p>
+<p>**I didn't think to add this until part-way through the game's development and with how the keyboard remapping works, it would've been difficult to add this&nbsp;</p>
+<p>***Some of the songs only play in the single-player mode.</p>
+<p><br></p>
+<h3>A note from the developer:</h3>
+<p>Hey guys, this is a note from Adam. Not going to be joking around quite as much as I did with most of the rest of this page. Maybe I'll throw in a joke or two for those of you who otherwise might not read something like this.</p>
+<p>First of all, thanks for considering playing my game. It does mean something to me. ^_^</p>
+<p>Second off, I&nbsp;made this game because another project of mine was... well, it was going well, technically speaking. But I&nbsp;needed a break. I burned myself out on it. So to take my mind off of all of that, I&nbsp;kind of just sat back somewhat unproductively. But then an idea for a sports video game popped into my head.</p>
+<p>Which is strange, sports video games aren't usually exactly a genre I&nbsp;see myself playing much. But the idea sounded like fun, and sounded simple enough to make, so I set out to make it. And here we are now.</p>
+<p>Honestly, most of the time went into making the single-player mode. Most of the multiplayer content was done less than a week after the game's development started, and the last-minute addition of alternate stage layouts only took maybe 15 minutes of work.</p>
+<p>Despite that, I really hope you can give both the single-player and the multiplayer a fair shake. The game was designed for multiplayer first and foremost, with the single-player coming later. If you don't have somebody to play with locally, there's programs out there for playing local multiplayer games in online multiplayer.</p>
+<p>If you need help finding such a program, well, might I&nbsp;recommend Parsec?&nbsp;<a href="http://parsecgaming.com/" referrerpolicy="origin" rel="nofollow noopener">http://parsecgaming.com</a></p>
+<p>Anyways, because this game is so experimental in its design, I didn't wanna charge people up-front for the game. I don't know who this game is for, if anybody,&nbsp;and I don't feel like anybody will know for sure until they've already played it. To that end, you can download the game for free. I recommend you do so at first. I don't want you to feel ripped off.</p>
+<p>However, if you like the game, a donation would be appreciated. $1 if you feel like you got some fun out of it, and $5 if you feel like you really liked it, sounds like a fair value to me, but feel free to go higher or lower as you wish. Just... please don't over-do it, only put in the money if you can actually afford it!</p>
+<p>Whatever the case may be, regardless of whether you put in money or not,&nbsp;I hope you enjoy the game! ^v^</p>
+<p>~Adam<br></p>
+<p><br></p>
+<h3>Extra stuff for paying more:</h3>
+<p>If you put in $5, you get an added bonus in the form of high and low quality soundtrack downloads!&nbsp;The MP3 version sounds incredibly wrong though, it's mostly included as a joke, I recommend using the OGG soundtrack for most purposes and the FLAC soundtrack if you don't mind downloading a larger file like that. There's also a file included that includes every version of the soundtrack, just in case you were hoping to download them all anyways.<br></p>
+<p>There aren't any incentives for paying any more than that (at least, not yet),&nbsp;but as I&nbsp;said earlier, feel free to pay more if you want to!</p>
+<h3></h3>
+<h3>One last thing of note:</h3>
+<p>We also have a press kit available for the game. Currently, you can download it in ZIP format here:&nbsp;<a href="https://drive.google.com/file/d/1eJw2xDFJ1hoYJHvpZ-fSoB90ze4WRZ3m/view?usp=sharing" referrerpolicy="origin" rel="nofollow noopener">https://drive.google.com/file/d/1eJw2xDFJ1hoYJHvpZ-fSoB90ze4WRZ3m/view?usp=shari...</a></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

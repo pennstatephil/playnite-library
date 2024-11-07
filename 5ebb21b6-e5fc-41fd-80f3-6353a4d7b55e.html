@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bezier (PC)</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Bezier (PC)</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:45</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:21:40</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-2/8/2015">2/8/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Arcade">Arcade</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Shooter">Shooter</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/381320" target="_blank">Steam</a><br/><a href="http://niinegames.com/bezier/" target="_blank">Official</a><br/><a href="https://thalamusdigital.itch.io/bezier" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Bezier" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2>Press</h2>
+<p>"Eight years in the making, Philip Bak's debut project is a twin stick shooter in which chaotic genius can be found." - <a href="http://www.eurogamer.net/articles/2016-03-07-bezier-review" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong><em>Simon Parkin, Eurogamer</em></strong></a><br></p>
+<p>"The link between Bezier and Asteroids is more than simple coincidence. The game is evidently inspired by the Atari classic, even containing its own white-outlined chunks of space rock that subdivide when shot by the player. Unlike Asteroids, however, blasting Bezier's meteoroids will release a triangular 'Firefly', which follows and fights alongside the player. In this and a dozen other ways Bezier elevates Atari's initial concept, transforming that elegantly spartan shoot 'em up into a thrilling kaleidoscope of breathless mayhem.<span></span>" - <a href="http://www.bit-tech.net/gaming/2016/03/08/bezier-review/1/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Rick Lane, Bit-Tech</a></p>
+<p>
+"It's a hectic twin-stick shooter that has effortlessly swallowed my entire morning, and is probably going to eat up most of the evening too." - <a href="http://www.eurogamer.net/articles/2015-02-24-bezier-a-curvy-twin-stick-shooter-to-cherish" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong><em>Christian Donlan, Eurogamer</em></strong></a>
+</p>
+<p>
+	"Bezier is a shiny twin-stick shooter, complete with all the explosions and mayhem that entails, and it's very good at that. What it adds on top of that is a story told only in snippets at the beginning of each stage. At least, to start with. When it starts reinforcing the story through gameplay, the cruelty of the villain becomes more than just words." - 
+	<a href="http://indiegames.com/2015/02/story-driven_twin-stick_shoote.html" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong><em>Lena LeRay, Indie Games</em></strong></a>
+</p>
+<p>"It all makes for a captivating, unique and slightly unhinged experience. And I love it so very much.<span></span>" - <strong><em><a href="http://www.merseyremakes.co.uk/gibber/bezier/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Rob Fearon, Retro Remakes</a></em></strong></p>
+<p>
+	"The soundtrack itself is worthy of praise. I paid the extra few dollars in order to get it, even though I had no idea if it'd be any good, and I'm glad I did. It's phenomenal." - 
+	<a href="http://www.mediadetour.com/2015/02/bezier-review/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong><em>Tyler Selig, MediaDetour</em></strong></a>
+</p>
+<p>
+	"Bezier is a fast paced twin stick Geometry Wars-Style blaster full of varied enemy design, frantic gameplay and more visual flair than a burning Lamborghini filled with fireworks and glitter." - 
+	<strong><a href="http://www.alphabetagamer.com/bezier-beta-download/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><em>Calum Fraser, AlphaBetaGamer</em></a>
+</strong></p>
+<p>
+	<a href="http://www.alphabetagamer.com/bezier-beta-download/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"></a>"It's beautiful and more than a little wacky." - <u><strong><em><a href="http://www.rockpapershotgun.com/2014/10/05/bezier-free-shooter-download/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><em>Ben Barrett, Rock Paper Shotgun</em></a></em> </strong></u></p>
+<p><br></p>
+<h2>Player Feedback<br>
+</h2>
+<p>"Outstanding. Here's an example of a game that both quintessentially represents, as well as broadens its genre. If you enjoy dual stick shooters, this is unmissable." - <strong><u><em><a href="http://steamcommunity.com/profiles/76561198119144356/recommended/381320/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">Gabrienb @ Steam</a></em></u></strong></p>
+<p>"Gave the game a try. Just wanted to take a quick look as I didn't have enough time to really get into it. Felt like I wouldn't be able to stop playing unless the world ended. This game is awesome." - <a href="http://steamcommunity.com/id/Germaximus/recommended/381320/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong><em>Germaximus @ Steam</em></strong></a><u><strong><em></em></strong></u></p>
+<p>"Great fun. I've been waiting for this game for ages and it doesn't disappoint. Very fast moving and addictive. There's no time to rest, there's enemies to kill!" - <a href="http://steamcommunity.com/profiles/76561198047438354/recommended/381320/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong><em>ash @ Steam</em></strong></a><span></span></p>
+<p>"Is it that good you ask?...why yes..yes it is. This may well be in the top 5 twin sticks I've played and yes I've played alot over the past 35 years of gaming starting with Robotron at the age of 4." - <a href="http://steamcommunity.com/id/rgnfishsticks/recommended/381320/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong><em>Fishsticks @ Steam</em></strong></a><u><strong><em></em></strong></u><br></p>
+<p>"All I can say in the end is it reminds me of all those days I spent playing away on the machines at my granda's old arcade. That alone makes this wonderful for me." - <span></span><a href="http://steamcommunity.com/id/12899412/recommended/381320/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong><em>GeT_JoYe @ Steam</em></strong></a><br></p>
+<p>"Gorgeous Neon effects hectic action and LOTS of enemies to take out followed by an epic soundtrack. If you like twin stick shooters like Geometry Wars you'll love this. I've only been playing for 1 hour (lol) at the time of typing this and I already know I'm going to get a lot of enjoyment here. Do I recommend it? I most certainly do :D 9/10<span></span>" - <a href="http://steamcommunity.com/id/TheEndlessVortex/recommended/381320/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong><em>TheEndlessVortex @ Steam</em></strong></a><u><strong><em></em></strong></u></p>
+<p>"Beautiful game with a fantastic soundtrack. I'm a sucker for twin-stick shooters and this tried to bring something different to the market with the story." - <a href="http://steamcommunity.com/profiles/76561198015842439/recommended/381320/" target="_blank" referrerpolicy="origin" rel="nofollow noopener"><strong><em>fnminman @ Steam</em></strong></a><u><em><strong></strong></em></u><br></p>
+<p>"Interesting twin stick shooter with slick graphics, fun, tough gameplay and great music." - mojoxrisen @ Steam Greenlight</p>
+<p>"The game is really, really amazing - looks great, sounds great (soundtrack is on Bandcamp if you'd like to preview it) - loads of original ideas etc. Can't recommend this enough" - shrewdlogarithm @ Steam Greenlight</p>
+<p>"I seen it for 30 sec and bought it and let me tell you is pretty amazing.. it brings an excitement games of this type do not have. Vote for this game I highly recommended. Music is pretty awesome too.. One of the best sound tracks I heard this year." - Knight-Crawler @ Steam Greenlight</p>
+<p>"I bought it on Desura and I would buy it again on Steam to support the developer. This is unabashed old school gaming madness!" - jcaracc2003 @ Steam Greenlight</p>
+<p>
+	"Holy crap this game is great This is the twin stick shooter evolved Took a few minutes to get my head round it, but once I did - OMFG Beautiful art style, OUTSTANDING soundtrack and really tight gameplay - Love it to bits" - Midian808 @ Desura<br>
+	
+</p>
+<p>
+	"Just played the demo. This game is bloody amazing! About to purchase...<span></span>" - IronSoldier @ Eurogamer
+</p>
+<p>
+	"Love it!" - kirkblack70 @ Desura
+</p>
+<p>
+	"A really fun and beautiful game, that you seem to have really well polished during your 6 years development process." - MrModeste @ Desura
+</p>
+<p>
+	"Read about this on Rock Paper Shotgun and had to check it out, and I'm very glad I did. Great looking, amazing music and quality voice work. I love the visual design." - alffly @ Desura
+</p>
+<p>
+	"Holy crap this game is great. The soundtrack alone is enough to justify a download" - DYFE @ Desura</p>
+<p><br></p>
+<h2>The Blaster Is A Dying Heart<br>
+</h2>
+<p>
+	Bezier is a dual stick blaster set inside a vast computer built deep underground. The story traces the principal's escape from this "Noah's Ark" gone wrong. A simple shooter on the surface, the deeper narrative pulls in his relationship between evolution and god, family and love. These themes question his motives, force him to confront what is real and lead him to salvation.
+</p>
+<p>
+	Powered by the BezierSynth traditional rendering is renounced in favour of a fluid aesthetic guided by story elements, player interaction and the audio engine. An eighty minute soundtrack blends together orchestra, synthesizers and many ethnic instruments to drive the drama through fifteen zones. Almost one hundred different enemies, voice acting, reward based achievements and different game modes make Bezier the mindless blaster with a big heart.
+</p>
+<p><br></p>
+<h2>Support</h2>
+<p>If you have any problems with Bezier then firstly, we're very sorry that has happened. It is certainly not supposed to. Secondly, please get in touch with us at <strong>hello@thalamusdigital.co.uk&nbsp;</strong>and we will do our best to sort that out.</p>
+<p><br></p>
+<p><strong>Note: The game on sale here is the Steam version only.&nbsp;</strong><br></p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

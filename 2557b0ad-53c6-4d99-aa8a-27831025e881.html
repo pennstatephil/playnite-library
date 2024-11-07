@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bringris</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Bringris</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:56:48</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:22:20</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-10/15/2020">10/15/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Puzzle">Puzzle</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Zeno Rogue">Zeno Rogue</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Zeno Rogue">Zeno Rogue</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://zenorogue.itch.io/bringris" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Bringris" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p><strong>Currently working on an improved version of Bringris, for the <a href="https://store.steampowered.com/app/2271110/RogueViz_Collection/" referrerpolicy="origin" rel="nofollow noopener">RogueViz Collection</a>. Please wishlist!<br></strong></p><p><strong>What's the goal?</strong></p>
+<p>Just like in classic falling block games such as Tetris or Blockout, fill the levels -- once a whole level (30 cubes) is filled, it disappears. Try to fill as many levels as you can!</p>
+<p><strong>How to move?</strong></p>
+<p>wasd to move, space to drop by one level, Enter to drop (you can still move after this -- press Enter twice if you don't want to move anymore), hold Shift to display cubes missing from the levels below. Press 'p' to pause or see the main menu.<br></p>
+<p><strong>Can I move the camera freely?</strong></p>
+<p>While in pause/main menu, click "explore". You can then use mouse/arrows and PageUp/PageDown to freely explore the structure you have built. Do this, the views are AMAZING!<br></p>
+<p><strong>How to rotate?</strong></p>
+<p>There is no key to rotate, but since this game uses <a href="https://medium.com/@ZenoRogue/non-euclidean-geometry-and-games-fb46989320d4" referrerpolicy="origin" rel="nofollow noopener">non-Euclidean geometry</a>, there is no need! Just find a pentagon with five right angles and move along its edges.</p>
+<p>(If you change the geometry, a special key for rotation may be necessary -- 'q' and 'e' are used for this purpose.)<br></p>
+<p><strong>How to rotate vertically?</strong></p>
+<p>This game takes place in non-isotropic space -- the 'Z' coordinate works differently than the 'XY' plane (which has hyperbolic geometry). Intuitively, parallel lines in the XY plane diverge, while vertical lines 'stay parallel'. This means that vertical rotation makes no mathematical sense -- the distance between the points would change (when rotating around Y axis, points on the XY plane would become closer after the rotation, while points on the YZ plane would become more distant).</p>
+<p>(You can change the geometry to one where vertical rotation makes sense, but it is still not allowed for consistency.)<br></p>
+<p><strong>But what if you tried to rotate it vertically?</strong></p>
+<p>That's a good question! We do not know if anyone knows. It seems a good research question. It is likely that they would resist rotation, just like the springs in our world resist changing their shape.</p>
+<p><strong>Why do cubes appear thin when viewed from a distance?</strong></p>
+<p>In hyperbolic geometry, parallel lines diverge, so things become small with distance much faster than in Euclidean. Since our space is non-isotropic (hyperbolic in XY and Euclidean in YZ), this makes them thinner, but not shorter.</p>
+<p><strong>Are the edges of the cubes straight lines?</strong></p>
+<p>Yes -- more formally, they are geodesics. It is clear when the camera is positioned right above them. In other positions it may not look so because of non-isotropy (see the last answer).</p>
+<p><strong>Why Bringris?</strong></p>
+<p>The "flat level" is a manifold called <a href="https://en.wikipedia.org/wiki/Bring%27s_curve" referrerpolicy="origin" rel="nofollow noopener">Bring's surface or Bring's curve</a>, related to <a href="https://blogs.ams.org/visualinsight/2016/06/15/small-stellated-dodecahedron/" referrerpolicy="origin" rel="nofollow noopener">the small stellated dodecahedron</a>.</p>
+<p><strong>Why is this particular geometry and topology used?</strong></p>
+<p>In the full hyperbolic space, higher levels would have more cubes, which does not seem to be a good design for this kind of game. The original plan was to use spherical geometry for levels, but that does not give many choices -- only the five platonic solids; cube (six squares per level which become cubes in 3D) is too small, and icosahedron (20 triangular prisms) and dodecahedron (12 pentagonal prisms) are very non-intuitive to navigate. Squares with 72 degree angles are the best, and Bring's surface is probably the smallest highly symmetric surface that can be tessellated with them. With 60-degree angles there is another surface (12 squares -- like a cube where every face is doubled and you move to the other copy after crossing every edge), but these squares are larger, and you could not rotate-by-movement&nbsp; (with right-angled hexagons you could only rotate-by-movement by 180 degrees).</p>
+<p><strong>How is the expert mode different?</strong></p>
+<p>In the normal game mode there is no time limit. In the expert mode, you get less and less time for placing the pieces, and also you get score based on how fast you are.</p>
+<p><strong>Bringris works with VR!</strong><br></p>
+<p>Bringris works with SteamVR! (In the Windows version) The game is probably best controlled with the keyboard rather than the VR controllers, but it is quite cool to explore in VR. You need a powerful graphics card, or change the settings (e.g. disable raycasting and/or reduce the number of iterations or cells to draw ).<br></p>
+<p><strong>What engine does it use?</strong></p>
+<p>It is created using the <a href="http://roguetemple.com/z/hyper/" referrerpolicy="origin" rel="nofollow noopener">HyperRogue</a> engine aka <a href="http://roguetemple.com/z/hyper/rogueviz.php" referrerpolicy="origin" rel="nofollow noopener">RogueViz</a>.</p>
+<p><strong>What pieces are available, and what are their frequencies?</strong></p>
+<p>Every piece constructed of 1 to 4 "cubes" is available. The frequency <em>f</em> is calculated as follows:</p>
+<ul><li> start with 1
+</li><li> multiply by the number of symmetries the piece has (identity, vertical, horizontal, vertical+horizontal)
+</li><li> multiply by 2 for purely vertical pieces
+</li><li> a single cube has frequency 1, not 8</li></ul>
+<p>After a piece is chosen, its frequency is multiplied by 1/2^(1/f).</p>
+<p><strong>What are the differences between the download and the web version?</strong></p>
+<p>The downloadable version has better performance, basic sound effects, and the settings can be saved.<br></p>
+<p><strong>More questions?</strong></p>
+<p>Visit the <a href="https://discord.gg/cKkZhmg" referrerpolicy="origin" rel="nofollow noopener">Bringris channel in the HyperRogue Discord</a>!<strong><br></strong></p>
+<p><strong>History and Credits<br></strong></p>
+<p>1.1: introduces alternate geometries, and fixes some bugs (sound effects, score counting).</p>
+<p>1.2: more alternate geometries, minor bugfixes, more settings to configure</p>
+<p>1.2b: bugfixes (secret geometries work and are secret (press kl), fixed crash after bounded well)</p>
+<p>1.3: added non-orientable hyperbolic manifolds and orbifolds<br></p>
+<p>1.4: nicer "pentagons" geometry; an option to disable flashes; fixed disabling the raycaster; works with VR; nicer wall texture</p>
+<p>1.6: the issue of Bringris crashing on startup on some operating system (unless the "Vista compatibility mode" was on) should be fixed. Also updated the engine, but this should not have significant effects in Bringris (except the controllers shown on the desktop screen in VR).<br></p>
+<p>For some reason, it appears that, for some people, the game runs better with <br></p>
+<p>Thanks to Ann, Berenth...ehm...Cathbald, Christopher King, Marek14, Sir Light LJIJ, and VƧ&nbsp; for suggestions!<br>
+</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

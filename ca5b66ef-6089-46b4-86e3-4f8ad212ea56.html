@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fostering Apocalypse</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Fostering Apocalypse</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 14:57:25</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-11/7/2024">11/7/2024</a> 15:25:45</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Itch.io">Itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-itch.io">itch.io</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-5/28/2021">5/28/2021</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Visual Novel">Visual Novel</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1667490" target="_blank">Steam</a><br/><a href="https://incisor-studios.itch.io/fostering-apocalypse" target="_blank">Itch</a><br/><a href="https://www.twitch.tv/directory/game/Fostering%20Apocalypse" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p>The world has ended once before, and there are those who aim to end it again. The demon summoned to embark this second apocalypse is only a child, and a woman who has lost it all resolves to save her. A half-hour long narrative game with survival gameplay elements and two endings.</p>
+<p><br></p>
+<p><img src="https://img.itch.zone/aW1nLzYxMjU1NzMucG5n/original/nxgLDp.png" loading="lazy"></p>
+<p><img src="https://img.itch.zone/aW1nLzYxMjU1NzcuZ2lm/original/ta6EJr.gif" loading="lazy"><br></p>
+<p>The year is 19XX.&nbsp;The world has been lost to a demon apocalypse, the remnants of this devastation staining the landscape and leaving mere dozens of people alive. The wastes are harsh, and camaraderie is hard to come by. You play as&nbsp;<strong>Del</strong>, a bruiser who patrols the wastes in her truck. She's hardened by this dead world, but something softer lies beneath her violent exterior.</p>
+<p><br></p>
+<p><img src="https://img.itch.zone/aW1nLzYxMjU1NjMucG5n/original/daOefk.png" loading="lazy"><br></p>
+<figure><img src="https://img.itch.zone/aW1nLzYxMTIwNjQuZ2lm/original/uFmwtu.gif" loading="lazy"></figure>
+<p>Despite the destruction of it all, there are those in the end of the world&nbsp;who feel that perhaps the first time didn't quite take. On an average patrol, Del spots a pillar of fire in the distance and the source of it can only be one thing: demons have been summoned once more. But even demons can be innocent.&nbsp;<strong>Barrett</strong> is no more than a child, and those left in the&nbsp;world are either out to get her, or to control her.<br></p>
+<p><br></p>
+<figure><img src="https://img.itch.zone/aW1nLzYxMjU1NjkucG5n/original/IQhOKT.png" style="font-size: inherit" loading="lazy"><br></figure>
+<p><img src="https://img.itch.zone/aW1nLzYxMjM3OTQuZ2lm/original/IctBPi.gif" loading="lazy"></p>
+<p>Fostering Apocalypse is 4.99 USD, but there is more to enjoy if you donate.</p>
+<ul><li>At the $9.99 tier, receive&nbsp;<strong>the original soundtrack by Ian Laurence</strong>, including each track of the game as well as original album art.</li><li>At the $14.99 tier, receive all of the above, as well as&nbsp;an <strong>Art Book PDF</strong> that includes concept art, sketches, process documentation, and in-game assets, as well as&nbsp;<strong>five 4K&nbsp;desktop wallpapers &amp; hi-res phone backgrounds</strong>&nbsp;of in-game environments and&nbsp;the game cover by Nathaniel Santore.</li></ul>
+<figure><img src="https://img.itch.zone/aW1nLzYxMjQyNzYuZ2lm/original/nTadnt.gif" loading="lazy"><br></figure>
+<p>Fostering Apocalypse is the&nbsp;debut game of Incisor Studios, a game dev studio founded by Steff Bradley &amp; Mauricio Castillo Rodríguez. Made in the span of four months.<br></p>
+<p>Narrative Direction &amp; Art Assets<br>Steff Bradley<br><a href="https://www.steffbradley.com/" target="_blank" style="font-size: inherit" referrerpolicy="origin" rel="nofollow noopener">https://www.steffbradley.com/</a></p>
+<p>Programming<br><span></span>Mauricio Castillo Rodríguez<br><a href="http://www.maurimo.com/" target="_blank" referrerpolicy="origin" rel="nofollow noopener">http://www.maurimo.com/</a><br></p>
+<p>Sound Design<br>Cristian Ayala<br><a href="https://www.cristianayala.net" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://www.cristianayala.net/</a><br></p>
+<p>Soundtrack<br>Ian Laurence<br><a href="https://www.musicianlaurence.com" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://www.musicianlaurence.com</a><br></p>
+<p>Game Cover<br>Nathaniel Santore<br><a href="https://www.nathanielsantore.com" target="_blank" referrerpolicy="origin" rel="nofollow noopener">https://www.nathanielsantore.com</a><br></p>
+<p>Special Thanks<br>Mark Sable &amp; Jim Rugg<br>SVA MFA&nbsp;Visual Narrative<br></p>
+<p>Daniel Rodríguez<br>Anna Marcelo</p>
+<p>Made with <a href="https://unity.com" target="_blank" style="font-size: inherit" referrerpolicy="origin" rel="nofollow noopener">Unity</a>, <a href="https://yarnspinner.dev" style="font-size: inherit" referrerpolicy="origin" rel="nofollow noopener">YarnSpinner</a>, &amp; <a href="https://www.fmod.com" style="font-size: inherit" referrerpolicy="origin" rel="nofollow noopener">FMOD</a>.</p>
+<p>Contact and press: incisorstudios@gmail.com</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
