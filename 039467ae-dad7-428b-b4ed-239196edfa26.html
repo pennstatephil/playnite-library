@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Out of the Park Baseball 26</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Out of the Park Baseball 26</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-4/24/2025">4/24/2025</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-5/2/2025">5/2/2025</a> 22:14:03</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-3/14/2025">3/14/2025</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Sport">Sport</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Out Of The Park Developments">Out Of The Park Developments</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Com2uS">Com2uS</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Massively Multiplayer Online (MMO)">Massively Multiplayer Online (MMO)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://ootpdevelopments.com/" target="_blank">Official</a><br/><a href="https://youtube.com/ootpdevelopments" target="_blank">YouTube</a><br/><a href="https://facebook.com/ootpbaseball" target="_blank">Facebook</a><br/><a href="https://twitter.com/ootpbaseball" target="_blank">Twitter</a><br/><a href="https://discord.gg/OOTP" target="_blank">Discord</a><br/><a href="https://www.reddit.com/r/OOTP" target="_blank">Reddit</a><br/><a href="https://wiki.ootpdevelopments.com/" target="_blank">Wikia</a><br/><a href="https://bsky.app/profile/ootpbaseball.bsky.social" target="_blank">Bluesky</a><br/><a href="https://store.steampowered.com/app/3116890/Out_of_the_Park_Baseball_26/" target="_blank">Steam</a><br/><a href="https://www.instagram.com/outoftheparkbaseball" target="_blank">Instagram</a><br/><a href="https://en.wikipedia.org/wiki/Out_of_the_Park_Baseball" target="_blank">Wikipedia</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph">We are thrilled to introduce Out of the Park Baseball 26 - the 26th edition of our award-winning baseball strategy series. Fans around the world have fallen in love with Out of the Park Baseball, recognizing its unique place in the intersection of video games and sport!</p><p class="bb_paragraph"></p><p class="bb_paragraph">If it happens in real baseball, it happens in Out of the Park Baseball! Develop and discover new talent, draft the next superstar, negotiate with free agents, enter trade talks with other teams, build your dynasty and guide a franchise into an infinite future! As a manager, dive into the more hands-on management and set your team's lineups, pitching staffs, in-game strategy and call the shots from the dugout. You can oversee your league at a high level, or play out each game in the gorgeous 3D game mode, managing play by play or even pitch by pitch. OOTP has it all covered!</p><p class="bb_paragraph"></p><p class="bb_paragraph">Here are some of the new features coming to Out of the Park Baseball 26, building on the foundation of the franchise:</p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>For the first time ever - The Road To The World Baseball Classic(</strong>TM)<strong>!</strong></p><p class="bb_paragraph"></p><p class="bb_paragraph">We are thrilled to announce that, for the first time in Out of the Park Baseball history, the authentic World Baseball Classic(TM) will be in the game! Starting this season with the World Baseball Classic(TM) Qualifiers, including the clubs and players, and continuing into next year, the <strong>real </strong>World Baseball Classic(TM) clubs, participants, schedules, and more will be here. This single-player-mode feature allows everyone to experience the best of international baseball in true OOTP fashion.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>Player Development Lab 2.0!</strong></p><p class="bb_paragraph"></p><p class="bb_paragraph">Our popular new single-player feature gets bigger and better this season! New progress bars improve clarity and allow you to track your players even more closely. Midterm progress reports now also give you a better idea on how your players are performing and allow you to be even more hands-on. Have a guy struggling to improve his plate discipline and don’t want to keep him in the lab for any longer? You can now cut your losses and free up the space for someone else. With new game settings, refined programs, fun news from around the league, and more, experience the development lab on a whole new level!</p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>New and improved MLB Draft!</strong></p><p class="bb_paragraph"></p><p class="bb_paragraph">The importance of the draft cannot be overstated and in OOTP 26 we have greatly expanded upon the experience. An all new draft combine allows you to follow top prospects, develop strong relationships with them, and see what other organizations are thinking. Get the opinion of experts on the draft class in a new Draft Pipeline. With a new Draft Central screen and even more refinements, make your choices and see how you can transform your club into a powerhouse!</p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>Beautiful new dynamic scoreboards with in-game live information!</strong></p><p class="bb_paragraph"></p><p class="bb_paragraph">OOTP 26’s visuals jump off the screen and deliver great information in real time! Updated in real-time with information from the game you’re managing, put yourself in the stands like you’re sitting in the ballpark.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>Drive for the Pennant is back</strong> - <strong>now for any season in baseball history</strong>! </p><p class="bb_paragraph"></p><p class="bb_paragraph">Our popular new mode returns - now letting you explore any year in the entire history of the sport in this unique, streamlined single player challenge! Execute important choices at crucial times, be transported to the manager’s seat in the last inning of a no-hitter, make a key pitching decision late in a game, and much more! No longer limited to just the current season, Drive For The Pennant is an incredible way to explore the rich and vast history of Major League Baseball, and focus your game on the big decisions for your team.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>Licensed leagues return!</strong> </p><p class="bb_paragraph"></p><p class="bb_paragraph">MLB, the complete minor leagues, the KBO in Korea and licensed leagues from the UK and the Netherlands are all here for you to explore in depth. Jump into the MLB or KBO season at any point, all season long, with up-to-the-minute rosters, trades, injuries, transactions, and more! </p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>The National Baseball Hall of Fame!</strong> </p><p class="bb_paragraph"></p><p class="bb_paragraph">Our amazing partnership with the National Baseball Hall of Fame continues this season in new and fascinating ways! Hall of Fame players, artifacts, and experiences will pepper OOTP 26 all season long across the entire experience.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>2025 Rosters and rules!</strong></p><p class="bb_paragraph"></p><p class="bb_paragraph">As always, Out of the Park Baseball features up-to-the-minute 2025 MLB rosters that get updated all season long, with every franchise represented from its big league club all the way down to the low minors, and everywhere in between! Plus, OOTP 26 features officially licensed leagues from South Korea (KBO) and Europe.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>Tons of upgrades big and small!</strong></p><p class="bb_paragraph"></p><ul class="bb_ul"><li><p class="bb_paragraph"><i>Overhauled player scouting model, with scouts giving you more details than ever before about your players</i></p></li><li><p class="bb_paragraph"><i>Improved historical ratings engine, to ensure the best historical play ever</i></p></li><li><p class="bb_paragraph"><i>A Military Service system to replicate the real club decision making process needed for the KBO</i></p></li><li><p class="bb_paragraph"><i>Improved UI experience</i></p></li><li><p class="bb_paragraph"><i>Updated AI for all number of systems, player evaluation, and minor league management</i></p></li><li><p class="bb_paragraph"><i>Much more!</i></p></li></ul><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>Perfect Team returns with new ways to compete online against your friends and the world!</strong></p><p class="bb_paragraph"></p><p class="bb_paragraph">There’s nothing in the world like the incredible online competitions of Perfect Team. Featuring upgrades that come directly from our amazing community, this year’s Perfect Team is set to take players to all-new heights.</p><p class="bb_paragraph"></p><p class="bb_paragraph">Perfect Team 26 features:</p><p class="bb_paragraph"></p><ul class="bb_ul"><li><p class="bb_paragraph"><i>New Clubhouse Rewards Shop, to give you the most control of your rewards</i></p></li><li><p class="bb_paragraph"><i>New league promotion systems and league play incentives</i></p></li><li><p class="bb_paragraph"><i>Updates to give you more control over your team than ever before</i></p></li><li><p class="bb_paragraph"><i>New licensed legendary players</i></p></li><li><p class="bb_paragraph">New content all season long - and beyond! All new programs, missions, competitions, and excitement await you every day.</p></li></ul><p class="bb_paragraph"></p><p class="bb_paragraph">Out of the Park Baseball 26 runs on PC/Mac/Linux and features the American League and National League logos, the World Series trophy, official logos and jerseys for all 30 MLB teams and 15 KBO teams, over 150 Minor League Baseball league and team logos, and historical MLB logos.</p><p class="bb_paragraph"></p><p class="bb_paragraph">Major League and Minor League Baseball trademarks and copyrights are used with permission of Major League Baseball. Visit </p><p class="bb_paragraph"></p><p class="bb_paragraph">Officially Licensed Product of MLB Players, Inc. MLBPA intellectual property rights may not be used without the written consent of MLBPA or MLBPI.</p><p class="bb_paragraph"></p><p class="bb_paragraph">Out of the Park Developments © Copyright 2026. All Rights Reserved</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
